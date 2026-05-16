@@ -3,9 +3,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import {
   Search, ShoppingCart, User, Sun, Moon, Sparkles,
   X, Loader2, ArrowRight, Store, Package, Clock,
+  LogOut, ChevronDown,
 } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
 import { useCart } from '../../context/CartContext'
+import { useAuth } from '../../context/AuthContext'
 import { semanticSearch, getSearchSuggestions } from '../../api/ontology'
 import { cn } from '../../lib/utils'
 
@@ -42,6 +44,27 @@ export default function Header() {
   const { isDark, toggle } = useTheme()
   const { count } = useCart()
   const navigate = useNavigate()
+  const { user, logout } = useAuth()
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (!userMenuRef.current?.contains(e.target)) setUserMenuOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const handleLogout = async () => {
+    setUserMenuOpen(false)
+    await logout()
+    navigate('/')
+  }
+
+  const avatarInitials = user?.full_name
+    ? user.full_name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()
+    : user?.email?.[0]?.toUpperCase() ?? '?'
 
   const [query, setQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
@@ -450,10 +473,70 @@ export default function Header() {
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          <button className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground
-                             hover:text-foreground hover:bg-secondary transition-colors">
-            <User size={18} />
-          </button>
+          {/* Auth UI */}
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen(o => !o)}
+                className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-secondary transition-colors"
+              >
+                {user.profile?.avatar
+                  ? <img src={user.profile.avatar} alt="" className="w-7 h-7 rounded-full object-cover" />
+                  : (
+                    <div className="w-7 h-7 rounded-full bg-primary/10 border border-primary/20
+                                    flex items-center justify-center text-[11px] font-bold text-primary">
+                      {avatarInitials}
+                    </div>
+                  )
+                }
+                <span className="text-sm text-foreground font-medium max-w-[80px] truncate hidden sm:block">
+                  {user.full_name?.split(' ')[0] || user.email.split('@')[0]}
+                </span>
+                <ChevronDown size={13} className="text-muted-foreground" />
+              </button>
+
+              {userMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 w-44 bg-card border border-border
+                                rounded-xl shadow-xl z-50 overflow-hidden fade-up">
+                  <Link
+                    to="/perfil"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-foreground
+                               hover:bg-secondary transition-colors"
+                  >
+                    <User size={14} className="text-muted-foreground" />
+                    Mi perfil
+                  </Link>
+                  <div className="mx-2 h-px bg-border" />
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2.5 px-3 py-2.5 text-sm text-destructive
+                               hover:bg-destructive/10 transition-colors"
+                  >
+                    <LogOut size={14} />
+                    Cerrar sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center gap-1.5">
+              <Link
+                to="/registro"
+                className="px-3 py-1.5 rounded-lg text-sm font-medium text-muted-foreground
+                           hover:text-foreground hover:bg-secondary transition-colors hidden sm:block"
+              >
+                Registrarse
+              </Link>
+              <Link
+                to="/login"
+                className="px-3 py-1.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground
+                           hover:bg-primary/90 transition-colors"
+              >
+                Iniciar sesión
+              </Link>
+            </div>
+          )}
 
           <Link
             to="/carrito"
