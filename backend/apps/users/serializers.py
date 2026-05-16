@@ -1,6 +1,8 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken as RT
 from .models import UserProfile
 
 
@@ -98,30 +100,21 @@ class ProfileUpdateSerializer(serializers.Serializer):
 
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
-    # Accept 'email' in the request body; parent serializer uses username_field
-    # to name the credential field and to pass it to authenticate().
-    # By setting username_field = 'email', the field is named 'email' in the
-    # request, but authenticate() is called with email=<value>.
-    # Django's ModelBackend doesn't accept email kwarg, so we override validate
-    # to remap the value to 'username' (which equals email in our User setup).
     username_field = 'email'
 
     def validate(self, attrs):
-        # Parent reads attrs[self.username_field] = attrs['email'] and calls
-        # authenticate(email=...) — Django's ModelBackend won't find the user.
-        # Remap to 'username' which is the actual DB column / authenticate kwarg.
+        # simplejwt's parent validate() passes self.username_field as a kwarg to
+        # authenticate(), but Django's ModelBackend only accepts 'username'.
+        # We bypass super().validate() and authenticate directly.
         credentials = {
             'username': attrs.get('email', ''),
             'password': attrs.get('password', ''),
         }
-        from django.contrib.auth import authenticate
         self.user = authenticate(**credentials)
         if not self.user:
-            from rest_framework import exceptions
             raise exceptions.AuthenticationFailed(
                 self.error_messages['no_active_account'], 'no_active_account'
             )
-        from rest_framework_simplejwt.tokens import RefreshToken as RT
         refresh = RT.for_user(self.user)
         return {
             'refresh': str(refresh),
