@@ -21,11 +21,13 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'django_filters',
 ]
 
 LOCAL_APPS = [
+    'apps.users',
     'apps.stores',
     'apps.products',
     'apps.ontology',
@@ -129,3 +131,13 @@ CORS_ALLOWED_ORIGINS = config(
 
 # Ruta al archivo OWL de la ontología
 ONTOLOGY_PATH = BASE_DIR / 'ontology' / 'smartstore.owl'
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
