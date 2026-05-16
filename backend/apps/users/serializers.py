@@ -26,7 +26,7 @@ class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True, min_length=8)
     password2 = serializers.CharField(write_only=True)
-    full_name = serializers.CharField(max_length=150, default='')
+    full_name = serializers.CharField(max_length=150, required=False, allow_blank=True, default='')
     phone = serializers.CharField(max_length=20, default='', allow_blank=True)
     city = serializers.CharField(max_length=100, default='', allow_blank=True)
 
@@ -72,6 +72,11 @@ class ProfileUpdateSerializer(serializers.Serializer):
         if User.objects.filter(email=value).exclude(pk=user.pk).exists():
             raise serializers.ValidationError('Email ya en uso.')
         return value.lower()
+
+    def validate(self, attrs):
+        if not attrs:
+            raise serializers.ValidationError('No se proporcionaron campos para actualizar.')
+        return attrs
 
     def save(self):
         user = self.context['request'].user

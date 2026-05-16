@@ -1,6 +1,9 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from rest_framework.test import APITestCase
+from rest_framework import status
 from .models import UserProfile
+from .serializers import RegisterSerializer, UserSerializer
 
 class UserProfileModelTest(TestCase):
     def test_profile_created_with_user(self):
@@ -24,8 +27,6 @@ class UserProfileModelTest(TestCase):
         user_id = user.id
         user.delete()
         self.assertFalse(UserProfile.objects.filter(user_id=user_id).exists())
-
-from .serializers import RegisterSerializer, UserSerializer
 
 class RegisterSerializerTest(TestCase):
     def _valid_data(self, email='a@b.com'):
