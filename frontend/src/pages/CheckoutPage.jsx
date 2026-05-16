@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ShoppingBag, CheckCircle, ArrowLeft, Lock,
@@ -7,6 +7,7 @@ import {
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import { formatPrice, cn } from '../lib/utils'
 
 const TAX_RATE = 0.10
@@ -109,6 +110,7 @@ function SuccessScreen({ orderNumber, items, total, onContinue }) {
 export default function CheckoutPage() {
   const { items, subtotal, clearCart } = useCart()
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [orderNumber] = useState(() => Math.floor(10000 + Math.random() * 90000))
@@ -124,6 +126,19 @@ export default function CheckoutPage() {
   const [form, setForm] = useState({
     name: '', email: '', address: '', city: '', phone: '',
   })
+
+  useEffect(() => {
+    if (user) {
+      setForm(f => ({
+        ...f,
+        name: user.full_name || f.name,
+        email: user.email || f.email,
+        phone: user.profile?.phone || f.phone,
+        city: user.profile?.city || f.city,
+        address: user.profile?.address || f.address,
+      }))
+    }
+  }, [user])
   const [errors, setErrors] = useState({})
 
   const update = (k, v) => setForm(f => ({ ...f, [k]: v }))
