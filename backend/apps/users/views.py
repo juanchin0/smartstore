@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -38,11 +39,16 @@ class LogoutView(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
+        refresh_token = request.data.get('refresh')
+        if not refresh_token:
+            return Response(
+                {'detail': 'refresh token required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         try:
-            token = RefreshToken(request.data.get('refresh'))
-            token.blacklist()
-        except Exception:
-            pass
+            RefreshToken(refresh_token).blacklist()
+        except (TokenError, InvalidToken):
+            pass  # already invalid/expired — treat as logged out
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
