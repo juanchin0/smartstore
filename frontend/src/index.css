@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ─────────────────────────────────────────────────────── */
+:root {
+  --background: hsl(220 25% 97%);
+  --foreground: hsl(226 40% 9%);
+  --surface: hsl(0 0% 100%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(226 40% 9%);
+  --primary: hsl(243 75% 58%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(220 18% 93%);
+  --secondary-foreground: hsl(226 30% 28%);
+  --muted: hsl(220 18% 94%);
+  --muted-foreground: hsl(220 12% 50%);
+  --accent: hsl(220 18% 93%);
+  --accent-foreground: hsl(226 40% 9%);
+  --border: hsl(220 18% 88%);
+  --input: hsl(220 18% 91%);
+  --ring: hsl(243 75% 58%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --semantic: hsl(258 68% 62%);
+  --semantic-foreground: hsl(0 0% 100%);
+  --sale: hsl(38 92% 50%);
+  --sale-foreground: hsl(30 60% 12%);
+  --success: hsl(160 60% 42%);
+  --success-foreground: hsl(0 0% 100%);
+}
+
+.dark {
+  --background: hsl(226 28% 6%);
+  --foreground: hsl(220 22% 93%);
+  --surface: hsl(226 24% 10%);
+  --card: hsl(226 24% 12%);
+  --card-foreground: hsl(220 22% 93%);
+  --primary: hsl(243 75% 66%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(226 24% 16%);
+  --secondary-foreground: hsl(220 18% 70%);
+  --muted: hsl(226 24% 14%);
+  --muted-foreground: hsl(220 12% 50%);
+  --accent: hsl(226 24% 16%);
+  --accent-foreground: hsl(220 22% 93%);
+  --border: hsl(226 24% 18%);
+  --input: hsl(226 24% 16%);
+  --ring: hsl(243 75% 66%);
+  --destructive: hsl(0 62% 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --semantic: hsl(258 68% 70%);
+  --semantic-foreground: hsl(0 0% 100%);
+  --sale: hsl(38 92% 56%);
+  --sale-foreground: hsl(0 0% 100%);
+  --success: hsl(160 60% 46%);
+  --success-foreground: hsl(0 0% 100%);
+}
+
+/* ── Tailwind v4: Mapeo a utilities ────────────────────────────────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-semantic: var(--semantic);
+  --color-semantic-foreground: var(--semantic-foreground);
+  --color-sale: var(--sale);
+  --color-sale-foreground: var(--sale-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    border-color: var(--border);
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Outfit', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', system-ui, sans-serif;
+    line-height: 1.2;
+  }
+}
+
+/* ── Utilities personalizadas ───────────────────────────────────────────── */
+@layer utilities {
+  .font-display { font-family: 'Syne', system-ui, sans-serif; }
+  .font-body    { font-family: 'Outfit', system-ui, sans-serif; }
+  .font-data    { font-family: 'JetBrains Mono', monospace; }
+
+  .glass {
+    background-color: color-mix(in srgb, var(--background) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px -8px color-mix(in srgb, var(--primary) 15%, transparent);
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--muted) 25%,
+      color-mix(in srgb, var(--muted) 60%, var(--background)) 50%,
+      var(--muted) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  .pulse-ring { animation: pulse-ring 1.4s ease-in-out infinite; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fade-up 0.4s ease forwards; }
+
+  .scrollbar-thin::-webkit-scrollbar       { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+}
