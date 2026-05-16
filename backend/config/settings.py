@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import timedelta
 from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,8 +132,6 @@ CORS_ALLOWED_ORIGINS = config(
 
 # Ruta al archivo OWL de la ontología
 ONTOLOGY_PATH = BASE_DIR / 'ontology' / 'smartstore.owl'
-
-from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
