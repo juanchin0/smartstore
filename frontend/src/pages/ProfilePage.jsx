@@ -100,6 +100,7 @@ export default function ProfilePage() {
 
   const handleLogout = async () => {
     await logout()
+    toast('Sesión cerrada correctamente', { type: 'success' })
     navigate('/')
   }
 
