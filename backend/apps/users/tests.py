@@ -72,3 +72,53 @@ class UserSerializerTest(TestCase):
         self.assertEqual(data['email'], 'x@y.com')
         self.assertEqual(data['full_name'], 'Luis López')
         self.assertEqual(data['profile']['city'], 'GDL')
+
+class AuthEndpointsTest(APITestCase):
+    def _register(self, email='user@test.com', password='Str0ngPass!'):
+        return self.client.post('/api/auth/register/', {
+            'email': email, 'password': password, 'password2': password,
+            'full_name': 'Test User', 'phone': '', 'city': '',
+        }, format='json')
+
+    def test_register_returns_tokens(self):
+        res = self._register()
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        self.assertIn('access', res.data)
+        self.assertIn('refresh', res.data)
+        self.assertIn('user', res.data)
+
+    def test_login_returns_tokens(self):
+        self._register()
+        res = self.client.post('/api/auth/login/', {
+            'email': 'user@test.com', 'password': 'Str0ngPass!',
+        }, format='json')
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertIn('access', res.data)
+
+    def test_me_requires_auth(self):
+        res = self.client.get('/api/auth/me/')
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_me_returns_user_data(self):
+        reg = self._register()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {reg.data["access"]}')
+        res = self.client.get('/api/auth/me/')
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data['email'], 'user@test.com')
+
+    def test_profile_update(self):
+        reg = self._register()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {reg.data["access"]}')
+        res = self.client.put('/api/auth/profile/', {
+            'full_name': 'Ana López', 'phone': '5551234567', 'city': 'GDL', 'address': '',
+        }, format='json')
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data['full_name'], 'Ana López')
+        self.assertEqual(res.data['profile']['city'], 'GDL')
+
+    def test_logout_blacklists_token(self):
+        reg = self._register()
+        res = self.client.post('/api/auth/logout/', {
+            'refresh': reg.data['refresh'],
+        }, format='json')
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
