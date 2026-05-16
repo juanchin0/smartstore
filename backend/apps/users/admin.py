@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import UserProfile
 
-# UserProfile admin registered in models setup (Task 2)
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone', 'city')
+    raw_id_fields = ('user',)
