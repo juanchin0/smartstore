@@ -6,10 +6,21 @@ const api = axios.create({
   timeout: 10000,
 })
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('ss_access')
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  return config
+})
+
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    const msg = err.response?.data?.detail || err.response?.data?.error || err.message
+    const msg = err.response?.data?.detail
+      || err.response?.data?.error
+      || (typeof err.response?.data === 'object'
+          ? Object.values(err.response.data).flat().join(' ')
+          : null)
+      || err.message
     return Promise.reject(new Error(msg))
   }
 )
