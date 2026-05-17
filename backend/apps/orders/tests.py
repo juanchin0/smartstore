@@ -76,3 +76,71 @@ class OrderModelTest(TestCase):
         item.refresh_from_db()
         self.assertIsNone(item.product)
         self.assertEqual(item.name, 'Widget')
+
+
+class OrderAPITest(APITestCase):
+    def setUp(self):
+        self.user = make_user('buyer@test.com')
+        self.other_user = make_user('other@test.com')
+        self.store = make_store()
+        self.product = make_product(self.store)
+        self.payload = {
+            'subtotal': '9.09',
+            'tax': '0.91',
+            'total': '10.00',
+            'items': [
+                {
+                    'product_id': self.product.pk,
+                    'name': 'Widget',
+                    'quantity': 1,
+                    'price_at_purchase': '9.09',
+                    'subtotal': '9.09',
+                }
+            ],
+        }
+
+    def test_create_order_authenticated_returns_201(self):
+        self.client.force_authenticate(user=self.user)
+        response = self.client.post('/api/auth/orders/', self.payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertIn('order_number', response.data)
+        self.assertEqual(len(response.data['order_number']), 8)
+
+    def test_create_order_unauthenticated_returns_401(self):
+        response = self.client.post('/api/auth/orders/', self.payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_create_order_persists_to_db(self):
+        from .models import Order
+        self.client.force_authenticate(user=self.user)
+        self.client.post('/api/auth/orders/', self.payload, format='json')
+        self.assertEqual(Order.objects.filter(user=self.user).count(), 1)
+
+    def test_create_order_response_includes_nested_items(self):
+        self.client.force_authenticate(user=self.user)
+        response = self.client.post('/api/auth/orders/', self.payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        items = response.data['items']
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]['name'], 'Widget')
+        self.assertEqual(items[0]['quantity'], 1)
+
+    def test_list_orders_authenticated_returns_only_own_orders(self):
+        from .models import Order
+        self.client.force_authenticate(user=self.user)
+        Order.objects.create(user=self.user, subtotal='9.09', tax='0.91', total='10.00')
+        Order.objects.create(user=self.other_user, subtotal='9.09', tax='0.91', total='10.00')
+        response = self.client.get('/api/auth/orders/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_list_orders_unauthenticated_returns_401(self):
+        response = self.client.get('/api/auth/orders/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_list_orders_includes_nested_items(self):
+        self.client.force_authenticate(user=self.user)
+        self.client.post('/api/auth/orders/', self.payload, format='json')
+        response = self.client.get('/api/auth/orders/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data[0]['items']), 1)
