@@ -177,6 +177,7 @@ export default function CheckoutPage() {
           subtotal: round2(item.price * item.quantity),
         })),
       })
+      await authApi.updateOrderStatus(order.id, 'completed')
       clearCart()
       setOrderedItems(snapshot)
       setOrderedTotal(totalSnapshot)

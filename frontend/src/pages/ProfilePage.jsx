@@ -51,6 +51,7 @@ const STATUS_LABELS = {
   confirmed: 'Confirmado',
   shipped: 'Enviado',
   delivered: 'Entregado',
+  completed: 'Completada',
   cancelled: 'Cancelado',
 }
 
@@ -59,6 +60,7 @@ const STATUS_STYLES = {
   confirmed: 'bg-primary/10 text-primary',
   shipped: 'bg-semantic/10 text-semantic',
   delivered: 'bg-success/10 text-success',
+  completed: 'bg-success/10 text-success',
   cancelled: 'bg-destructive/10 text-destructive',
 }
 

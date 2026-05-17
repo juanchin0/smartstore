@@ -24,4 +24,7 @@ export const authApi = {
 
   createOrder: (data) =>
     api.post('/api/auth/orders/', data).then(r => r.data),
+
+  updateOrderStatus: (id, status) =>
+    api.patch(`/api/auth/orders/${id}/`, { status }).then(r => r.data),
 }

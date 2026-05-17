@@ -10,6 +10,7 @@ class Order(models.Model):
         ('confirmed', 'Confirmado'),
         ('shipped', 'Enviado'),
         ('delivered', 'Entregado'),
+        ('completed', 'Completada'),
         ('cancelled', 'Cancelado'),
     ]
 

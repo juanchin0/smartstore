@@ -2,6 +2,15 @@ from rest_framework import serializers
 from apps.products.models import Product
 from .models import Order, OrderItem
 
+ALLOWED_STATUS_TRANSITIONS = {
+    'pending': {'completed', 'cancelled'},
+    'completed': set(),
+    'cancelled': set(),
+    'confirmed': {'shipped', 'cancelled'},
+    'shipped': {'delivered'},
+    'delivered': set(),
+}
+
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product = serializers.PrimaryKeyRelatedField(read_only=True)
@@ -36,3 +45,17 @@ class OrderSerializer(serializers.ModelSerializer):
                 product = None
             OrderItem.objects.create(order=order, product=product, **item_data)
         return order
+
+
+class OrderStatusUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['status']
+
+    def validate_status(self, value):
+        current = self.instance.status
+        if value not in ALLOWED_STATUS_TRANSITIONS.get(current, set()):
+            raise serializers.ValidationError(
+                f"Cannot transition from '{current}' to '{value}'."
+            )
+        return value
