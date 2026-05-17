@@ -18,4 +18,10 @@ export const authApi = {
 
   refreshToken: (refresh) =>
     api.post('/api/auth/token/refresh/', { refresh }).then(r => r.data),
+
+  getOrders: () =>
+    api.get('/api/auth/orders/').then(r => r.data),
+
+  createOrder: (data) =>
+    api.post('/api/auth/orders/', data).then(r => r.data),
 }
