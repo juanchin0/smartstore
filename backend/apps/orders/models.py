@@ -36,11 +36,15 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.order_number:
-            while True:
-                candidate = uuid.uuid4().hex[:8].upper()
-                if not Order.objects.filter(order_number=candidate).exists():
-                    self.order_number = candidate
-                    break
+            from django.db import IntegrityError as _IE
+            for _ in range(10):
+                try:
+                    self.order_number = uuid.uuid4().hex[:8].upper()
+                    super().save(*args, **kwargs)
+                    return
+                except _IE:
+                    self.order_number = ''
+            raise RuntimeError('Could not generate a unique order number after 10 attempts')
         super().save(*args, **kwargs)
 
 
