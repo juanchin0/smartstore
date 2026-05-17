@@ -8,6 +8,8 @@ import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from '../context/ToastContext'
+import { authApi } from '../api/auth'
 import { formatPrice, cn } from '../lib/utils'
 
 const TAX_RATE = 0.10
@@ -111,9 +113,10 @@ export default function CheckoutPage() {
   const { items, subtotal, clearCart } = useCart()
   const navigate = useNavigate()
   const { user } = useAuth()
+  const { toast } = useToast()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-  const [orderNumber] = useState(() => Math.floor(10000 + Math.random() * 90000))
+  const [orderNumber, setOrderNumber] = useState(null)
 
   // Snapshot taken at the moment the order is confirmed — used by SuccessScreen
   // so the recap still shows the products even after clearCart() is called.
@@ -156,18 +159,32 @@ export default function CheckoutPage() {
     if (Object.keys(errs).length) { setErrors(errs); return }
 
     setLoading(true)
-    // Snapshot before anything changes
     const snapshot = [...items]
     const totalSnapshot = total
 
-    await new Promise(r => setTimeout(r, 1400)) // simulate API call
-
-    // Clear cart BEFORE showing success screen
-    clearCart()
-    setOrderedItems(snapshot)
-    setOrderedTotal(totalSnapshot)
-    setLoading(false)
-    setSuccess(true)
+    try {
+      const order = await authApi.createOrder({
+        subtotal,
+        tax: taxes,
+        total,
+        items: items.map(item => ({
+          product_id: item.product_id,
+          name: item.name,
+          quantity: item.quantity,
+          price_at_purchase: item.price,
+          subtotal: item.price * item.quantity,
+        })),
+      })
+      clearCart()
+      setOrderedItems(snapshot)
+      setOrderedTotal(totalSnapshot)
+      setOrderNumber(order.order_number)
+      setSuccess(true)
+    } catch {
+      toast('Error al procesar el pedido. Intenta de nuevo.', { type: 'error' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   // Just navigate — cart is already cleared by handleSubmit
