@@ -162,17 +162,19 @@ export default function CheckoutPage() {
     const snapshot = [...items]
     const totalSnapshot = total
 
+    const round2 = (n) => Math.round(n * 100) / 100
+
     try {
       const order = await authApi.createOrder({
-        subtotal,
-        tax: taxes,
-        total,
+        subtotal: round2(subtotal),
+        tax: round2(taxes),
+        total: round2(total),
         items: items.map(item => ({
           product_id: item.product_id,
           name: item.name,
           quantity: item.quantity,
-          price_at_purchase: item.price,
-          subtotal: item.price * item.quantity,
+          price_at_purchase: round2(item.price),
+          subtotal: round2(item.price * item.quantity),
         })),
       })
       clearCart()
