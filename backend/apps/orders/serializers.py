@@ -25,6 +25,14 @@ class OrderSerializer(serializers.ModelSerializer):
         order = Order.objects.create(user=self.context['request'].user, **validated_data)
         for item_data in items_data:
             product_id = item_data.pop('product_id', None)
-            product = Product.objects.filter(pk=product_id).first() if product_id else None
+            if product_id is not None:
+                product = Product.objects.filter(pk=product_id).first()
+                if product is None:
+                    order.delete()
+                    raise serializers.ValidationError(
+                        {'items': f'Product with id {product_id} does not exist.'}
+                    )
+            else:
+                product = None
             OrderItem.objects.create(order=order, product=product, **item_data)
         return order
