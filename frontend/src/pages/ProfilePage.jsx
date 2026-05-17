@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   User, Mail, Phone, MapPin, Home, ShoppingBag,
-  Save, LogOut, Loader2, CheckCircle,
+  Save, LogOut, Loader2, CheckCircle, Package, ChevronDown, ChevronUp,
 } from 'lucide-react'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
-import { cn } from '../lib/utils'
+import { authApi } from '../api/auth'
+import { cn, formatPrice } from '../lib/utils'
 
 function Field({ label, icon: Icon, error, ...props }) {
   return (
@@ -45,6 +46,22 @@ function Avatar({ user }) {
   )
 }
 
+const STATUS_LABELS = {
+  pending: 'Pendiente',
+  confirmed: 'Confirmado',
+  shipped: 'Enviado',
+  delivered: 'Entregado',
+  cancelled: 'Cancelado',
+}
+
+const STATUS_STYLES = {
+  pending: 'bg-sale/10 text-sale',
+  confirmed: 'bg-primary/10 text-primary',
+  shipped: 'bg-semantic/10 text-semantic',
+  delivered: 'bg-success/10 text-success',
+  cancelled: 'bg-destructive/10 text-destructive',
+}
+
 export default function ProfilePage() {
   const { user, updateProfile, logout } = useAuth()
   const navigate = useNavigate()
@@ -56,6 +73,9 @@ export default function ProfilePage() {
   const [errors, setErrors] = useState({})
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [orders, setOrders] = useState([])
+  const [ordersLoading, setOrdersLoading] = useState(false)
+  const [expandedOrder, setExpandedOrder] = useState(null)
 
   useEffect(() => {
     if (user) {
@@ -69,11 +89,23 @@ export default function ProfilePage() {
     }
   }, [user])
 
+  useEffect(() => {
+    if (!user) return
+    setOrdersLoading(true)
+    authApi.getOrders()
+      .then(setOrders)
+      .catch(() => {})
+      .finally(() => setOrdersLoading(false))
+  }, [user])
+
   const update = (k, v) => {
     setForm(f => ({ ...f, [k]: v }))
     setErrors(e => ({ ...e, [k]: '' }))
     setSaved(false)
   }
+
+  const toggleExpand = (id) =>
+    setExpandedOrder(prev => (prev === id ? null : id))
 
   const validate = () => {
     const e = {}
@@ -210,21 +242,92 @@ export default function ProfilePage() {
               </form>
             </div>
 
-            {/* Purchase history placeholder */}
+            {/* Order history */}
             <div className="bg-card border border-border rounded-2xl p-5 sm:p-6">
               <h2 className="font-display font-semibold text-base text-foreground mb-4 flex items-center gap-2">
                 <ShoppingBag size={16} className="text-primary" />
                 Mis compras
               </h2>
-              <div className="flex flex-col items-center py-8 text-center">
-                <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-3">
-                  <ShoppingBag size={20} className="text-muted-foreground/40" />
+
+              {ordersLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 size={20} className="animate-spin text-muted-foreground" />
                 </div>
-                <p className="text-sm text-muted-foreground">Sin compras aún</p>
-                <p className="text-xs text-muted-foreground/70 mt-1">
-                  Tu historial de pedidos aparecerá aquí
-                </p>
-              </div>
+              ) : orders.length === 0 ? (
+                <div className="flex flex-col items-center py-8 text-center">
+                  <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-3">
+                    <ShoppingBag size={20} className="text-muted-foreground/40" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">Sin compras aún</p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">
+                    Tu historial de pedidos aparecerá aquí
+                  </p>
+                </div>
+              ) : (
+                <div className="divide-y divide-border">
+                  {orders.map(order => (
+                    <div key={order.id}>
+                      <button
+                        onClick={() => toggleExpand(order.id)}
+                        className="w-full flex items-center justify-between py-3 px-1 rounded-lg
+                                   hover:bg-muted/40 transition-colors text-left"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Package size={14} className="text-muted-foreground shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium text-foreground">
+                              #{order.order_number}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {new Date(order.created_at).toLocaleDateString('es-MX', {
+                                day: '2-digit', month: 'short', year: 'numeric',
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 shrink-0">
+                          <span className={cn(
+                            'text-xs px-2 py-0.5 rounded-full font-medium',
+                            STATUS_STYLES[order.status] ?? 'bg-muted text-muted-foreground',
+                          )}>
+                            {STATUS_LABELS[order.status] ?? order.status}
+                          </span>
+                          <span className="text-sm font-data font-semibold text-foreground">
+                            {formatPrice(Number(order.total))}
+                          </span>
+                          {expandedOrder === order.id
+                            ? <ChevronUp size={14} className="text-muted-foreground" />
+                            : <ChevronDown size={14} className="text-muted-foreground" />
+                          }
+                        </div>
+                      </button>
+
+                      {expandedOrder === order.id && (
+                        <div className="pb-3 px-1">
+                          <div className="bg-muted/30 rounded-xl divide-y divide-border/60 overflow-hidden">
+                            {order.items.map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-center justify-between px-3 py-2.5"
+                              >
+                                <div>
+                                  <p className="text-xs text-foreground">{item.name}</p>
+                                  <p className="text-[11px] text-muted-foreground">
+                                    ×{item.quantity} · {formatPrice(Number(item.price_at_purchase))} c/u
+                                  </p>
+                                </div>
+                                <span className="text-xs font-data text-foreground shrink-0">
+                                  {formatPrice(Number(item.subtotal))}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Logout */}
