@@ -11,6 +11,7 @@ export default function ProductCard({ product, storeSlug }) {
   const { toast } = useToast()
   const navigate = useNavigate()
   const [justAdded, setJustAdded] = useState(false)
+  const [imgError, setImgError] = useState(false)
 
   const inCart = items.some(i => i.product_id === product.id)
 
@@ -37,21 +38,27 @@ export default function ProductCard({ product, storeSlug }) {
     if (storeSlug) navigate(`/tienda/${storeSlug}/producto/${product.id}`)
   }
 
+  const showImage = product.image && !imgError
+
   return (
     <article className="group bg-card border border-border rounded-2xl overflow-hidden card-hover flex flex-col">
 
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-muted shrink-0">
-        {product.image ? (
+        {showImage ? (
           <img
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
+            onError={() => setImgError(true)}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <ShoppingBag size={40} className="text-muted-foreground/20" />
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-muted to-muted/60">
+            <ShoppingBag size={36} className="text-muted-foreground/25" />
+            <span className="text-[10px] text-muted-foreground/40 font-medium px-3 text-center line-clamp-2">
+              {product.name}
+            </span>
           </div>
         )}
 
@@ -72,7 +79,7 @@ export default function ProductCard({ product, storeSlug }) {
         )}
 
         {/* Semantic tags overlay */}
-        {product.semantic_tags?.length > 0 && (
+        {showImage && product.semantic_tags?.length > 0 && (
           <div className="absolute bottom-0 left-0 right-0 p-2 flex flex-wrap gap-1
                           bg-gradient-to-t from-black/50 to-transparent">
             {product.semantic_tags.slice(0, 2).map(tag => (

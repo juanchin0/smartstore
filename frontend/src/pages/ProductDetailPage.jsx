@@ -69,18 +69,21 @@ function getRatingBars(rating, count) {
 
 function ImagePanel({ image, name }) {
   const [zoomed, setZoomed] = useState(false)
+  const [imgError, setImgError] = useState(false)
+
+  const showImage = image && !imgError
 
   return (
     <div className="space-y-3">
       <div
         className={cn(
           'relative aspect-square rounded-2xl overflow-hidden bg-muted border border-border',
-          image ? (zoomed ? 'cursor-zoom-out' : 'cursor-zoom-in') : 'cursor-default'
+          showImage ? (zoomed ? 'cursor-zoom-out' : 'cursor-zoom-in') : 'cursor-default'
         )}
-        onMouseEnter={() => image && setZoomed(true)}
+        onMouseEnter={() => showImage && setZoomed(true)}
         onMouseLeave={() => setZoomed(false)}
       >
-        {image ? (
+        {showImage ? (
           <>
             <img
               src={image}
@@ -89,6 +92,7 @@ function ImagePanel({ image, name }) {
                 'w-full h-full object-cover transition-transform duration-500 ease-out',
                 zoomed ? 'scale-[1.3]' : 'scale-100'
               )}
+              onError={() => setImgError(true)}
             />
             <div className={cn(
               'absolute bottom-3 right-3 px-2.5 py-1.5 bg-foreground/55 backdrop-blur-sm',

@@ -69,7 +69,8 @@ function SuccessScreen({ orderNumber, items, total, onContinue }) {
             <div key={item.product_id} className="flex items-center gap-3 px-4 py-3">
               <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center shrink-0 overflow-hidden">
                 {item.image
-                  ? <img src={item.image} alt="" className="w-full h-full object-cover" />
+                  ? <img src={item.image} alt="" className="w-full h-full object-cover"
+                         onError={e => { e.currentTarget.style.display = 'none' }} />
                   : <ShoppingBag size={14} className="text-muted-foreground/40" />
                 }
               </div>

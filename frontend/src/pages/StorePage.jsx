@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowUpDown, Package, LayoutGrid, Sparkles, X } from 'lucide-react'
@@ -42,6 +42,8 @@ export default function StorePage() {
 
   const [activeFilters, setActiveFilters] = useState({})
   const [ordering, setOrdering] = useState('')
+  const [logoError, setLogoError] = useState(false)
+  const [bannerError, setBannerError] = useState(false)
 
   // ── Semantic state from URL ──────────────────────────────────────────────
   const semanticClass = searchParams.get('semantic_class') || null
@@ -103,20 +105,30 @@ export default function StorePage() {
       <main className="flex-1">
         {/* ── Store banner ──────────────────────────────────────────────── */}
         <div className={cn(
-          'relative h-40 sm:h-52 overflow-hidden bg-gradient-to-br from-secondary via-muted to-secondary',
-          'border-b border-border'
+          'relative h-44 sm:h-56 overflow-hidden border-b border-border',
+          store?.banner && !bannerError ? 'bg-black' : 'bg-gradient-to-br from-secondary via-muted to-secondary',
         )}>
-          {store?.banner && (
-            <img src={store.banner} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+          {store?.banner && !bannerError && (
+            <img
+              src={store.banner}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover opacity-50 scale-105"
+              onError={() => setBannerError(true)}
+            />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent" />
 
           <div className="relative h-full max-w-6xl mx-auto px-4 flex items-end pb-5">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-card border border-border
-                              flex items-center justify-center shadow-md flex-shrink-0 overflow-hidden">
-                {store?.logo
-                  ? <img src={store.logo} alt={store.name} className="w-full h-full object-contain p-1" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-card/95 border border-border
+                              flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden backdrop-blur-sm">
+                {store?.logo && !logoError
+                  ? <img
+                      src={store.logo}
+                      alt={store.name}
+                      className="w-full h-full object-cover"
+                      onError={() => setLogoError(true)}
+                    />
                   : <Package size={24} className="text-primary" />
                 }
               </div>

@@ -7,8 +7,8 @@ class Store(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True, max_length=220)
     description = models.TextField(blank=True)
-    logo = models.ImageField(upload_to='stores/logos/', blank=True, null=True)
-    banner = models.ImageField(upload_to='stores/banners/', blank=True, null=True)
+    logo = models.URLField(max_length=600, blank=True, default='')
+    banner = models.URLField(max_length=600, blank=True, default='')
     categories = models.JSONField(
         default=list,
         help_text='Lista de nombres de categorías que maneja esta tienda'

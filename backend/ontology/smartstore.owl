@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:ss="http://www.smartstore.org/ontology#"
+    xml:base="http://www.smartstore.org/ontology">
+
+  <!-- NOTA: Se usa rdf:ID (crea URI = xml:base + '#' + ID) para que       -->
+  <!-- todas las URIs sean http://www.smartstore.org/ontology#Nombre        -->
+  <!-- y coincidan exactamente con ss:Nombre en SPARQL                      -->
+
+  <owl:Ontology rdf:about="http://www.smartstore.org/ontology">
+    <rdfs:label xml:lang="es">Ontología SmartStore v2</rdfs:label>
+    <rdfs:comment xml:lang="es">Ontología para e-commerce semántico: filtros dinámicos, búsqueda semántica e inferencia de etiquetas</rdfs:comment>
+    <owl:versionInfo>2.0.0</owl:versionInfo>
+  </owl:Ontology>
+
+  <!-- ================================================================ -->
+  <!-- ANNOTATION PROPERTIES — Metadatos para filtros dinámicos de UI   -->
+  <!-- ================================================================ -->
+
+  <owl:AnnotationProperty rdf:ID="isFilterable">
+    <rdfs:label xml:lang="es">es filtrable</rdfs:label>
+    <rdfs:comment xml:lang="es">true si esta propiedad debe mostrarse como filtro en la UI</rdfs:comment>
+  </owl:AnnotationProperty>
+
+  <owl:AnnotationProperty rdf:ID="filterType">
+    <rdfs:label xml:lang="es">tipo de filtro</rdfs:label>
+    <rdfs:comment xml:lang="es">Widget UI: select | range | boolean | text</rdfs:comment>
+  </owl:AnnotationProperty>
+
+  <owl:AnnotationProperty rdf:ID="filterValues">
+    <rdfs:label xml:lang="es">valores de filtro</rdfs:label>
+    <rdfs:comment xml:lang="es">JSON array de valores para filtros tipo select</rdfs:comment>
+  </owl:AnnotationProperty>
+
+  <owl:AnnotationProperty rdf:ID="filterLabel">
+    <rdfs:label xml:lang="es">etiqueta de filtro</rdfs:label>
+  </owl:AnnotationProperty>
+
+  <owl:AnnotationProperty rdf:ID="synonym">
+    <rdfs:label xml:lang="es">sinónimo</rdfs:label>
+    <rdfs:comment xml:lang="es">Términos equivalentes para búsqueda semántica</rdfs:comment>
+  </owl:AnnotationProperty>
+
+  <owl:AnnotationProperty rdf:ID="semanticWeight">
+    <rdfs:label xml:lang="es">peso semántico</rdfs:label>
+    <rdfs:comment xml:lang="es">Factor multiplicador de relevancia en scoring semántico (default 1.0)</rdfs:comment>
+  </owl:AnnotationProperty>
+
+  <!-- ================================================================ -->
+  <!-- VOCABULARIO — Reglas de Inferencia                               -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="InferenceRule">
+    <rdfs:label xml:lang="es">Regla de Inferencia</rdfs:label>
+    <rdfs:comment xml:lang="es">Regla que infiere etiquetas semánticas basadas en atributos del producto</rdfs:comment>
+  </owl:Class>
+
+  <owl:DatatypeProperty rdf:ID="condition">
+    <rdfs:domain rdf:resource="#InferenceRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">condición</rdfs:label>
+    <rdfs:comment xml:lang="es">Expresión evaluable: "campo op valor" | "has_discount" | "has_tag:valor"</rdfs:comment>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="tag">
+    <rdfs:domain rdf:resource="#InferenceRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">etiqueta inferida</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="confidence">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="es">confianza</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:ID="targetClass">
+    <rdfs:domain rdf:resource="#InferenceRule"/>
+    <rdfs:label xml:lang="es">clase objetivo</rdfs:label>
+    <rdfs:comment xml:lang="es">Si se define, la regla aplica solo a esa clase OWL</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <!-- ================================================================ -->
+  <!-- VOCABULARIO — Compatibilidad                                     -->
+  <!-- ================================================================ -->
+
+  <owl:ObjectProperty rdf:ID="compatibleWith">
+    <rdfs:label xml:lang="es">compatible con</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:ID="compatibilityConfidence">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="es">confianza de compatibilidad</rdfs:label>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- JERARQUÍA DE CLASES — Raíz                                       -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="Product">
+    <rdfs:label xml:lang="es">Producto</rdfs:label>
+    <rdfs:comment xml:lang="es">Clase raíz para todos los productos en SmartStore</rdfs:comment>
+    <ss:semanticWeight>1.0</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Store">
+    <rdfs:label xml:lang="es">Tienda</rdfs:label>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- ELECTRÓNICOS                                                      -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="ElectronicProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Producto Electrónico</rdfs:label>
+    <rdfs:comment xml:lang="es">Dispositivos y gadgets electrónicos</rdfs:comment>
+    <ss:synonym xml:lang="es">electrónico</ss:synonym>
+    <ss:synonym xml:lang="es">electrónica</ss:synonym>
+    <ss:synonym xml:lang="es">tecnología</ss:synonym>
+    <ss:synonym xml:lang="es">gadget</ss:synonym>
+    <ss:synonym xml:lang="es">dispositivo</ss:synonym>
+    <ss:synonym xml:lang="es">aparato</ss:synonym>
+    <ss:synonym xml:lang="es">tech</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Smartphone">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Smartphone</rdfs:label>
+    <rdfs:comment xml:lang="es">Teléfonos inteligentes con conectividad avanzada</rdfs:comment>
+    <ss:synonym xml:lang="es">celular</ss:synonym>
+    <ss:synonym xml:lang="es">teléfono</ss:synonym>
+    <ss:synonym xml:lang="es">móvil</ss:synonym>
+    <ss:synonym xml:lang="es">phone</ss:synonym>
+    <ss:synonym xml:lang="es">iphone</ss:synonym>
+    <ss:semanticWeight>1.5</ss:semanticWeight>
+    <ss:compatibleWith rdf:resource="#Headphones"/>
+    <ss:compatibleWith rdf:resource="#Charger"/>
+    <ss:compatibilityConfidence>0.95</ss:compatibilityConfidence>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Laptop">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Laptop</rdfs:label>
+    <rdfs:comment xml:lang="es">Computadoras portátiles</rdfs:comment>
+    <ss:synonym xml:lang="es">computadora</ss:synonym>
+    <ss:synonym xml:lang="es">portátil</ss:synonym>
+    <ss:synonym xml:lang="es">notebook</ss:synonym>
+    <ss:synonym xml:lang="es">pc</ss:synonym>
+    <ss:semanticWeight>1.5</ss:semanticWeight>
+    <ss:compatibleWith rdf:resource="#Headphones"/>
+    <ss:compatibleWith rdf:resource="#Charger"/>
+    <ss:compatibilityConfidence>0.9</ss:compatibilityConfidence>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Tablet">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Tablet</rdfs:label>
+    <ss:synonym xml:lang="es">tableta</ss:synonym>
+    <ss:synonym xml:lang="es">ipad</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+    <ss:compatibleWith rdf:resource="#Headphones"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Headphones">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Auriculares</rdfs:label>
+    <rdfs:comment xml:lang="es">Auriculares y dispositivos de audio personal</rdfs:comment>
+    <ss:synonym xml:lang="es">audífonos</ss:synonym>
+    <ss:synonym xml:lang="es">cascos</ss:synonym>
+    <ss:synonym xml:lang="es">earphones</ss:synonym>
+    <ss:synonym xml:lang="es">earbuds</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SmartTV">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Smart TV</rdfs:label>
+    <ss:synonym xml:lang="es">televisor</ss:synonym>
+    <ss:synonym xml:lang="es">televisión</ss:synonym>
+    <ss:synonym xml:lang="es">tv</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Charger">
+    <rdfs:subClassOf rdf:resource="#ElectronicProduct"/>
+    <rdfs:label xml:lang="es">Cargador</rdfs:label>
+    <ss:synonym xml:lang="es">adaptador</ss:synonym>
+    <ss:synonym xml:lang="es">cable</ss:synonym>
+    <ss:semanticWeight>1.0</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- ROPA Y CALZADO                                                    -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="ClothingProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Ropa y Moda</rdfs:label>
+    <ss:synonym xml:lang="es">ropa</ss:synonym>
+    <ss:synonym xml:lang="es">vestimenta</ss:synonym>
+    <ss:synonym xml:lang="es">prenda</ss:synonym>
+    <ss:synonym xml:lang="es">moda</ss:synonym>
+    <ss:synonym xml:lang="es">indumentaria</ss:synonym>
+    <ss:synonym xml:lang="es">fashion</ss:synonym>
+    <ss:synonym xml:lang="es">vestir</ss:synonym>
+    <ss:synonym xml:lang="es">outfit</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SportswearProduct">
+    <rdfs:subClassOf rdf:resource="#ClothingProduct"/>
+    <rdfs:label xml:lang="es">Ropa Deportiva</rdfs:label>
+    <ss:synonym xml:lang="es">deportivo</ss:synonym>
+    <ss:synonym xml:lang="es">sport</ss:synonym>
+    <ss:synonym xml:lang="es">fitness</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="RunningShoe">
+    <rdfs:subClassOf rdf:resource="#SportswearProduct"/>
+    <rdfs:label xml:lang="es">Zapatilla de Running</rdfs:label>
+    <rdfs:comment xml:lang="es">Calzado especializado para correr en distintas superficies</rdfs:comment>
+    <ss:synonym xml:lang="es">zapatilla</ss:synonym>
+    <ss:synonym xml:lang="es">zapatillas</ss:synonym>
+    <ss:synonym xml:lang="es">tenis</ss:synonym>
+    <ss:synonym xml:lang="es">running</ss:synonym>
+    <ss:synonym xml:lang="es">correr</ss:synonym>
+    <ss:synonym xml:lang="es">sneaker</ss:synonym>
+    <ss:synonym xml:lang="es">ligeras</ss:synonym>
+    <ss:synonym xml:lang="es">zapato</ss:synonym>
+    <ss:synonym xml:lang="es">calzado</ss:synonym>
+    <ss:synonym xml:lang="es">shoe</ss:synonym>
+    <ss:synonym xml:lang="es">trail</ss:synonym>
+    <ss:semanticWeight>1.8</ss:semanticWeight>
+    <ss:compatibleWith rdf:resource="#SportswearProduct"/>
+    <ss:compatibilityConfidence>0.9</ss:compatibilityConfidence>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Sportswear">
+    <rdfs:subClassOf rdf:resource="#SportswearProduct"/>
+    <rdfs:label xml:lang="es">Ropa de Entrenamiento</rdfs:label>
+    <ss:synonym xml:lang="es">camiseta deportiva</ss:synonym>
+    <ss:synonym xml:lang="es">malla</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="FormalClothing">
+    <rdfs:subClassOf rdf:resource="#ClothingProduct"/>
+    <rdfs:label xml:lang="es">Ropa Formal</rdfs:label>
+    <ss:synonym xml:lang="es">traje</ss:synonym>
+    <ss:synonym xml:lang="es">formal</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- ALIMENTOS                                                         -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="FoodProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Alimento</rdfs:label>
+    <ss:synonym xml:lang="es">comida</ss:synonym>
+    <ss:synonym xml:lang="es">alimento</ss:synonym>
+    <ss:synonym xml:lang="es">bebida</ss:synonym>
+    <ss:synonym xml:lang="es">snack</ss:synonym>
+    <ss:synonym xml:lang="es">supermercado</ss:synonym>
+    <ss:synonym xml:lang="es">despensa</ss:synonym>
+    <ss:synonym xml:lang="es">víveres</ss:synonym>
+    <ss:synonym xml:lang="es">groceries</ss:synonym>
+    <ss:synonym xml:lang="es">alimentación</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="OrganicFood">
+    <rdfs:subClassOf rdf:resource="#FoodProduct"/>
+    <rdfs:label xml:lang="es">Alimento Orgánico</rdfs:label>
+    <ss:synonym xml:lang="es">orgánico</ss:synonym>
+    <ss:synonym xml:lang="es">natural</ss:synonym>
+    <ss:synonym xml:lang="es">ecológico</ss:synonym>
+    <ss:semanticWeight>1.5</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="HealthyFood">
+    <rdfs:subClassOf rdf:resource="#FoodProduct"/>
+    <rdfs:label xml:lang="es">Alimento Saludable</rdfs:label>
+    <ss:synonym xml:lang="es">saludable</ss:synonym>
+    <ss:synonym xml:lang="es">proteína</ss:synonym>
+    <ss:synonym xml:lang="es">suplemento</ss:synonym>
+    <ss:semanticWeight>1.4</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- HOGAR                                                             -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="HomeProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Hogar</rdfs:label>
+    <ss:synonym xml:lang="es">hogar</ss:synonym>
+    <ss:synonym xml:lang="es">casa</ss:synonym>
+    <ss:synonym xml:lang="es">decoración</ss:synonym>
+    <ss:synonym xml:lang="es">interior</ss:synonym>
+    <ss:synonym xml:lang="es">sala</ss:synonym>
+    <ss:synonym xml:lang="es">living</ss:synonym>
+    <ss:synonym xml:lang="es">dormitorio</ss:synonym>
+    <ss:semanticWeight>1.1</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="FurnitureProduct">
+    <rdfs:subClassOf rdf:resource="#HomeProduct"/>
+    <rdfs:label xml:lang="es">Mueble</rdfs:label>
+    <ss:synonym xml:lang="es">mueble</ss:synonym>
+    <ss:synonym xml:lang="es">silla</ss:synonym>
+    <ss:synonym xml:lang="es">sofá</ss:synonym>
+    <ss:synonym xml:lang="es">mesa</ss:synonym>
+    <ss:synonym xml:lang="es">cama</ss:synonym>
+    <ss:synonym xml:lang="es">escritorio</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="KitchenProduct">
+    <rdfs:subClassOf rdf:resource="#HomeProduct"/>
+    <rdfs:label xml:lang="es">Artículo de Cocina</rdfs:label>
+    <ss:synonym xml:lang="es">cocina</ss:synonym>
+    <ss:synonym xml:lang="es">utensilios</ss:synonym>
+    <ss:synonym xml:lang="es">electrodoméstico</ss:synonym>
+    <ss:semanticWeight>1.2</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- LIBROS Y PAPELERÍA                                               -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="BookProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Libro y Papelería</rdfs:label>
+    <rdfs:comment xml:lang="es">Libros, revistas y artículos de papelería</rdfs:comment>
+    <ss:synonym xml:lang="es">libro</ss:synonym>
+    <ss:synonym xml:lang="es">lectura</ss:synonym>
+    <ss:synonym xml:lang="es">novela</ss:synonym>
+    <ss:synonym xml:lang="es">texto</ss:synonym>
+    <ss:synonym xml:lang="es">revista</ss:synonym>
+    <ss:synonym xml:lang="es">papelería</ss:synonym>
+    <ss:synonym xml:lang="es">cuaderno</ss:synonym>
+    <ss:synonym xml:lang="es">literario</ss:synonym>
+    <ss:semanticWeight>1.3</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- SALUD Y FARMACIA                                                 -->
+  <!-- ================================================================ -->
+
+  <owl:Class rdf:ID="MedicineProduct">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">Medicamento y Salud</rdfs:label>
+    <rdfs:comment xml:lang="es">Medicamentos, productos de salud y cuidado personal</rdfs:comment>
+    <ss:synonym xml:lang="es">medicina</ss:synonym>
+    <ss:synonym xml:lang="es">medicamento</ss:synonym>
+    <ss:synonym xml:lang="es">farmacia</ss:synonym>
+    <ss:synonym xml:lang="es">pastilla</ss:synonym>
+    <ss:synonym xml:lang="es">salud</ss:synonym>
+    <ss:synonym xml:lang="es">pharmaceutical</ss:synonym>
+    <ss:synonym xml:lang="es">tratamiento</ss:synonym>
+    <ss:semanticWeight>1.5</ss:semanticWeight>
+  </owl:Class>
+
+  <owl:Class rdf:ID="VitaminProduct">
+    <rdfs:subClassOf rdf:resource="#MedicineProduct"/>
+    <rdfs:label xml:lang="es">Vitamina y Suplemento</rdfs:label>
+    <rdfs:comment xml:lang="es">Vitaminas, minerales y suplementos nutricionales</rdfs:comment>
+    <ss:synonym xml:lang="es">vitamina</ss:synonym>
+    <ss:synonym xml:lang="es">suplemento</ss:synonym>
+    <ss:synonym xml:lang="es">omega</ss:synonym>
+    <ss:synonym xml:lang="es">nutrición</ss:synonym>
+    <ss:synonym xml:lang="es">mineral</ss:synonym>
+    <ss:synonym xml:lang="es">proteína</ss:synonym>
+    <ss:synonym xml:lang="es">colágeno</ss:synonym>
+    <ss:semanticWeight>1.5</ss:semanticWeight>
+  </owl:Class>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Comunes                                        -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="hasColor">
+    <rdfs:domain rdf:resource="#Product"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Color</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Negro", "Blanco", "Azul", "Rojo", "Verde", "Gris", "Plateado", "Dorado", "Rosa"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Color</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Electrónicos                                  -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="hasBrand">
+    <rdfs:domain rdf:resource="#ElectronicProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Marca</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Samsung", "Apple", "Xiaomi", "Huawei", "LG", "Sony", "OnePlus", "Motorola", "ASUS", "Dell", "HP", "Lenovo"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Marca</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasOperatingSystem">
+    <rdfs:domain rdf:resource="#ElectronicProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Sistema Operativo</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Android", "iOS", "Windows", "macOS", "Linux", "HarmonyOS"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Sistema Operativo</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasScreenSize">
+    <rdfs:domain rdf:resource="#ElectronicProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="es">Tamaño de Pantalla (pulgadas)</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>range</ss:filterType>
+    <ss:filterLabel xml:lang="es">Tamaño de pantalla (pulgadas)</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Smartphones                                   -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="has5G">
+    <rdfs:domain rdf:resource="#Smartphone"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="es">Conectividad 5G</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>boolean</ss:filterType>
+    <ss:filterLabel xml:lang="es">Tiene 5G</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasRAM">
+    <rdfs:domain rdf:resource="#Smartphone"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="es">RAM (GB)</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["4", "6", "8", "12", "16", "32"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Memoria RAM (GB)</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasStorageCapacity">
+    <rdfs:domain rdf:resource="#Smartphone"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="es">Almacenamiento (GB)</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["64", "128", "256", "512", "1024"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Almacenamiento</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasResolution">
+    <rdfs:domain rdf:resource="#Smartphone"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Resolución de cámara</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["12MP", "48MP", "64MP", "108MP", "200MP"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Resolución de cámara</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Laptops                                       -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="hasProcessor">
+    <rdfs:domain rdf:resource="#Laptop"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Procesador</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Intel Core i3", "Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 5", "AMD Ryzen 7", "Apple M1", "Apple M2", "Apple M3"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Procesador</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Running Shoes                                 -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="hasSurface">
+    <rdfs:domain rdf:resource="#RunningShoe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Superficie</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Asfalto", "Trail", "Pista", "Indoor", "Todo terreno"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Superficie recomendada</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasCushioningType">
+    <rdfs:domain rdf:resource="#RunningShoe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Amortiguación</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Mínima", "Moderada", "Máxima", "Reactiva"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Tipo de amortiguación</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasDropHeight">
+    <rdfs:domain rdf:resource="#RunningShoe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="es">Drop (mm)</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>range</ss:filterType>
+    <ss:filterLabel xml:lang="es">Drop talón-punta (mm)</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasShoeWeight">
+    <rdfs:domain rdf:resource="#RunningShoe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="es">Peso (g)</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>range</ss:filterType>
+    <ss:filterLabel xml:lang="es">Peso por unidad (g)</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- DATA PROPERTIES — Ropa y Moda                                  -->
+  <!-- ================================================================ -->
+
+  <owl:DatatypeProperty rdf:ID="hasSize">
+    <rdfs:domain rdf:resource="#ClothingProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Talla</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["XS", "S", "M", "L", "XL", "XXL", "XXXL", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Talla</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasMaterial">
+    <rdfs:domain rdf:resource="#ClothingProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Material</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Algodón", "Poliéster", "Lana", "Nylon", "Spandex", "Microfibra", "Gore-Tex"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Material principal</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasGender">
+    <rdfs:domain rdf:resource="#ClothingProduct"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="es">Género</rdfs:label>
+    <ss:isFilterable>true</ss:isFilterable>
+    <ss:filterType>select</ss:filterType>
+    <ss:filterValues>["Hombre", "Mujer", "Unisex", "Niño", "Niña"]</ss:filterValues>
+    <ss:filterLabel xml:lang="es">Género</ss:filterLabel>
+  </owl:DatatypeProperty>
+
+  <!-- ================================================================ -->
+  <!-- OBJECT PROPERTIES — Generales                                   -->
+  <!-- ================================================================ -->
+
+  <owl:ObjectProperty rdf:ID="belongsToStore">
+    <rdfs:domain rdf:resource="#Product"/>
+    <rdfs:range rdf:resource="#Store"/>
+    <rdfs:label xml:lang="es">pertenece a tienda</rdfs:label>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="isRelatedTo">
+    <rdfs:domain rdf:resource="#Product"/>
+    <rdfs:range rdf:resource="#Product"/>
+    <rdfs:label xml:lang="es">está relacionado con</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:ObjectProperty>
+
+  <!-- ================================================================ -->
+  <!-- REGLAS DE INFERENCIA — Individuales                             -->
+  <!-- ================================================================ -->
+
+  <!-- Reglas universales (sin targetClass = aplican a todos) -->
+
+  <ss:InferenceRule rdf:ID="RuleHighRating">
+    <ss:condition>rating >= 4.5</ss:condition>
+    <ss:tag xml:lang="es">Muy valorado</ss:tag>
+    <ss:confidence>0.95</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleTopRated">
+    <ss:condition>rating >= 4.8</ss:condition>
+    <ss:tag xml:lang="es">Top valorado</ss:tag>
+    <ss:confidence>0.99</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleOnSale">
+    <ss:condition>has_discount</ss:condition>
+    <ss:tag xml:lang="es">En oferta</ss:tag>
+    <ss:confidence>0.99</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleBudgetFriendly">
+    <ss:condition>price &lt; 200</ss:condition>
+    <ss:tag xml:lang="es">Precio accesible</ss:tag>
+    <ss:confidence>0.9</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RulePremium">
+    <ss:condition>price >= 1000</ss:condition>
+    <ss:tag xml:lang="es">Producto Premium</ss:tag>
+    <ss:confidence>0.9</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RulePopular">
+    <ss:condition>rating_count >= 100</ss:condition>
+    <ss:tag xml:lang="es">Popular</ss:tag>
+    <ss:confidence>0.95</ss:confidence>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleNew">
+    <ss:condition>rating_count == 0</ss:condition>
+    <ss:tag xml:lang="es">Nuevo</ss:tag>
+    <ss:confidence>0.8</ss:confidence>
+  </ss:InferenceRule>
+
+  <!-- Reglas por clase de producto -->
+
+  <ss:InferenceRule rdf:ID="RuleSmartphone5G">
+    <ss:condition>has_tag:5G</ss:condition>
+    <ss:tag xml:lang="es">Compatible con 5G</ss:tag>
+    <ss:confidence>0.98</ss:confidence>
+    <ss:targetClass rdf:resource="#Smartphone"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleSmartphoneHighRes">
+    <ss:condition>has_tag:108MP</ss:condition>
+    <ss:tag xml:lang="es">Cámara de alta resolución</ss:tag>
+    <ss:confidence>0.95</ss:confidence>
+    <ss:targetClass rdf:resource="#Smartphone"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleRunningLightweight">
+    <ss:condition>has_tag:ligero</ss:condition>
+    <ss:tag xml:lang="es">Ultra ligero</ss:tag>
+    <ss:confidence>0.9</ss:confidence>
+    <ss:targetClass rdf:resource="#RunningShoe"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleRunningTrail">
+    <ss:condition>has_tag:trail</ss:condition>
+    <ss:tag xml:lang="es">Apto para trail</ss:tag>
+    <ss:confidence>0.95</ss:confidence>
+    <ss:targetClass rdf:resource="#RunningShoe"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleRunningRoad">
+    <ss:condition>has_tag:asfalto</ss:condition>
+    <ss:tag xml:lang="es">Optimizado para asfalto</ss:tag>
+    <ss:confidence>0.92</ss:confidence>
+    <ss:targetClass rdf:resource="#RunningShoe"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleOrganic">
+    <ss:condition>has_tag:orgánico</ss:condition>
+    <ss:tag xml:lang="es">Certificado Orgánico</ss:tag>
+    <ss:confidence>0.98</ss:confidence>
+    <ss:targetClass rdf:resource="#FoodProduct"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleEnergyEfficient">
+    <ss:condition>has_tag:eficiencia_A</ss:condition>
+    <ss:tag xml:lang="es">Eficiencia Energética A+++</ss:tag>
+    <ss:confidence>0.97</ss:confidence>
+    <ss:targetClass rdf:resource="#ElectronicProduct"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleLaptopHighPerf">
+    <ss:condition>price >= 800</ss:condition>
+    <ss:tag xml:lang="es">Alto rendimiento</ss:tag>
+    <ss:confidence>0.85</ss:confidence>
+    <ss:targetClass rdf:resource="#Laptop"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleHeadphonesWireless">
+    <ss:condition>has_tag:inalámbrico</ss:condition>
+    <ss:tag xml:lang="es">Inalámbrico</ss:tag>
+    <ss:confidence>0.99</ss:confidence>
+    <ss:targetClass rdf:resource="#Headphones"/>
+  </ss:InferenceRule>
+
+  <ss:InferenceRule rdf:ID="RuleHeadphonesNC">
+    <ss:condition>has_tag:noise_cancelling</ss:condition>
+    <ss:tag xml:lang="es">Cancelación activa de ruido</ss:tag>
+    <ss:confidence>0.99</ss:confidence>
+    <ss:targetClass rdf:resource="#Headphones"/>
+  </ss:InferenceRule>
+
+</rdf:RDF>

@@ -13,12 +13,16 @@ function CartItem({ item }) {
   return (
     <div className="flex gap-4 py-5 border-b border-border last:border-0 group">
       {/* Image */}
-      <div className="w-20 h-20 rounded-xl bg-muted border border-border overflow-hidden shrink-0">
+      <div className="w-20 h-20 rounded-xl bg-muted border border-border overflow-hidden shrink-0
+                      flex items-center justify-center">
         {item.image
-          ? <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-          : <div className="w-full h-full flex items-center justify-center">
-              <ShoppingBag size={24} className="text-muted-foreground/30" />
-            </div>
+          ? <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-cover"
+              onError={e => { e.currentTarget.style.display = 'none' }}
+            />
+          : <ShoppingBag size={24} className="text-muted-foreground/30" />
         }
       </div>
 
