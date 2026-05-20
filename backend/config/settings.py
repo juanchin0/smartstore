@@ -124,9 +124,12 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'https://smartstore-frontend.onrender.com',
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://smartstore-frontend.onrender.com",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Ruta al archivo OWL de la ontología
 ONTOLOGY_PATH = BASE_DIR / 'ontology' / 'smartstore.owl'
