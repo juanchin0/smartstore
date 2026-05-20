@@ -1,0 +1,261 @@
+/* =====================================================================
+   SmartStore — Manual de Usuario · Stylesheet para PDF
+   ISO/IEC 26514 — Documento técnico profesional
+   ===================================================================== */
+
+/* ── Variables ──────────────────────────────────────────────────────── */
+:root {
+  --color-primary:    #1e3a5f;
+  --color-accent:     #2563eb;
+  --color-secondary:  #475569;
+  --color-light:      #f1f5f9;
+  --color-border:     #cbd5e1;
+  --color-warn-bg:    #fef3c7;
+  --color-warn-bdr:   #f59e0b;
+  --color-note-bg:    #eff6ff;
+  --color-note-bdr:   #2563eb;
+  --color-tip-bg:     #f0fdf4;
+  --color-tip-bdr:    #22c55e;
+  --color-danger-bg:  #fef2f2;
+  --color-danger-bdr: #ef4444;
+  --color-code-bg:    #f8fafc;
+  --font-main:        "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:        "Cascadia Code", "Consolas", "Courier New", monospace;
+}
+
+/* ── Reset & base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 10.5pt; }
+
+body {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1e293b;
+  background: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ── Page settings (used by wkhtmltopdf via @page) ──────────────────── */
+@page {
+  size: A4;
+  margin: 22mm 20mm 22mm 25mm;
+}
+
+@page :first {
+  margin-top: 0;
+}
+
+/* ── Cover / first page ─────────────────────────────────────────────── */
+/* The first <hr> separators in the portada render as decorative dividers */
+
+/* ── Headings ───────────────────────────────────────────────────────── */
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: 0.35em;
+  margin: 2.5em 0 0.7em;
+  page-break-after: avoid;
+  letter-spacing: -0.01em;
+}
+
+h1:first-of-type {
+  font-size: 2.4rem;
+  text-align: center;
+  border-bottom: 4px solid var(--color-primary);
+  padding-bottom: 0.5em;
+  margin-top: 2em;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 0.6em;
+  margin: 2em 0 0.6em;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin: 1.6em 0 0.5em;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin: 1.2em 0 0.4em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  page-break-after: avoid;
+}
+
+/* ── Paragraphs ─────────────────────────────────────────────────────── */
+p {
+  margin: 0 0 0.9em;
+  text-align: justify;
+  hyphens: auto;
+  orphans: 3;
+  widows: 3;
+}
+
+/* ── Links ──────────────────────────────────────────────────────────── */
+a { color: var(--color-accent); text-decoration: none; }
+
+/* ── Horizontal rules ───────────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1.8em 0;
+}
+
+/* ── Tables ─────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0 1.5em;
+  font-size: 0.88rem;
+  page-break-inside: auto;
+}
+
+thead {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+thead th {
+  padding: 0.5em 0.75em;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+tbody tr { border-bottom: 1px solid var(--color-border); }
+tbody tr:nth-child(even) { background: var(--color-light); }
+tbody tr:last-child { border-bottom: 2px solid var(--color-primary); }
+
+td {
+  padding: 0.45em 0.75em;
+  vertical-align: top;
+}
+
+td:first-child { font-weight: 500; }
+
+/* ── Lists ──────────────────────────────────────────────────────────── */
+ul, ol {
+  margin: 0.5em 0 1em 1.6em;
+  padding: 0;
+}
+
+li { margin: 0.2em 0; }
+li > ul, li > ol { margin-top: 0.2em; margin-bottom: 0.2em; }
+
+/* ── Code & pre ─────────────────────────────────────────────────────── */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.80em;
+  line-height: 1.55;
+  margin: 1em 0 1.4em;
+  page-break-inside: avoid;
+  border-left: 3px solid var(--color-accent);
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  white-space: pre;
+}
+
+/* ── Blockquotes — used for NOTA / IMPORTANTE / ADVERTENCIA / CONSEJO ─ */
+blockquote {
+  border-left: 4px solid var(--color-note-bdr);
+  background: var(--color-note-bg);
+  margin: 1em 0;
+  padding: 0.7em 1em;
+  border-radius: 0 6px 6px 0;
+  page-break-inside: avoid;
+}
+
+blockquote p { margin: 0; font-size: 0.92rem; }
+
+/* Advertencia (texto empieza con **ADVERTENCIA:**) */
+blockquote:has(strong:first-child) {
+  border-left-color: var(--color-warn-bdr);
+  background: var(--color-warn-bg);
+}
+
+/* ── Cover page table (portada) ──────────────────────────────────────── */
+/* The first table in the document is the cover metadata table */
+body > table:first-of-type {
+  margin-top: 2em;
+  font-size: 0.95rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+body > table:first-of-type thead {
+  display: none;
+}
+
+body > table:first-of-type td:first-child {
+  background: var(--color-primary);
+  color: #fff;
+  width: 38%;
+  font-weight: 600;
+  padding: 0.55em 0.9em;
+}
+
+body > table:first-of-type td:last-child {
+  font-weight: 400;
+  padding: 0.55em 0.9em;
+}
+
+/* ── Badges / callout labels ────────────────────────────────────────── */
+em { color: var(--color-secondary); font-style: italic; }
+strong { font-weight: 700; color: #0f172a; }
+
+/* ── Page break utilities ───────────────────────────────────────────── */
+h1 { page-break-before: always; }
+h1:first-of-type { page-break-before: avoid; }
+
+/* Chapter headings that start the major sections */
+h2 + h3 { page-break-before: avoid; }
+
+/* ── Footer / header simulation (wkhtmltopdf handles real headers) ───── */
+/* These classes exist for the header/footer HTML files */
+.header-left  { float: left;  font-size: 8pt; color: #64748b; }
+.header-right { float: right; font-size: 8pt; color: #64748b; }
+.footer-center { text-align: center; font-size: 8pt; color: #94a3b8; }

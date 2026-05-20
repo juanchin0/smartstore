@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SmartStore — Manual de Usuario</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+:root {
+--color-primary: #1e3a5f;
+--color-accent: #2563eb;
+--color-secondary: #475569;
+--color-light: #f1f5f9;
+--color-border: #cbd5e1;
+--color-warn-bg: #fef3c7;
+--color-warn-bdr: #f59e0b;
+--color-note-bg: #eff6ff;
+--color-note-bdr: #2563eb;
+--color-tip-bg: #f0fdf4;
+--color-tip-bdr: #22c55e;
+--color-danger-bg: #fef2f2;
+--color-danger-bdr: #ef4444;
+--color-code-bg: #f8fafc;
+--font-main: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+--font-mono: "Cascadia Code", "Consolas", "Courier New", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 10.5pt; }
+body {
+font-family: var(--font-main);
+font-size: 1rem;
+line-height: 1.7;
+color: #1e293b;
+background: #fff;
+max-width: 900px;
+margin: 0 auto;
+padding: 0;
+}
+
+@page {
+size: A4;
+margin: 22mm 20mm 22mm 25mm;
+}
+@page :first {
+margin-top: 0;
+}
+
+
+
+h1 {
+font-size: 2rem;
+font-weight: 800;
+color: var(--color-primary);
+border-bottom: 3px solid var(--color-accent);
+padding-bottom: 0.35em;
+margin: 2.5em 0 0.7em;
+page-break-after: avoid;
+letter-spacing: -0.01em;
+}
+h1:first-of-type {
+font-size: 2.4rem;
+text-align: center;
+border-bottom: 4px solid var(--color-primary);
+padding-bottom: 0.5em;
+margin-top: 2em;
+letter-spacing: -0.02em;
+}
+h2 {
+font-size: 1.45rem;
+font-weight: 700;
+color: var(--color-primary);
+border-left: 4px solid var(--color-accent);
+padding-left: 0.6em;
+margin: 2em 0 0.6em;
+page-break-after: avoid;
+}
+h3 {
+font-size: 1.15rem;
+font-weight: 600;
+color: #1e3a5f;
+margin: 1.6em 0 0.5em;
+page-break-after: avoid;
+}
+h4 {
+font-size: 1.0rem;
+font-weight: 600;
+color: var(--color-secondary);
+margin: 1.2em 0 0.4em;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+font-size: 0.85rem;
+page-break-after: avoid;
+}
+
+p {
+margin: 0 0 0.9em;
+text-align: justify;
+hyphens: auto;
+orphans: 3;
+widows: 3;
+}
+
+a { color: var(--color-accent); text-decoration: none; }
+
+hr {
+border: none;
+border-top: 1px solid var(--color-border);
+margin: 1.8em 0;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.2em 0 1.5em;
+font-size: 0.88rem;
+page-break-inside: auto;
+}
+thead {
+background: var(--color-primary);
+color: #fff;
+}
+thead th {
+padding: 0.5em 0.75em;
+text-align: left;
+font-weight: 600;
+letter-spacing: 0.02em;
+white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--color-border); }
+tbody tr:nth-child(even) { background: var(--color-light); }
+tbody tr:last-child { border-bottom: 2px solid var(--color-primary); }
+td {
+padding: 0.45em 0.75em;
+vertical-align: top;
+}
+td:first-child { font-weight: 500; }
+
+ul, ol {
+margin: 0.5em 0 1em 1.6em;
+padding: 0;
+}
+li { margin: 0.2em 0; }
+li > ul, li > ol { margin-top: 0.2em; margin-bottom: 0.2em; }
+
+code {
+font-family: var(--font-mono);
+font-size: 0.82em;
+background: var(--color-code-bg);
+border: 1px solid var(--color-border);
+border-radius: 3px;
+padding: 0.1em 0.35em;
+color: #0f172a;
+white-space: nowrap;
+}
+pre {
+background: #0f172a;
+color: #e2e8f0;
+border-radius: 6px;
+padding: 1em 1.2em;
+overflow-x: auto;
+font-family: var(--font-mono);
+font-size: 0.80em;
+line-height: 1.55;
+margin: 1em 0 1.4em;
+page-break-inside: avoid;
+border-left: 3px solid var(--color-accent);
+}
+pre code {
+background: transparent;
+border: none;
+padding: 0;
+color: inherit;
+font-size: inherit;
+white-space: pre;
+}
+
+blockquote {
+border-left: 4px solid var(--color-note-bdr);
+background: var(--color-note-bg);
+margin: 1em 0;
+padding: 0.7em 1em;
+border-radius: 0 6px 6px 0;
+page-break-inside: avoid;
+}
+blockquote p { margin: 0; font-size: 0.92rem; }
+
+blockquote:has(strong:first-child) {
+border-left-color: var(--color-warn-bdr);
+background: var(--color-warn-bg);
+}
+
+
+body > table:first-of-type {
+margin-top: 2em;
+font-size: 0.95rem;
+border: 2px solid var(--color-primary);
+border-radius: 6px;
+overflow: hidden;
+}
+body > table:first-of-type thead {
+display: none;
+}
+body > table:first-of-type td:first-child {
+background: var(--color-primary);
+color: #fff;
+width: 38%;
+font-weight: 600;
+padding: 0.55em 0.9em;
+}
+body > table:first-of-type td:last-child {
+font-weight: 400;
+padding: 0.55em 0.9em;
+}
+
+em { color: var(--color-secondary); font-style: italic; }
+strong { font-weight: 700; color: #0f172a; }
+
+h1 { page-break-before: always; }
+h1:first-of-type { page-break-before: avoid; }
+
+h2 + h3 { page-break-before: avoid; }
+
+
+.header-left { float: left; font-size: 8pt; color: #64748b; }
+.header-right { float: right; font-size: 8pt; color: #64748b; }
+.footer-center { text-align: center; font-size: 8pt; color: #94a3b8; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">SmartStore — Manual de Usuario</h1>
+</header>
+<!--
+  SMARTSTORE — MANUAL DE USUARIO
+  Conforme a ISO/IEC 26514:2008 (Software and systems engineering — Requirements for designers
+  and developers of user documentation) y principios de ISO 9001:2015 (calidad documental).
+-->
+<hr />
+<h1 id="manual-de-usuario">MANUAL DE USUARIO</h1>
+<hr />
+<h2 id="portada">PORTADA</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título del documento</strong></td>
+<td>Manual de Usuario — SmartStore</td>
+</tr>
+<tr>
+<td><strong>Subtítulo</strong></td>
+<td>Plataforma de E-commerce con Búsqueda Semántica</td>
+</tr>
+<tr>
+<td><strong>Referencia del documento</strong></td>
+<td>SS-MU-001</td>
+</tr>
+<tr>
+<td><strong>Versión</strong></td>
+<td>1.0.0</td>
+</tr>
+<tr>
+<td><strong>Estado</strong></td>
+<td>Publicado</td>
+</tr>
+<tr>
+<td><strong>Fecha de emisión</strong></td>
+<td>18 de mayo de 2026</td>
+</tr>
+<tr>
+<td><strong>Fecha de revisión</strong></td>
+<td>18 de mayo de 2027</td>
+</tr>
+<tr>
+<td><strong>Autor</strong></td>
+<td>Equipo de Desarrollo SmartStore</td>
+</tr>
+<tr>
+<td><strong>Revisado por</strong></td>
+<td>Ingeniería del Conocimiento — UNAM</td>
+</tr>
+<tr>
+<td><strong>Aprobado por</strong></td>
+<td>Coordinación Académica</td>
+</tr>
+<tr>
+<td><strong>Empresa / Institución</strong></td>
+<td>Universidad Nacional Autónoma de México</td>
+</tr>
+<tr>
+<td><strong>Clasificación</strong></td>
+<td>Público</td>
+</tr>
+<tr>
+<td><strong>Idioma</strong></td>
+<td>Español (México)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="historial-de-revisiones">HISTORIAL DE REVISIONES</h2>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha</th>
+<th>Autor</th>
+<th>Descripción del cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>01-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Borrador inicial</td>
+</tr>
+<tr>
+<td>0.9</td>
+<td>15-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Revisión de procedimientos</td>
+</tr>
+<tr>
+<td>1.0.0</td>
+<td>18-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Versión publicada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="aviso-legal">AVISO LEGAL</h2>
+<p>Este documento es propiedad de la Universidad Nacional Autónoma de
+México (UNAM). Queda prohibida su reproducción total o parcial sin
+autorización expresa. SmartStore es un sistema desarrollado con fines
+académicos en el marco del curso de Ingeniería del Conocimiento.</p>
+<hr />
+<h2 id="tabla-de-contenidos">TABLA DE CONTENIDOS</h2>
+<ul>
+<li><a href="#convenciones-del-manual">Convenciones del manual</a></li>
+<li><a href="#símbolos-y-notaciones">Símbolos y notaciones</a></li>
+<li><a href="#iconografía-de-la-interfaz">Iconografía de la
+interfaz</a></li>
+<li><a href="#capítulo-1--descripción-general-del-sistema"><strong>Capítulo
+1</strong> — Descripción general del sistema</a></li>
+<li><a href="#capítulo-2--requisitos-del-sistema"><strong>Capítulo
+2</strong> — Requisitos del sistema</a></li>
+<li><a href="#capítulo-3--instalación-y-configuración-inicial"><strong>Capítulo
+3</strong> — Instalación y configuración inicial</a></li>
+<li><a href="#capítulo-4--interfaz-de-usuario"><strong>Capítulo
+4</strong> — Interfaz de usuario</a></li>
+<li><a href="#capítulo-5--procedimientos-de-uso"><strong>Capítulo
+5</strong> — Procedimientos de uso</a>
+<ul>
+<li><a href="#51-registrarse">5.1 Registrarse</a></li>
+<li><a href="#52-iniciar-sesión">5.2 Iniciar sesión</a></li>
+<li><a href="#53-búsqueda-de-tiendas-y-productos">5.3 Búsqueda de
+tiendas y productos</a></li>
+<li><a href="#54-búsqueda-semántica">5.4 Búsqueda semántica</a></li>
+<li><a href="#55-filtrado-de-productos">5.5 Filtrado de
+productos</a></li>
+<li><a href="#56-ver-detalle-de-producto">5.6 Ver detalle de
+producto</a></li>
+<li><a href="#57-agregar-producto-al-carrito">5.7 Agregar producto al
+carrito</a></li>
+<li><a href="#58-ver-y-gestionar-el-carrito">5.8 Ver y gestionar el
+carrito</a></li>
+<li><a href="#59-realizar-una-compra">5.9 Realizar una compra</a></li>
+<li><a href="#510-ver-historial-de-compras">5.10 Ver historial de
+compras</a></li>
+<li><a href="#511-editar-perfil-de-usuario">5.11 Editar perfil de
+usuario</a></li>
+<li><a href="#512-cerrar-sesión">5.12 Cerrar sesión</a></li>
+</ul></li>
+<li><a href="#capítulo-6--características-avanzadas"><strong>Capítulo
+6</strong> — Características avanzadas</a></li>
+<li><a href="#capítulo-7--solución-de-problemas"><strong>Capítulo
+7</strong> — Solución de problemas</a></li>
+<li><a href="#capítulo-8--preguntas-frecuentes-faq"><strong>Capítulo
+8</strong> — Preguntas frecuentes (FAQ)</a></li>
+<li><a href="#capítulo-9--glosario-de-términos"><strong>Capítulo
+9</strong> — Glosario de términos</a></li>
+<li><a href="#capítulo-10--apéndices"><strong>Capítulo 10</strong> —
+Apéndices</a></li>
+<li><a href="#capítulo-11--información-de-contacto-y-soporte"><strong>Capítulo
+11</strong> — Información de contacto y soporte</a></li>
+</ul>
+<hr />
+<h2 id="convenciones-del-manual">CONVENCIONES DEL MANUAL</h2>
+<p>Esta sección establece las convenciones tipográficas y visuales
+empleadas a lo largo del documento para garantizar una interpretación
+uniforme de las instrucciones.</p>
+<h3 id="convenciones-tipográficas">Convenciones tipográficas</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 39%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Convención</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Negrita</strong></td>
+<td>Nombre de elemento de interfaz, botón o campo</td>
+<td>Haga clic en <strong>Iniciar sesión</strong></td>
+</tr>
+<tr>
+<td><code>Monoespaciado</code></td>
+<td>Texto que el usuario debe escribir literalmente</td>
+<td>Ingrese <code>ana@email.com</code></td>
+</tr>
+<tr>
+<td><em>Cursiva</em></td>
+<td>Término técnico o énfasis especial</td>
+<td>El sistema usa <em>tokens JWT</em></td>
+</tr>
+<tr>
+<td>[Corchetes]</td>
+<td>Referencia cruzada interna al manual</td>
+<td>Véase [§ 5.4 Búsqueda semántica]</td>
+</tr>
+<tr>
+<td>→</td>
+<td>Secuencia de pasos o navegación</td>
+<td><strong>Menú</strong> → <strong>Perfil</strong> → <strong>Mis
+compras</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="convenciones-de-elementos-de-interfaz">Convenciones de elementos
+de interfaz</h3>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 31%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descripción visual</th>
+<th>Representación en este manual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Botón primario</td>
+<td>Fondo color primario (azul/índigo), texto blanco, esquinas
+redondeadas</td>
+<td><strong>[ Nombre del botón ]</strong></td>
+</tr>
+<tr>
+<td>Botón secundario</td>
+<td>Fondo gris suave, texto oscuro</td>
+<td><em>[ Nombre del botón ]</em></td>
+</tr>
+<tr>
+<td>Campo de texto</td>
+<td>Rectángulo con borde fino, ícono interior a la izquierda</td>
+<td><code>campo</code></td>
+</tr>
+<tr>
+<td>Etiqueta de estado</td>
+<td>Píldora de color (naranja/azul/verde/rojo) con texto</td>
+<td><code>● Estado</code></td>
+</tr>
+<tr>
+<td>Tarjeta</td>
+<td>Superficie blanca/gris con sombra y esquinas redondeadas</td>
+<td>[Tarjeta]</td>
+</tr>
+<tr>
+<td>Panel lateral</td>
+<td>Columna fija a la izquierda con opciones de filtro</td>
+<td>[Panel]</td>
+</tr>
+<tr>
+<td>Menú desplegable</td>
+<td>Selector <code>&lt;select&gt;</code> o lista emergente</td>
+<td>▾ Opción</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="símbolos-y-notaciones">SÍMBOLOS Y NOTACIONES</h2>
+<p>Los siguientes símbolos aparecen a lo largo del manual para llamar la
+atención del usuario sobre información relevante:</p>
+<blockquote>
+<p><strong>NOTA:</strong> Información adicional útil que complementa el
+procedimiento.</p>
+</blockquote>
+<blockquote>
+<p><strong>IMPORTANTE:</strong> Información que el usuario debe leer
+antes de continuar.</p>
+</blockquote>
+<blockquote>
+<p><strong>ADVERTENCIA:</strong> Acción que puede tener consecuencias
+difíciles de revertir.</p>
+</blockquote>
+<blockquote>
+<p><strong>CONSEJO:</strong> Sugerencia para usar el sistema de forma
+más eficiente.</p>
+</blockquote>
+<p><strong>Numeración de pasos:</strong> Los procedimientos se presentan
+como listas numeradas. Cada paso debe completarse en el orden indicado
+antes de continuar con el siguiente.</p>
+<p><strong>Rutas URL:</strong> Las rutas se indican como
+<code>/ruta/ejemplo</code> y son relativas al dominio base del sistema
+(ej. <code>http://localhost:5173</code> en entorno local).</p>
+<hr />
+<h2 id="iconografía-de-la-interfaz">ICONOGRAFÍA DE LA INTERFAZ</h2>
+<p>SmartStore utiliza iconos de la librería <strong>Lucide</strong> en
+toda su interfaz. La siguiente tabla describe los iconos más
+frecuentes:</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr>
+<th>Ícono</th>
+<th>Nombre</th>
+<th>Significado en SmartStore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✦</td>
+<td>Sparkles</td>
+<td>Logo SmartStore / Búsqueda semántica activa</td>
+</tr>
+<tr>
+<td>🔍</td>
+<td>Search</td>
+<td>Campo de búsqueda semántica en el encabezado</td>
+</tr>
+<tr>
+<td>🛒</td>
+<td>ShoppingCart</td>
+<td>Carrito de compras; muestra contador de artículos</td>
+</tr>
+<tr>
+<td>👤</td>
+<td>User</td>
+<td>Menú de usuario autenticado</td>
+</tr>
+<tr>
+<td>♥</td>
+<td>Heart</td>
+<td>Favoritos (referencial)</td>
+</tr>
+<tr>
+<td>⬅</td>
+<td>ArrowLeft</td>
+<td>Volver a la página anterior</td>
+</tr>
+<tr>
+<td>✕</td>
+<td>X</td>
+<td>Cerrar panel / limpiar filtro</td>
+</tr>
+<tr>
+<td>▲▼</td>
+<td>ArrowUpDown</td>
+<td>Ordenar resultados</td>
+</tr>
+<tr>
+<td>✓</td>
+<td>CheckCircle</td>
+<td>Operación completada con éxito</td>
+</tr>
+<tr>
+<td>📦</td>
+<td>Package</td>
+<td>Tienda sin logo / Número de orden</td>
+</tr>
+<tr>
+<td>🗑</td>
+<td>Trash2</td>
+<td>Eliminar elemento del carrito</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Plus</td>
+<td>Incrementar cantidad</td>
+</tr>
+<tr>
+<td>−</td>
+<td>Minus</td>
+<td>Decrementar cantidad</td>
+</tr>
+<tr>
+<td>💳</td>
+<td>CreditCard</td>
+<td>Sección de pago</td>
+</tr>
+<tr>
+<td>🔒</td>
+<td>Lock</td>
+<td>Datos de envío seguros</td>
+</tr>
+<tr>
+<td>🏷</td>
+<td>Tag</td>
+<td>Código de descuento (decorativo)</td>
+</tr>
+<tr>
+<td>⭐</td>
+<td>Star</td>
+<td>Calificación del producto</td>
+</tr>
+<tr>
+<td>✦</td>
+<td>Sparkles</td>
+<td>Resultado de búsqueda semántica</td>
+</tr>
+<tr>
+<td>✎</td>
+<td>Save</td>
+<td>Guardar cambios en el perfil</td>
+</tr>
+<tr>
+<td>↩︎</td>
+<td>LogOut</td>
+<td>Cerrar sesión</td>
+</tr>
+<tr>
+<td>↕</td>
+<td>ChevronDown/Up</td>
+<td>Expandir/colapsar sección</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-1-descripción-general-del-sistema">CAPÍTULO 1 —
+DESCRIPCIÓN GENERAL DEL SISTEMA</h2>
+<h3 id="propósito">1.1 Propósito</h3>
+<p>SmartStore es una plataforma de comercio electrónico multi-tienda que
+incorpora tecnologías de inteligencia semántica basadas en ontologías
+OWL (Web Ontology Language) y consultas SPARQL. El sistema permite a los
+usuarios explorar, filtrar y adquirir productos de múltiples tiendas
+especializadas a través de una interfaz web moderna, accesible desde
+cualquier navegador contemporáneo.</p>
+<h3 id="alcance">1.2 Alcance</h3>
+<p>Este manual describe la operación de la interfaz de usuario
+(frontend) de SmartStore, accesible en
+<code>http://localhost:5173</code> en entorno de desarrollo. No cubre la
+administración del sistema ni la API REST del backend, los cuales se
+documentan en manuales técnicos separados.</p>
+<h3 id="descripción-funcional">1.3 Descripción funcional</h3>
+<p>SmartStore ofrece las siguientes capacidades principales:</p>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr>
+<th>Capacidad</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Catálogo multi-tienda</strong></td>
+<td>20 tiendas de distintas categorías con más de 300 productos</td>
+</tr>
+<tr>
+<td><strong>Búsqueda semántica</strong></td>
+<td>Motor basado en ontología OWL/SPARQL que entiende el significado
+conceptual de la consulta</td>
+</tr>
+<tr>
+<td><strong>Filtros dinámicos</strong></td>
+<td>Atributos de filtrado inferidos automáticamente según la categoría
+ontológica</td>
+</tr>
+<tr>
+<td><strong>Autenticación</strong></td>
+<td>Registro e inicio de sesión con tokens JWT seguros</td>
+</tr>
+<tr>
+<td><strong>Carrito de compras</strong></td>
+<td>Persistente entre sesiones, con control granular de cantidades</td>
+</tr>
+<tr>
+<td><strong>Checkout</strong></td>
+<td>Proceso de compra con cálculo de IVA y resumen detallado</td>
+</tr>
+<tr>
+<td><strong>Historial de órdenes</strong></td>
+<td>Registro permanente de todas las compras realizadas</td>
+</tr>
+<tr>
+<td><strong>Perfil editable</strong></td>
+<td>Datos personales y de envío actualizables en cualquier momento</td>
+</tr>
+<tr>
+<td><strong>Modo oscuro</strong></td>
+<td>Interfaz adaptada al modo oscuro del sistema operativo</td>
+</tr>
+<tr>
+<td><strong>Diseño responsivo</strong></td>
+<td>Compatible con móvil, tableta y escritorio</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arquitectura-del-sistema-vista-de-usuario">1.4 Arquitectura del
+sistema (vista de usuario)</h3>
+<pre><code>Usuario (navegador web)
+        │
+        ▼
+┌───────────────────┐
+│   Frontend React  │  ← Interfaz gráfica descrita en este manual
+│   (puerto 5173)   │
+└─────────┬─────────┘
+          │ API REST (HTTP/JSON)
+          ▼
+┌───────────────────┐
+│  Backend Django   │  ← Motor semántico, base de datos, autenticación
+│   (puerto 8000)   │
+└───────────────────┘</code></pre>
+<h3 id="mapa-de-navegación">1.5 Mapa de navegación</h3>
+<pre><code>/ (Inicio — Catálogo de tiendas)
+├── /login               → Inicio de sesión
+├── /registro            → Crear cuenta nueva
+├── /tienda/:slug        → Catálogo de una tienda
+│   └── /producto/:slug  → Detalle de producto
+├── /carrito             → Carrito de compras
+├── /checkout            → Proceso de pago
+└── /perfil              → Datos personales e historial</code></pre>
+<hr />
+<h2 id="capítulo-2-requisitos-del-sistema">CAPÍTULO 2 — REQUISITOS DEL
+SISTEMA</h2>
+<h3 id="requisitos-del-cliente-usuario-final">2.1 Requisitos del cliente
+(usuario final)</h3>
+<p>Para utilizar SmartStore como usuario final únicamente se
+requiere:</p>
+<h4 id="navegadores-compatibles">2.1.1 Navegadores compatibles</h4>
+<table>
+<thead>
+<tr>
+<th>Navegador</th>
+<th>Versión mínima</th>
+<th>Recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Chrome</td>
+<td>110</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>Mozilla Firefox</td>
+<td>110</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>Microsoft Edge</td>
+<td>110</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>Apple Safari</td>
+<td>16</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>96</td>
+<td>✓ Compatible</td>
+</tr>
+<tr>
+<td>Internet Explorer</td>
+<td>—</td>
+<td>✗ No compatible</td>
+</tr>
+</tbody>
+</table>
+<h4 id="otros-requisitos-del-cliente">2.1.2 Otros requisitos del
+cliente</h4>
+<table>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Conexión a Internet</strong></td>
+<td>Mínimo 1 Mbps (recomendado 5 Mbps o superior)</td>
+</tr>
+<tr>
+<td><strong>JavaScript</strong></td>
+<td>Debe estar habilitado en el navegador</td>
+</tr>
+<tr>
+<td><strong>Cookies</strong></td>
+<td>Deben estar habilitadas para mantener la sesión</td>
+</tr>
+<tr>
+<td><strong>Resolución de pantalla</strong></td>
+<td>Mínimo 320 px de ancho (optimizado para 1280 px+)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="requisitos-para-instalación-local-desarrolladores">2.2
+Requisitos para instalación local (desarrolladores)</h3>
+<blockquote>
+<p><strong>NOTA:</strong> Esta sección aplica únicamente a personas que
+instalan y ejecutan SmartStore en su propio equipo. Los usuarios finales
+que acceden a un servidor ya desplegado pueden omitirla.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Versión mínima</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>3.11 o superior</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>18 o superior</td>
+</tr>
+<tr>
+<td>npm</td>
+<td>9 o superior</td>
+</tr>
+<tr>
+<td>Sistema operativo</td>
+<td>Windows 10/11, macOS 12+, Linux (Ubuntu 22.04+)</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>4 GB mínimo (8 GB recomendado)</td>
+</tr>
+<tr>
+<td>Espacio en disco</td>
+<td>500 MB para dependencias y base de datos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-3-instalación-y-configuración-inicial">CAPÍTULO 3 —
+INSTALACIÓN Y CONFIGURACIÓN INICIAL</h2>
+<blockquote>
+<p><strong>NOTA:</strong> Este capítulo es relevante únicamente para
+administradores o desarrolladores. Los usuarios finales que acceden a
+una instancia ya desplegada deben omitir este capítulo y dirigirse
+directamente al <a href="#capítulo-5-procedimientos-de-uso">Capítulo 5 —
+Procedimientos de uso</a>.</p>
+</blockquote>
+<h3 id="obtención-del-código-fuente">3.1 Obtención del código
+fuente</h3>
+<ol type="1">
+<li>Descargue o clone el repositorio del proyecto en su equipo
+local.</li>
+<li>Verifique que la estructura de directorios contenga las carpetas
+<code>backend/</code> y <code>frontend/</code> (o la carpeta raíz donde
+reside <code>package.json</code>).</li>
+</ol>
+<h3 id="configuración-del-backend">3.2 Configuración del backend</h3>
+<ol type="1">
+<li><p>Abra una terminal y navegue al directorio
+<code>backend/</code>.</p></li>
+<li><p>Cree y active el entorno virtual de Python:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">venv\Scripts\activate</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span></code></pre></div></li>
+<li><p>Instale las dependencias del proyecto:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div></li>
+<li><p>Configure las variables de entorno:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div>
+<p>Edite el archivo <code>.env</code> generado y establezca al
+menos:</p>
+<ul>
+<li><code>SECRET_KEY</code> — clave secreta de Django (cadena aleatoria
+larga)</li>
+<li><code>DEBUG=True</code> (entorno de desarrollo)</li>
+</ul></li>
+<li><p>Ejecute las migraciones de la base de datos:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code></pre></div></li>
+<li><p>Cargue los datos de demostración (20 tiendas, 300+
+productos):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures</span></code></pre></div>
+<blockquote>
+<p><strong>NOTA:</strong> Para regenerar los datos desde cero, use la
+bandera <code>--flush</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures <span class="at">--flush</span></span></code></pre></div>
+</blockquote></li>
+<li><p>Inicie el servidor de desarrollo del backend:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py runserver</span></code></pre></div>
+<p>El backend queda disponible en
+<code>http://localhost:8000</code>.</p></li>
+</ol>
+<h3 id="configuración-del-frontend">3.3 Configuración del frontend</h3>
+<ol type="1">
+<li><p>Abra una segunda terminal y navegue al directorio del frontend
+(donde reside <code>package.json</code>).</p></li>
+<li><p>Instale las dependencias de Node.js:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span></code></pre></div></li>
+<li><p>Inicie el servidor de desarrollo:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<p>El frontend queda disponible en
+<code>http://localhost:5173</code>.</p></li>
+</ol>
+<h3 id="verificación-de-la-instalación">3.4 Verificación de la
+instalación</h3>
+<p>Una vez iniciados ambos servidores, abra su navegador y acceda a
+<code>http://localhost:5173</code>. Debe visualizarse la página de
+inicio de SmartStore con el catálogo de tiendas.</p>
+<blockquote>
+<p><strong>ADVERTENCIA:</strong> Si la página de inicio muestra el
+mensaje “Error al cargar tiendas”, verifique que el servidor backend
+esté activo en <code>http://localhost:8000</code> y que no existan
+errores en su terminal.</p>
+</blockquote>
+<hr />
+<h2 id="capítulo-4-interfaz-de-usuario">CAPÍTULO 4 — INTERFAZ DE
+USUARIO</h2>
+<h3 id="estructura-general-de-la-interfaz">4.1 Estructura general de la
+interfaz</h3>
+<p>La interfaz de SmartStore se organiza en tres zonas persistentes:</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                     ENCABEZADO (Header)                  │
+│  [Logo SmartStore]  [Barra de búsqueda semántica]  [🛒] [👤] │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│                   ÁREA DE CONTENIDO                     │
+│              (varía según la página activa)             │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                       PIE DE PÁGINA (Footer)            │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="encabezado-header">4.2 Encabezado (Header)</h3>
+<p>El encabezado permanece visible en todas las páginas y contiene los
+siguientes elementos:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 36%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Ubicación</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logo SmartStore</strong></td>
+<td>Extremo izquierdo</td>
+<td>Regresa a la página de inicio (<code>/</code>) al hacer clic</td>
+</tr>
+<tr>
+<td><strong>Barra de búsqueda semántica</strong></td>
+<td>Centro</td>
+<td>Permite buscar productos con inteligencia semántica</td>
+</tr>
+<tr>
+<td><strong>Ícono de carrito</strong> <code>🛒</code></td>
+<td>Extremo derecho</td>
+<td>Muestra el número de artículos; navega a <code>/carrito</code></td>
+</tr>
+<tr>
+<td><strong>Botón “Iniciar sesión”</strong></td>
+<td>Extremo derecho</td>
+<td>Visible cuando no hay sesión activa; navega a
+<code>/login</code></td>
+</tr>
+<tr>
+<td><strong>Avatar / Menú de usuario</strong></td>
+<td>Extremo derecho</td>
+<td>Visible cuando hay sesión activa; despliega opciones de perfil y
+cierre de sesión</td>
+</tr>
+</tbody>
+</table>
+<h4 id="barra-de-búsqueda-semántica">4.2.1 Barra de búsqueda
+semántica</h4>
+<p>La barra de búsqueda en el encabezado es el elemento central del
+sistema. A medida que el usuario escribe, aparece un panel de
+sugerencias desplegable con coincidencias semánticas clasificadas por
+categoría ontológica.</p>
+<pre><code>┌──────────────────────────────────────┐
+│ 🔍  Buscar productos...              │
+├──────────────────────────────────────┤
+│  Electrónica                         │
+│  ● Smartphone Android               │
+│  ● Teléfono inteligente             │
+│  Calzado Deportivo                   │
+│  ● Zapatilla running                │
+└──────────────────────────────────────┘</code></pre>
+<h3 id="página-de-inicio-catálogo-de-tiendas">4.3 Página de inicio —
+Catálogo de tiendas (<code>/</code>)</h3>
+<p>La página principal muestra:</p>
+<ol type="1">
+<li><strong>Sección hero</strong> — encabezado con título, descripción y
+barra de búsqueda de tiendas por nombre o categoría.</li>
+<li><strong>Contador de tiendas</strong> — indica cuántas tiendas
+coinciden con el filtro activo.</li>
+<li><strong>Cuadrícula de tarjetas de tienda</strong> — cada tarjeta
+muestra:
+<ul>
+<li>Banner fotográfico de la tienda</li>
+<li>Logo de la tienda (esquina inferior izquierda del banner)</li>
+<li>Nombre de la tienda</li>
+<li>Descripción breve</li>
+<li>Categorías disponibles (etiquetas de colores)</li>
+<li>Número de productos</li>
+</ul></li>
+</ol>
+<h3 id="página-de-tienda-tiendaslug">4.4 Página de tienda
+(<code>/tienda/:slug</code>)</h3>
+<p>Muestra el catálogo de productos de una tienda específica. Se compone
+de:</p>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>Zona</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Banner de tienda</strong></td>
+<td>Imagen a ancho completo con logo, nombre y cantidad de
+productos</td>
+</tr>
+<tr>
+<td><strong>Migas de pan</strong></td>
+<td>Ruta de navegación: <code>Tiendas › Nombre de tienda</code></td>
+</tr>
+<tr>
+<td><strong>Banner semántico</strong></td>
+<td>Aparece cuando la búsqueda semántica está activa; muestra la clase
+buscada y el número de coincidencias</td>
+</tr>
+<tr>
+<td><strong>Panel de filtros</strong></td>
+<td>Columna lateral con filtros de precio, calificación, descuentos y
+atributos dinámicos</td>
+</tr>
+<tr>
+<td><strong>Selector de orden</strong></td>
+<td>Ordena por relevancia, precio ascendente/descendente, calificación o
+fecha</td>
+</tr>
+<tr>
+<td><strong>Cuadrícula de productos</strong></td>
+<td>Muestra los productos; los resultados semánticos aparecen al inicio
+con un borde destacado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="página-de-detalle-de-producto-productoslug">4.5 Página de
+detalle de producto (<code>/producto/:slug</code>)</h3>
+<p>Presenta la información completa de un producto:</p>
+<ul>
+<li><strong>Panel de imagen</strong> — fotografía ampliable con zoom al
+pasar el cursor</li>
+<li><strong>Nombre y tienda</strong></li>
+<li><strong>Calificación</strong> (estrellas)</li>
+<li><strong>Precio</strong> (con precio original tachado si hay
+descuento)</li>
+<li><strong>Etiquetas semánticas</strong> — clasificación ontológica del
+producto</li>
+<li><strong>Selector de cantidad</strong></li>
+<li><strong>Botón “Agregar al carrito”</strong></li>
+<li><strong>Descripción extendida</strong></li>
+<li><strong>Atributos del producto</strong> (tabla de
+características)</li>
+</ul>
+<h3 id="página-de-carrito-carrito">4.6 Página de carrito
+(<code>/carrito</code>)</h3>
+<p>Muestra todos los productos añadidos al carrito:</p>
+<ul>
+<li><strong>Lista de artículos</strong> — imagen, nombre, tienda,
+controles de cantidad, precio por unidad y subtotal</li>
+<li><strong>Botón eliminar</strong> — ícono de papelera que aparece al
+pasar el cursor sobre un artículo</li>
+<li><strong>Panel de resumen</strong> — subtotal, IVA (10%), envío
+(gratuito) y total</li>
+<li><strong>Campo de código de descuento</strong> (decorativo en esta
+versión)</li>
+<li><strong>Botón “Proceder al pago”</strong></li>
+</ul>
+<h3 id="página-de-checkout-checkout">4.7 Página de checkout
+(<code>/checkout</code>)</h3>
+<p>Formulario de pago estructurado en dos columnas:</p>
+<table>
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>Columna izquierda (2/3)</th>
+<th>Columna derecha (1/3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formulario de datos de envío</td>
+<td>Resumen del pedido con lista de productos</td>
+</tr>
+<tr>
+<td>Sección de pago simulado</td>
+<td>Subtotal, IVA, envío y total</td>
+</tr>
+<tr>
+<td>Botón “Completar compra”</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="página-de-perfil-perfil">4.8 Página de perfil
+(<code>/perfil</code>)</h3>
+<p>Accesible únicamente para usuarios autenticados. Contiene:</p>
+<ol type="1">
+<li><strong>Cabecera de perfil</strong> — avatar (iniciales o imagen),
+nombre completo y correo electrónico</li>
+<li><strong>Formulario de información personal</strong> — nombre, email,
+teléfono, ciudad, dirección</li>
+<li><strong>Historial de compras</strong> — lista expandible de órdenes
+con estado, fecha, monto y detalle de artículos</li>
+<li><strong>Botón “Cerrar sesión”</strong></li>
+</ol>
+<hr />
+<h2 id="capítulo-5-procedimientos-de-uso">CAPÍTULO 5 — PROCEDIMIENTOS DE
+USO</h2>
+<blockquote>
+<p><strong>IMPORTANTE:</strong> Los pasos de cada procedimiento deben
+seguirse en el orden indicado. Cada procedimiento incluye el resultado
+esperado al finalizar.</p>
+</blockquote>
+<hr />
+<h3 id="registrarse">5.1 Registrarse</h3>
+<p><strong>Propósito:</strong> Crear una cuenta de usuario nueva en
+SmartStore.</p>
+<p><strong>Precondición:</strong> El usuario no debe tener cuenta
+activa.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Haga clic en el botón <strong>Iniciar sesión</strong> en el
+encabezado superior derecho.</p></li>
+<li><p>En la página de inicio de sesión, haga clic en el enlace
+<strong>Regístrate</strong> al pie del formulario.</p></li>
+<li><p>Complete el formulario de registro con los siguientes datos:</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 35%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nombre completo</strong></td>
+<td>Sí</td>
+<td>Su nombre y apellido(s)</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td>Sí</td>
+<td>Dirección de correo electrónico válida</td>
+</tr>
+<tr>
+<td><strong>Contraseña</strong></td>
+<td>Sí</td>
+<td>Mínimo 8 caracteres</td>
+</tr>
+<tr>
+<td><strong>Confirmar contraseña</strong></td>
+<td>Sí</td>
+<td>Debe coincidir exactamente con la contraseña</td>
+</tr>
+<tr>
+<td><strong>Teléfono</strong></td>
+<td>No</td>
+<td>Número de contacto (ej. <code>+52 55 1234 5678</code>)</td>
+</tr>
+<tr>
+<td><strong>Ciudad</strong></td>
+<td>No</td>
+<td>Ciudad de residencia</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Haga clic en el botón <strong>[ Crear cuenta ]</strong>.</p></li>
+</ol>
+<p><strong>Resultado esperado:</strong> El sistema crea la cuenta,
+inicia sesión automáticamente y redirige a la página de inicio.</p>
+<blockquote>
+<p><strong>NOTA:</strong> Si el correo electrónico ya está registrado,
+aparecerá un mensaje de error en rojo bajo el formulario. Utilice la
+opción <strong>Inicia sesión</strong> si ya tiene cuenta.</p>
+</blockquote>
+<blockquote>
+<p><strong>ADVERTENCIA:</strong> Utilice una contraseña segura.
+SmartStore no almacena contraseñas en texto plano, pero es
+responsabilidad del usuario elegir credenciales robustas.</p>
+</blockquote>
+<hr />
+<h3 id="iniciar-sesión">5.2 Iniciar sesión</h3>
+<p><strong>Propósito:</strong> Acceder a una cuenta existente de
+SmartStore.</p>
+<p><strong>Precondición:</strong> El usuario debe contar con una cuenta
+registrada previamente.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li>Haga clic en el botón <strong>Iniciar sesión</strong> en el
+encabezado.</li>
+<li>Ingrese su <strong>Email</strong> en el primer campo.</li>
+<li>Ingrese su <strong>Contraseña</strong> en el segundo campo.</li>
+<li>Haga clic en el botón <strong>[ Iniciar sesión ]</strong>.</li>
+</ol>
+<p><strong>Resultado esperado:</strong> El sistema valida las
+credenciales, establece la sesión y redirige a la página de inicio. El
+encabezado mostrará el avatar del usuario en lugar del botón de inicio
+de sesión.</p>
+<blockquote>
+<p><strong>NOTA:</strong> Si olvida su contraseña, la funcionalidad de
+recuperación está planificada para versiones futuras del sistema.</p>
+</blockquote>
+<blockquote>
+<p><strong>CONSEJO:</strong> Si accedió a <code>/login</code> desde una
+página protegida (como <code>/perfil</code>), el sistema lo redirigirá
+automáticamente a esa página tras iniciar sesión.</p>
+</blockquote>
+<hr />
+<h3 id="búsqueda-de-tiendas-y-productos">5.3 Búsqueda de tiendas y
+productos</h3>
+<p><strong>Propósito:</strong> Localizar tiendas o productos de
+interés.</p>
+<h4 id="buscar-tiendas-por-nombre-o-categoría">5.3.1 Buscar tiendas por
+nombre o categoría</h4>
+<ol type="1">
+<li>Desde la <strong>página de inicio</strong> (<code>/</code>),
+localice la barra de búsqueda en la sección hero.</li>
+<li>Escriba el nombre o categoría de la tienda que desea encontrar (ej.
+<code>electrónica</code>, <code>Nike</code>, <code>muebles</code>).</li>
+<li>La cuadrícula de tiendas se actualiza en tiempo real mostrando
+únicamente las coincidencias.</li>
+<li>Para limpiar el filtro, elimine el texto del campo de búsqueda.</li>
+</ol>
+<h4 id="buscar-productos-dentro-de-una-tienda">5.3.2 Buscar productos
+dentro de una tienda</h4>
+<ol type="1">
+<li><p>Ingrese a la tienda de su preferencia haciendo clic sobre su
+tarjeta.</p></li>
+<li><p>Los productos se muestran en la cuadrícula central.</p></li>
+<li><p>Utilice el <strong>selector de orden</strong> (esquina superior
+derecha del área de productos) para reorganizar los resultados:</p>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relevancia</td>
+<td>Orden predeterminado del sistema</td>
+</tr>
+<tr>
+<td>Precio ↑</td>
+<td>Del más barato al más caro</td>
+</tr>
+<tr>
+<td>Precio ↓</td>
+<td>Del más caro al más barato</td>
+</tr>
+<tr>
+<td>Valoración ↓</td>
+<td>Mejor calificados primero</td>
+</tr>
+<tr>
+<td>Más nuevos</td>
+<td>Últimos añadidos primero</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<hr />
+<h3 id="búsqueda-semántica">5.4 Búsqueda semántica</h3>
+<p><strong>Propósito:</strong> Encontrar productos mediante conceptos
+semánticos, no solo palabras exactas. Por ejemplo, buscar “calzado para
+correr” encontrará zapatillas de running aunque el producto no use
+exactamente esas palabras.</p>
+<p><strong>Precondición:</strong> Estar en cualquier página del
+sistema.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Haga clic en la <strong>barra de búsqueda semántica</strong>
+ubicada en el encabezado.</p></li>
+<li><p>Escriba el concepto que desea buscar. A medida que escribe,
+aparecerá un panel de sugerencias clasificadas por categoría
+ontológica.</p>
+<pre><code>Ejemplo de sugerencias para &quot;auricular&quot;:
+─────────────────────────────────────
+Electrónica de Audio
+  ● Auricular inalámbrico
+  ● Headphone Bluetooth
+  ● Audífonos premium</code></pre></li>
+<li><p>Haga clic sobre la sugerencia que mejor describa lo que
+busca.</p></li>
+<li><p>El sistema redirigirá a la tienda correspondiente con los
+resultados semánticos destacados:</p>
+<ul>
+<li>Los productos que coinciden con la clase ontológica aparecen
+<strong>al inicio</strong> de la cuadrícula.</li>
+<li>Cada tarjeta de producto semántico muestra un <strong>borde de
+color</strong> y la etiqueta <code>✦ Semántico</code>.</li>
+<li>Un <strong>banner informativo</strong> en la parte superior indica
+la clase buscada y el número de coincidencias exactas.</li>
+</ul></li>
+<li><p>Para limpiar la búsqueda semántica, haga clic en el botón
+<strong>[ Limpiar ]</strong> del banner.</p></li>
+</ol>
+<blockquote>
+<p><strong>CONSEJO:</strong> La búsqueda semántica funciona mejor con
+conceptos concretos (ej. “smartphone de gama alta”, “tenis para fútbol”)
+que con términos genéricos (ej. “cosas”).</p>
+</blockquote>
+<p><strong>Resultado esperado:</strong> La página de tienda muestra los
+productos más relevantes semánticamente al inicio, con identificación
+visual clara.</p>
+<hr />
+<h3 id="filtrado-de-productos">5.5 Filtrado de productos</h3>
+<p><strong>Propósito:</strong> Acotar los resultados de productos dentro
+de una tienda usando criterios específicos.</p>
+<p><strong>Precondición:</strong> El usuario debe encontrarse en una
+página de tienda (<code>/tienda/:slug</code>).</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Localice el <strong>panel de filtros</strong> en la columna
+izquierda de la página de tienda.</p></li>
+<li><p>Aplique los filtros disponibles:</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr>
+<th>Filtro</th>
+<th>Cómo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rango de precio</strong></td>
+<td>Ingrese los valores mínimo y máximo en los campos
+correspondientes</td>
+</tr>
+<tr>
+<td><strong>Calificación mínima</strong></td>
+<td>Seleccione la calificación mínima deseada (1 a 5 estrellas)</td>
+</tr>
+<tr>
+<td><strong>Solo con descuento</strong></td>
+<td>Active la casilla para mostrar únicamente productos con precio
+reducido</td>
+</tr>
+<tr>
+<td><strong>Filtros dinámicos</strong></td>
+<td>Aparecen según la categoría ontológica activa (ej. RAM,
+almacenamiento, material, etc.)</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Los productos se actualizan automáticamente con cada cambio de
+filtro.</p></li>
+<li><p>Para eliminar todos los filtros, haga clic en <strong>Limpiar
+todos los filtros</strong> (aparece cuando hay filtros activos y no hay
+resultados).</p></li>
+</ol>
+<blockquote>
+<p><strong>NOTA:</strong> Los filtros dinámicos solo aparecen cuando se
+ha realizado una búsqueda semántica activa. Están asociados a la clase
+ontológica del producto buscado. Por ejemplo, al buscar “smartphone” el
+panel mostrará filtros de sistema operativo, capacidad de almacenamiento
+y memoria RAM.</p>
+</blockquote>
+<hr />
+<h3 id="ver-detalle-de-producto">5.6 Ver detalle de producto</h3>
+<p><strong>Propósito:</strong> Obtener información completa de un
+producto antes de decidir la compra.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li>Desde el catálogo de cualquier tienda, haga clic sobre la
+<strong>tarjeta de producto</strong> de su interés.</li>
+<li>El sistema navega a la página de detalle del producto.</li>
+<li>Revise la información disponible:
+<ul>
+<li><strong>Imagen</strong> — haga clic o pase el cursor para activar el
+efecto de zoom.</li>
+<li><strong>Precio y descuento</strong> — si el producto tiene oferta,
+se muestra el precio original tachado y el porcentaje de ahorro.</li>
+<li><strong>Calificación</strong> — estrellas y puntuación
+numérica.</li>
+<li><strong>Etiquetas semánticas</strong> — categorías ontológicas a las
+que pertenece el producto.</li>
+<li><strong>Descripción</strong> — información extendida del
+fabricante.</li>
+<li><strong>Atributos</strong> — tabla con características técnicas
+específicas.</li>
+</ul></li>
+<li>Para regresar al catálogo de la tienda, haga clic en el botón
+<strong>← Volver</strong> o en el enlace de las migas de pan.</li>
+</ol>
+<hr />
+<h3 id="agregar-producto-al-carrito">5.7 Agregar producto al
+carrito</h3>
+<p><strong>Propósito:</strong> Añadir uno o más productos al carrito de
+compras para su adquisición posterior.</p>
+<p><strong>Pasos:</strong></p>
+<p><strong>Desde la página de detalle de producto:</strong></p>
+<ol type="1">
+<li><p>Ingrese a la página de detalle del producto deseado (véase [§
+5.6]).</p></li>
+<li><p>Ajuste la <strong>cantidad</strong> usando los botones
+<code>+</code> y <code>−</code>.</p>
+<blockquote>
+<p><strong>NOTA:</strong> La cantidad mínima es 1. No es posible añadir
+0 unidades.</p>
+</blockquote></li>
+<li><p>Haga clic en el botón <strong>[ Agregar al carrito
+]</strong>.</p></li>
+<li><p>Aparecerá una notificación de confirmación (toast) en la esquina
+de la pantalla.</p></li>
+<li><p>El contador del ícono de carrito en el encabezado se actualizará
+reflejando el nuevo total.</p></li>
+</ol>
+<p><strong>Desde la tarjeta de producto en el catálogo:</strong></p>
+<ol type="1">
+<li>En la cuadrícula de productos, localice el producto deseado.</li>
+<li>Haga clic en el botón <strong>[ Agregar ]</strong> que aparece en la
+parte inferior de la tarjeta.</li>
+</ol>
+<blockquote>
+<p><strong>CONSEJO:</strong> Puede agregar el mismo producto varias
+veces; las cantidades se acumularán en el carrito.</p>
+</blockquote>
+<hr />
+<h3 id="ver-y-gestionar-el-carrito">5.8 Ver y gestionar el carrito</h3>
+<p><strong>Propósito:</strong> Revisar, modificar y preparar el pedido
+antes de proceder al pago.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Haga clic en el <strong>ícono de carrito</strong> <code>🛒</code>
+en el encabezado.</p></li>
+<li><p>El sistema navega a la página <code>/carrito</code>.</p></li>
+<li><p>Revise la lista de artículos. Para cada producto puede:</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Procedimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aumentar cantidad</strong></td>
+<td>Haga clic en <code>+</code> junto al número de unidades</td>
+</tr>
+<tr>
+<td><strong>Reducir cantidad</strong></td>
+<td>Haga clic en <code>−</code>; si llega a 0, el artículo se
+elimina</td>
+</tr>
+<tr>
+<td><strong>Eliminar artículo</strong></td>
+<td>Pase el cursor sobre el artículo y haga clic en el ícono 🗑</td>
+</tr>
+<tr>
+<td><strong>Vaciar carrito</strong></td>
+<td>Haga clic en <strong>Vaciar carrito</strong> (esquina superior
+derecha)</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>El <strong>panel de resumen</strong> (columna derecha) se
+actualiza en tiempo real con:</p>
+<ul>
+<li>Subtotal de productos</li>
+<li>IVA calculado al 10%</li>
+<li>Envío (gratuito)</li>
+<li><strong>Total a pagar</strong></li>
+</ul></li>
+<li><p>Cuando el pedido esté listo, haga clic en <strong>[ Proceder al
+pago → ]</strong> para continuar al checkout.</p></li>
+</ol>
+<blockquote>
+<p><strong>ADVERTENCIA:</strong> Al hacer clic en <strong>Vaciar
+carrito</strong> se eliminarán todos los artículos sin confirmación
+adicional. Esta acción no puede deshacerse.</p>
+</blockquote>
+<hr />
+<h3 id="realizar-una-compra">5.9 Realizar una compra</h3>
+<p><strong>Propósito:</strong> Completar el proceso de pago y generar
+una orden de compra.</p>
+<p><strong>Precondición:</strong> El carrito debe contener al menos un
+producto. Se recomienda haber iniciado sesión para que los datos de
+envío se autocompleten.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Desde el carrito, haga clic en <strong>[ Proceder al pago →
+]</strong>. El sistema redirige a <code>/checkout</code>.</p></li>
+<li><p><strong>Complete el formulario de datos de envío:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Requerido</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nombre completo</strong></td>
+<td>Sí</td>
+<td>Nombre del destinatario</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td>Sí</td>
+<td>Correo de confirmación</td>
+</tr>
+<tr>
+<td><strong>Dirección</strong></td>
+<td>No</td>
+<td>Calle y número</td>
+</tr>
+<tr>
+<td><strong>Ciudad</strong></td>
+<td>No</td>
+<td>Ciudad de destino</td>
+</tr>
+<tr>
+<td><strong>Teléfono</strong></td>
+<td>No</td>
+<td>Número de contacto</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>NOTA:</strong> Si inició sesión, los campos se autorellenan
+con los datos del perfil. Puede editarlos para esta compra sin que el
+perfil se vea afectado.</p>
+</blockquote></li>
+<li><p>Revise el <strong>panel de resumen</strong> en la columna derecha
+para confirmar los productos y el total.</p></li>
+<li><p>Verifique la sección de <strong>pago simulado</strong> (esta es
+una plataforma de demostración; no se realizan cobros reales).</p></li>
+<li><p>Haga clic en el botón <strong>[ Completar compra · $X,XXX.XX
+]</strong>.</p></li>
+<li><p>El sistema procesa la orden. Si la operación es exitosa:</p>
+<ul>
+<li>Aparece la pantalla de confirmación
+<code>¡Compra realizada!</code></li>
+<li>Se muestra el número de orden (ej.
+<code>Orden #SS-2026-00042</code>)</li>
+<li>Se presenta un resumen de los productos adquiridos y el total
+pagado</li>
+</ul></li>
+<li><p>Seleccione una de las opciones disponibles:</p>
+<ul>
+<li><strong>[ Continuar comprando ]</strong> — regresa a la página de
+inicio</li>
+<li><strong>Ir al inicio</strong> — regresa al catálogo de tiendas</li>
+</ul></li>
+</ol>
+<p><strong>Resultado esperado:</strong> La orden queda registrada en el
+sistema con estado <code>Completada</code>. Puede consultar el historial
+en [§ 5.10].</p>
+<blockquote>
+<p><strong>ADVERTENCIA:</strong> Una vez confirmada la compra, el
+carrito se vacía automáticamente. El proceso no puede deshacerse desde
+la interfaz de usuario.</p>
+</blockquote>
+<hr />
+<h3 id="ver-historial-de-compras">5.10 Ver historial de compras</h3>
+<p><strong>Propósito:</strong> Consultar el registro de órdenes de
+compra realizadas anteriormente.</p>
+<p><strong>Precondición:</strong> El usuario debe haber iniciado sesión
+y contar con al menos una compra realizada.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li>Haga clic en su <strong>avatar o ícono de usuario</strong> en el
+encabezado.</li>
+<li>En el menú desplegable, seleccione <strong>Mi perfil</strong> (o
+navegue directamente a <code>/perfil</code>).</li>
+<li>Desplácese hacia abajo hasta la sección <strong>Mis
+compras</strong>.</li>
+<li>La lista muestra cada orden con:
+<ul>
+<li>Número de orden</li>
+<li>Fecha de realización</li>
+<li>Estado de la orden (indicador de color)</li>
+<li>Monto total</li>
+</ul></li>
+<li>Haga clic sobre cualquier orden para <strong>expandir el
+detalle</strong> y ver los productos incluidos, cantidades y precios
+unitarios.</li>
+<li>Haga clic de nuevo en la misma orden para <strong>contraer</strong>
+el detalle.</li>
+</ol>
+<p><strong>Estados de orden posibles:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Color</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>● Pendiente</code></td>
+<td>Naranja</td>
+<td>Orden recibida, en proceso de confirmación</td>
+</tr>
+<tr>
+<td><code>● Confirmado</code></td>
+<td>Azul</td>
+<td>Orden confirmada por el sistema</td>
+</tr>
+<tr>
+<td><code>● Enviado</code></td>
+<td>Morado</td>
+<td>Pedido en camino</td>
+</tr>
+<tr>
+<td><code>● Entregado</code></td>
+<td>Verde</td>
+<td>Pedido recibido por el destinatario</td>
+</tr>
+<tr>
+<td><code>● Completada</code></td>
+<td>Verde</td>
+<td>Transacción finalizada</td>
+</tr>
+<tr>
+<td><code>● Cancelado</code></td>
+<td>Rojo</td>
+<td>Orden cancelada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="editar-perfil-de-usuario">5.11 Editar perfil de usuario</h3>
+<p><strong>Propósito:</strong> Actualizar los datos personales y de
+envío asociados a la cuenta.</p>
+<p><strong>Precondición:</strong> El usuario debe haber iniciado
+sesión.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li><p>Haga clic en su <strong>avatar</strong> en el
+encabezado.</p></li>
+<li><p>Seleccione <strong>Mi perfil</strong> o navegue a
+<code>/perfil</code>.</p></li>
+<li><p>En la sección <strong>Información personal</strong>, modifique
+los campos deseados:</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 30%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nombre completo</strong></td>
+<td>Texto</td>
+<td>Requerido</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td>Email</td>
+<td>Requerido; debe ser una dirección válida</td>
+</tr>
+<tr>
+<td><strong>Teléfono</strong></td>
+<td>Teléfono</td>
+<td>Opcional</td>
+</tr>
+<tr>
+<td><strong>Ciudad</strong></td>
+<td>Texto</td>
+<td>Opcional; se usa para autocompletar el checkout</td>
+</tr>
+<tr>
+<td><strong>Dirección</strong></td>
+<td>Texto</td>
+<td>Opcional; se usa para autocompletar el checkout</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Haga clic en <strong>[ Guardar cambios ]</strong>.</p></li>
+<li><p>Aparecerá una notificación de confirmación y el botón mostrará
+<code>✓ Guardado</code>.</p></li>
+</ol>
+<blockquote>
+<p><strong>CONSEJO:</strong> Mantener actualizados los campos de ciudad
+y dirección agiliza el proceso de checkout, ya que se usan para
+autocompletar el formulario de envío.</p>
+</blockquote>
+<blockquote>
+<p><strong>NOTA:</strong> El cambio de contraseña está disponible
+mediante el botón <strong>Cambiar contraseña</strong>. Esta
+funcionalidad estará completamente disponible en versiones futuras.</p>
+</blockquote>
+<hr />
+<h3 id="cerrar-sesión">5.12 Cerrar sesión</h3>
+<p><strong>Propósito:</strong> Finalizar la sesión de usuario activa en
+el dispositivo.</p>
+<p><strong>Pasos:</strong></p>
+<ol type="1">
+<li>Navegue a <code>/perfil</code> o haga clic en su avatar en el
+encabezado.</li>
+<li>Desplácese hasta el final de la página de perfil.</li>
+<li>Haga clic en el botón <strong>↩︎ Cerrar sesión</strong> (texto rojo
+en la esquina inferior derecha).</li>
+<li>El sistema cierra la sesión, elimina las credenciales almacenadas
+localmente y redirige a la página de inicio.</li>
+<li>Aparecerá una notificación de confirmación: <em>“Sesión cerrada
+correctamente”</em>.</li>
+</ol>
+<blockquote>
+<p><strong>IMPORTANTE:</strong> Siempre cierre sesión cuando use
+SmartStore en un dispositivo compartido o público.</p>
+</blockquote>
+<hr />
+<h2 id="capítulo-6-características-avanzadas">CAPÍTULO 6 —
+CARACTERÍSTICAS AVANZADAS</h2>
+<h3 id="motor-de-búsqueda-semántica">6.1 Motor de búsqueda
+semántica</h3>
+<h4 id="fundamentos-tecnológicos">6.1.1 Fundamentos tecnológicos</h4>
+<p>SmartStore incorpora un motor semántico basado en:</p>
+<ul>
+<li><strong>OWL (Web Ontology Language)</strong> — Lenguaje estándar W3C
+para definir ontologías. La ontología de SmartStore describe una
+jerarquía de clases de productos, sus propiedades y las relaciones entre
+ellas.</li>
+<li><strong>SPARQL</strong> — Lenguaje de consulta estándar para grafos
+RDF. El motor utiliza consultas SPARQL para inferir qué productos
+pertenecen a una clase buscada.</li>
+<li><strong>rdflib</strong> — Biblioteca Python que procesa la ontología
+en memoria del servidor.</li>
+</ul>
+<h4 id="cómo-funciona-la-búsqueda-semántica">6.1.2 Cómo funciona la
+búsqueda semántica</h4>
+<pre><code>Usuario escribe &quot;auricular bluetooth&quot;
+        │
+        ▼
+Servidor consulta la ontología OWL
+        │
+        ▼
+SPARQL infiere: clase = &quot;AuricularBluetooth&quot;
+        │      subclase de &quot;ElectrónicaDeAudio&quot;
+        ▼
+Sistema retorna IDs de productos etiquetados
+con esa clase o sus subclases
+        │
+        ▼
+Frontend flota esos productos al inicio
+de la cuadrícula con borde destacado</code></pre>
+<h4 id="ventajas-sobre-búsqueda-tradicional">6.1.3 Ventajas sobre
+búsqueda tradicional</h4>
+<table>
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Búsqueda tradicional</th>
+<th>Búsqueda semántica SmartStore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coincidencia exacta de palabras</td>
+<td>Comprensión conceptual</td>
+</tr>
+<tr>
+<td>“zapatilla running” no encontraría “calzado para correr”</td>
+<td>Ambas expresiones llevan al mismo resultado</td>
+</tr>
+<tr>
+<td>Sin jerarquía de categorías</td>
+<td>Respeta herencia: buscar “electrónica” incluye smartphones, laptops,
+tablets, etc.</td>
+</tr>
+<tr>
+<td>Resultados rígidos</td>
+<td>Resultados con grado de relevancia</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filtros-dinámicos-por-ontología">6.2 Filtros dinámicos por
+ontología</h3>
+<p>Los filtros del panel lateral son <strong>generados
+dinámicamente</strong> según la clase ontológica activa en la búsqueda
+semántica. Esto significa que:</p>
+<ul>
+<li>Al buscar <strong>“smartphone”</strong>, el panel mostrará filtros:
+Sistema operativo, RAM, Almacenamiento, Cámara.</li>
+<li>Al buscar <strong>“zapatilla”</strong>, el panel mostrará filtros:
+Material, Tipo de superficie, Talla.</li>
+<li>Al navegar sin búsqueda activa, se muestran únicamente los filtros
+universales: precio, calificación y descuento.</li>
+</ul>
+<blockquote>
+<p><strong>NOTA:</strong> Los filtros dinámicos requieren que la
+búsqueda semántica esté activa. Inicie una búsqueda desde el encabezado
+para activarlos.</p>
+</blockquote>
+<h3 id="flotado-y-resaltado-de-resultados-semánticos">6.3 Flotado y
+resaltado de resultados semánticos</h3>
+<p>Cuando una búsqueda semántica está activa en la página de tienda:</p>
+<ol type="1">
+<li>Los productos que coinciden exactamente con la clase buscada se
+<strong>mueven al inicio</strong> de la cuadrícula.</li>
+<li>Cada producto semántico muestra un <strong>borde de color</strong>
+(morado/azul) y la etiqueta <code>✦ Semántico</code>.</li>
+<li>Una <strong>línea divisoria</strong> separa visualmente los
+resultados semánticos del resto del catálogo.</li>
+<li>El banner superior indica cuántas coincidencias exactas se
+encontraron.</li>
+</ol>
+<h3 id="persistencia-del-carrito">6.4 Persistencia del carrito</h3>
+<p>El carrito de compras persiste en el almacenamiento local del
+navegador (<code>localStorage</code>). Esto significa que:</p>
+<ul>
+<li>El carrito <strong>se mantiene entre sesiones</strong> del mismo
+navegador aunque el usuario cierre la ventana.</li>
+<li>El carrito <strong>es independiente de la sesión</strong> de
+usuario; los productos se guardan aunque no se haya iniciado
+sesión.</li>
+<li>Limpiar los datos del navegador o usar un navegador diferente
+resultará en un carrito vacío.</li>
+</ul>
+<h3 id="modo-oscuro">6.5 Modo oscuro</h3>
+<p>SmartStore detecta automáticamente la preferencia de modo oscuro
+configurada en el sistema operativo y aplica la paleta correspondiente.
+No existe un interruptor manual en la interfaz; para cambiar el modo,
+modifique la configuración de apariencia de su sistema operativo.</p>
+<hr />
+<h2 id="capítulo-7-solución-de-problemas">CAPÍTULO 7 — SOLUCIÓN DE
+PROBLEMAS</h2>
+<h3 id="tabla-de-problemas-comunes">7.1 Tabla de problemas comunes</h3>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 24%" />
+<col style="width: 40%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Síntoma</th>
+<th>Causa probable</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-001</td>
+<td>La página no carga o muestra una pantalla en blanco</td>
+<td>El servidor frontend no está activo</td>
+<td>Verifique que el servidor esté corriendo en
+<code>http://localhost:5173</code></td>
+</tr>
+<tr>
+<td>T-002</td>
+<td>“Error al cargar tiendas” en la página de inicio</td>
+<td>El servidor backend no está activo</td>
+<td>Verifique que Django esté corriendo en
+<code>http://localhost:8000</code></td>
+</tr>
+<tr>
+<td>T-003</td>
+<td>Las imágenes de productos o tiendas no cargan</td>
+<td>Conexión a Internet sin acceso a Unsplash</td>
+<td>Verifique su conexión; el sistema mostrará íconos de reemplazo
+automáticamente</td>
+</tr>
+<tr>
+<td>T-004</td>
+<td>“Credenciales incorrectas” al iniciar sesión</td>
+<td>Email o contraseña incorrectos</td>
+<td>Verifique que el email no tenga espacios; use mayúsculas/minúsculas
+correctas en la contraseña</td>
+</tr>
+<tr>
+<td>T-005</td>
+<td>El botón “Completar compra” no responde</td>
+<td>Campos obligatorios incompletos</td>
+<td>Revise que nombre completo y email estén correctamente
+completados</td>
+</tr>
+<tr>
+<td>T-006</td>
+<td>No aparecen sugerencias en la búsqueda semántica</td>
+<td>El motor ontológico no ha cargado</td>
+<td>Espere unos segundos y vuelva a intentar; si persiste, recargue la
+página</td>
+</tr>
+<tr>
+<td>T-007</td>
+<td>El carrito muestra 0 artículos después de agregar uno</td>
+<td>Los datos de <code>localStorage</code> fueron bloqueados</td>
+<td>Verifique que las cookies y el almacenamiento local estén
+habilitados en el navegador</td>
+</tr>
+<tr>
+<td>T-008</td>
+<td>La página de perfil redirige a login</td>
+<td>La sesión expiró</td>
+<td>Inicie sesión nuevamente; los tokens JWT tienen una duración
+limitada</td>
+</tr>
+<tr>
+<td>T-009</td>
+<td>El historial de compras está vacío pese a haber comprado</td>
+<td>La sesión ha cambiado o los datos no se sincronizaron</td>
+<td>Cierre sesión, vuelva a iniciarla y recargue la página de
+perfil</td>
+</tr>
+<tr>
+<td>T-010</td>
+<td>Los filtros dinámicos no aparecen</td>
+<td>No hay búsqueda semántica activa</td>
+<td>Realice una búsqueda semántica desde el encabezado antes de usar los
+filtros</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pasos-de-diagnóstico-general">7.2 Pasos de diagnóstico
+general</h3>
+<p>Cuando encuentre un comportamiento inesperado, siga este
+procedimiento de diagnóstico en orden:</p>
+<ol type="1">
+<li><strong>Recargue la página</strong> — presione <code>F5</code> o
+<code>Ctrl+R</code> (<code>Cmd+R</code> en Mac).</li>
+<li><strong>Limpie la caché del navegador</strong> —
+<code>Ctrl+Shift+Delete</code> y elimine la caché y los datos del
+sitio.</li>
+<li><strong>Verifique su conexión a Internet</strong> — intente abrir
+otra página web.</li>
+<li><strong>Pruebe en un navegador diferente</strong> — para descartar
+extensiones o configuraciones específicas del navegador.</li>
+<li><strong>Cierre sesión y vuelva a iniciarla</strong> — resuelve la
+mayoría de los problemas de autenticación.</li>
+<li><strong>Contacte al soporte</strong> — si el problema persiste,
+consulte el [Capítulo 11].</li>
+</ol>
+<hr />
+<h2 id="capítulo-8-preguntas-frecuentes-faq">CAPÍTULO 8 — PREGUNTAS
+FRECUENTES (FAQ)</h2>
+<p><strong>P: ¿SmartStore cobra por usar la plataforma?</strong> R:
+No. SmartStore es una plataforma académica de demostración. No se
+realizan cobros reales de ningún tipo.</p>
+<hr />
+<p><strong>P: ¿Mis datos personales están seguros?</strong> R:
+SmartStore utiliza tokens JWT con caducidad para la autenticación. Las
+contraseñas se almacenan con hash. Sin embargo, al ser un proyecto
+académico, no está certificado para entornos de producción con datos
+sensibles reales.</p>
+<hr />
+<p><strong>P: ¿Puedo usar SmartStore sin registrarme?</strong> R: Sí. La
+navegación por tiendas y productos, la búsqueda semántica y el uso del
+carrito son accesibles sin cuenta. Sin embargo, completar una compra y
+ver el historial de órdenes requieren inicio de sesión.</p>
+<hr />
+<p><strong>P: ¿El carrito se guarda si cierro el navegador?</strong> R:
+Sí. El carrito se almacena en el navegador y persiste entre sesiones en
+el mismo dispositivo y navegador. Limpiar los datos del navegador
+vaciará el carrito.</p>
+<hr />
+<p><strong>P: ¿Cómo funciona el cálculo del total en el
+checkout?</strong> R: El total se calcula como:
+<code>Total = Subtotal × 1.10</code>. El IVA es del 10% y el envío es
+siempre gratuito.</p>
+<hr />
+<p><strong>P: ¿Puedo cancelar una orden después de realizarla?</strong>
+R: En la versión actual de la interfaz de usuario no existe una función
+de cancelación. Contacte al soporte si necesita gestionar una orden
+específica.</p>
+<hr />
+<p><strong>P: ¿Por qué algunos productos tienen bordes de color en el
+catálogo?</strong> R: Los bordes de color indican que ese producto fue
+identificado como resultado semántico exacto para la búsqueda activa.
+Son los productos más relevantes según la ontología.</p>
+<hr />
+<p><strong>P: ¿Qué navegador se recomienda?</strong> R: Google Chrome o
+Microsoft Edge en su versión más reciente ofrecen la mejor experiencia.
+Firefox es también plenamente compatible.</p>
+<hr />
+<p><strong>P: ¿Puedo usar SmartStore desde mi teléfono?</strong> R: Sí.
+La interfaz es completamente responsiva y está optimizada para
+dispositivos móviles.</p>
+<hr />
+<p><strong>P: ¿Las imágenes de productos son reales?</strong> R: Las
+imágenes provienen de Unsplash (unsplash.com) y se usan con fines de
+demostración. Los productos son ficticios.</p>
+<hr />
+<h2 id="capítulo-9-glosario-de-términos">CAPÍTULO 9 — GLOSARIO DE
+TÉRMINOS</h2>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API REST</strong></td>
+<td>Interfaz de programación que permite la comunicación entre el
+frontend y el backend mediante peticiones HTTP en formato JSON</td>
+</tr>
+<tr>
+<td><strong>Autenticación JWT</strong></td>
+<td>Sistema de autenticación basado en tokens firmados (JSON Web Tokens)
+que validan la identidad del usuario sin mantener sesión en el
+servidor</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Componente servidor del sistema responsable de la lógica de negocio,
+base de datos y motor semántico (Django)</td>
+</tr>
+<tr>
+<td><strong>Banner</strong></td>
+<td>Imagen decorativa de encabezado que identifica visualmente a cada
+tienda</td>
+</tr>
+<tr>
+<td><strong>Carrito de compras</strong></td>
+<td>Lista temporal de productos seleccionados por el usuario antes de
+confirmar la compra</td>
+</tr>
+<tr>
+<td><strong>Checkout</strong></td>
+<td>Proceso formal de revisión y confirmación de una compra; incluye
+datos de envío y pago</td>
+</tr>
+<tr>
+<td><strong>Clase ontológica</strong></td>
+<td>Categoría definida en la ontología OWL que agrupa productos con
+características semánticas comunes</td>
+</tr>
+<tr>
+<td><strong>Dark mode</strong></td>
+<td>Modo de visualización con colores oscuros de fondo, que reduce la
+fatiga visual en entornos de poca luz</td>
+</tr>
+<tr>
+<td><strong>Django</strong></td>
+<td>Framework web de Python utilizado para el backend de SmartStore</td>
+</tr>
+<tr>
+<td><strong>Filtros dinámicos</strong></td>
+<td>Criterios de filtrado generados automáticamente según la clase
+ontológica activa</td>
+</tr>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Componente cliente del sistema; la interfaz gráfica que el usuario
+ve y manipula (React)</td>
+</tr>
+<tr>
+<td><strong>IVA</strong></td>
+<td>Impuesto al Valor Agregado; en SmartStore se aplica el 10% sobre el
+subtotal</td>
+</tr>
+<tr>
+<td><strong>localStorage</strong></td>
+<td>Almacenamiento persistente del navegador web utilizado para guardar
+el carrito de compras entre sesiones</td>
+</tr>
+<tr>
+<td><strong>Logo</strong></td>
+<td>Imagen identificativa de cada tienda, mostrada sobre su banner y en
+el encabezado de la página de tienda</td>
+</tr>
+<tr>
+<td><strong>Lucide</strong></td>
+<td>Biblioteca de íconos vectoriales utilizada en la interfaz de
+SmartStore</td>
+</tr>
+<tr>
+<td><strong>Ontología</strong></td>
+<td>Representación formal del conocimiento sobre un dominio mediante
+clases, propiedades y relaciones; en SmartStore describe la jerarquía de
+categorías de productos</td>
+</tr>
+<tr>
+<td><strong>Orden de compra</strong></td>
+<td>Registro generado al completar el proceso de pago; incluye número de
+orden, artículos, precios y estado</td>
+</tr>
+<tr>
+<td><strong>OWL</strong></td>
+<td>Web Ontology Language; lenguaje estándar del W3C para expresar
+ontologías en la Web Semántica</td>
+</tr>
+<tr>
+<td><strong>Panel de filtros</strong></td>
+<td>Componente lateral en la página de tienda que permite acotar los
+productos visibles mediante criterios específicos</td>
+</tr>
+<tr>
+<td><strong>Perfil de usuario</strong></td>
+<td>Conjunto de datos personales y de envío asociados a una cuenta:
+nombre, email, teléfono, ciudad y dirección</td>
+</tr>
+<tr>
+<td><strong>React</strong></td>
+<td>Biblioteca JavaScript utilizada para construir la interfaz de
+usuario de SmartStore</td>
+</tr>
+<tr>
+<td><strong>rdflib</strong></td>
+<td>Biblioteca Python para procesamiento de grafos RDF y ontologías
+OWL</td>
+</tr>
+<tr>
+<td><strong>Slug</strong></td>
+<td>Identificador legible usado en URLs para identificar tiendas y
+productos (ej. <code>/tienda/nike-store</code>)</td>
+</tr>
+<tr>
+<td><strong>SPARQL</strong></td>
+<td>Lenguaje de consulta estándar para grafos RDF; utilizado para
+interrogar la ontología de SmartStore</td>
+</tr>
+<tr>
+<td><strong>Subtotal</strong></td>
+<td>Suma de los precios de todos los productos en el carrito, antes de
+aplicar impuestos</td>
+</tr>
+<tr>
+<td><strong>TanStack Query</strong></td>
+<td>Biblioteca de gestión de estado y caché de datos remotos usada en el
+frontend</td>
+</tr>
+<tr>
+<td><strong>Toast</strong></td>
+<td>Notificación emergente breve que aparece en la esquina de la
+pantalla para informar al usuario de una acción completada</td>
+</tr>
+<tr>
+<td><strong>Token JWT</strong></td>
+<td>Credencial cifrada que el servidor entrega al usuario tras iniciar
+sesión; se envía en cada petición para autenticar al usuario</td>
+</tr>
+<tr>
+<td><strong>URLField</strong></td>
+<td>Campo de base de datos que almacena URLs externas sin modificarlas
+(a diferencia de ImageField)</td>
+</tr>
+<tr>
+<td><strong>Vite</strong></td>
+<td>Herramienta de construcción y servidor de desarrollo para el
+frontend React</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-10-apéndices">CAPÍTULO 10 — APÉNDICES</h2>
+<h3 id="apéndice-a-mapa-de-urls-del-sistema">Apéndice A — Mapa de URLs
+del sistema</h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Página</th>
+<th>Acceso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Catálogo de tiendas (inicio)</td>
+<td>Público</td>
+</tr>
+<tr>
+<td><code>/login</code></td>
+<td>Inicio de sesión</td>
+<td>Público (redirige si ya hay sesión)</td>
+</tr>
+<tr>
+<td><code>/registro</code></td>
+<td>Crear cuenta</td>
+<td>Público (redirige si ya hay sesión)</td>
+</tr>
+<tr>
+<td><code>/tienda/:slug</code></td>
+<td>Página de tienda</td>
+<td>Público</td>
+</tr>
+<tr>
+<td><code>/producto/:slug</code></td>
+<td>Detalle de producto</td>
+<td>Público</td>
+</tr>
+<tr>
+<td><code>/carrito</code></td>
+<td>Carrito de compras</td>
+<td>Público</td>
+</tr>
+<tr>
+<td><code>/checkout</code></td>
+<td>Proceso de pago</td>
+<td>Requiere artículos en carrito</td>
+</tr>
+<tr>
+<td><code>/perfil</code></td>
+<td>Perfil e historial</td>
+<td>Requiere sesión activa</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apéndice-b-endpoints-de-la-api-rest">Apéndice B — Endpoints de
+la API REST</h3>
+<p>Esta tabla es informativa para usuarios técnicos que deseen integrar
+o extender el sistema.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Endpoint</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/</code></td>
+<td>Lista de tiendas</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/:slug/</code></td>
+<td>Detalle de tienda</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/:slug/products/</code></td>
+<td>Productos de la tienda</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/products/</code></td>
+<td>Lista de productos</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/products/:id/</code></td>
+<td>Detalle de producto</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/register/</code></td>
+<td>Registrar usuario</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/login/</code></td>
+<td>Iniciar sesión</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/logout/</code></td>
+<td>Cerrar sesión</td>
+</tr>
+<tr>
+<td><code>GET/PATCH</code></td>
+<td><code>/api/auth/me/</code></td>
+<td>Datos del usuario</td>
+</tr>
+<tr>
+<td><code>GET/PATCH</code></td>
+<td><code>/api/auth/profile/</code></td>
+<td>Perfil extendido</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/ontology/suggestions/</code></td>
+<td>Sugerencias semánticas</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/ontology/filters/</code></td>
+<td>Filtros dinámicos</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/ontology/semantic-search/</code></td>
+<td>Búsqueda semántica</td>
+</tr>
+<tr>
+<td><code>GET/POST</code></td>
+<td><code>/api/orders/</code></td>
+<td>Historial / crear orden</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/api/orders/:id/</code></td>
+<td>Actualizar estado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apéndice-c-referencias-de-componentes-de-interfaz">Apéndice C —
+Referencias de componentes de interfaz</h3>
+<p>Esta tabla describe los componentes de interfaz principales y su
+ubicación en el código fuente para referencia de desarrolladores.</p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 31%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Archivo</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td><code>src/components/layout/Header.jsx</code></td>
+<td>Barra de navegación global</td>
+</tr>
+<tr>
+<td>Footer</td>
+<td><code>src/components/layout/Footer.jsx</code></td>
+<td>Pie de página</td>
+</tr>
+<tr>
+<td>StoreCard</td>
+<td><code>src/components/ui/StoreCard.jsx</code></td>
+<td>Tarjeta de tienda en catálogo</td>
+</tr>
+<tr>
+<td>ProductCard</td>
+<td><code>src/components/ui/ProductCard.jsx</code></td>
+<td>Tarjeta de producto en cuadrícula</td>
+</tr>
+<tr>
+<td>FilterPanel</td>
+<td><code>src/components/ui/FilterPanel.jsx</code></td>
+<td>Panel de filtros lateral</td>
+</tr>
+<tr>
+<td>CartContext</td>
+<td><code>src/context/CartContext.jsx</code></td>
+<td>Estado global del carrito</td>
+</tr>
+<tr>
+<td>AuthContext</td>
+<td><code>src/context/AuthContext.jsx</code></td>
+<td>Estado global de autenticación</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apéndice-d-guía-rápida-de-uso-quick-reference">Apéndice D — Guía
+rápida de uso (Quick Reference)</h3>
+<pre><code>┌─────────────────────────────────────────────────┐
+│            SMARTSTORE — GUÍA RÁPIDA             │
+├─────────────────────────────────────────────────┤
+│  EXPLORAR        → Página de inicio `/`         │
+│  BUSCAR          → Barra semántica encabezado   │
+│  FILTRAR         → Panel izquierdo en tienda    │
+│  CARRITO         → Ícono 🛒 en encabezado       │
+│  COMPRAR         → Carrito → Proceder al pago   │
+│  MI CUENTA       → Avatar en encabezado         │
+│  MIS COMPRAS     → Perfil → sección &quot;Mis compras&quot;│
+│  CERRAR SESIÓN   → Perfil → botón ↩ inferior   │
+└─────────────────────────────────────────────────┘</code></pre>
+<hr />
+<h2 id="capítulo-11-información-de-contacto-y-soporte">CAPÍTULO 11 —
+INFORMACIÓN DE CONTACTO Y SOPORTE</h2>
+<h3 id="equipo-de-desarrollo">11.1 Equipo de desarrollo</h3>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Contacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desarrollo backend y frontend</td>
+<td>Equipo SmartStore — UNAM</td>
+</tr>
+<tr>
+<td>Coordinación académica</td>
+<td>Ingeniería del Conocimiento — Facultad de Ingeniería</td>
+</tr>
+</tbody>
+</table>
+<h3 id="canales-de-soporte">11.2 Canales de soporte</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>Canal</th>
+<th>Uso recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Repositorio del proyecto</strong></td>
+<td>Reporte de errores técnicos, solicitudes de funcionalidades</td>
+</tr>
+<tr>
+<td><strong>Correo académico</strong></td>
+<td>Consultas sobre funcionalidad, retroalimentación general</td>
+</tr>
+<tr>
+<td><strong>Documentación técnica</strong></td>
+<td><code>README.md</code> en la raíz del proyecto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cómo-reportar-un-problema">11.3 Cómo reportar un problema</h3>
+<p>Para reportar un problema de manera efectiva, incluya la siguiente
+información:</p>
+<ol type="1">
+<li><strong>Descripción del problema</strong> — qué ocurrió y qué
+esperaba que ocurriera.</li>
+<li><strong>Pasos para reproducirlo</strong> — secuencia exacta de
+acciones que llevaron al problema.</li>
+<li><strong>Navegador y versión</strong> — ej. “Chrome 124 en Windows
+11”.</li>
+<li><strong>Capturas de pantalla</strong> — si aplica, ayudan a
+identificar el problema visualmente.</li>
+<li><strong>Mensajes de error</strong> — copie cualquier texto de error
+que aparezca en la pantalla.</li>
+</ol>
+<h3 id="versiones-y-actualizaciones">11.4 Versiones y
+actualizaciones</h3>
+<p>Las actualizaciones de SmartStore se publican en el repositorio del
+proyecto. Consulte el <code>HISTORIAL DE REVISIONES</code> al inicio de
+este documento para conocer los cambios introducidos en cada versión del
+manual.</p>
+<h3 id="licencia-de-la-documentación">11.5 Licencia de la
+documentación</h3>
+<p>Este manual se distribuye bajo los términos del proyecto académico
+SmartStore. Su uso está autorizado exclusivamente para fines educativos
+en el contexto del curso de Ingeniería del Conocimiento, UNAM.</p>
+<hr />
+<h2 id="control-del-documento">CONTROL DEL DOCUMENTO</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Documento</td>
+<td>SS-MU-001</td>
+</tr>
+<tr>
+<td>Revisión</td>
+<td>1.0.0</td>
+</tr>
+<tr>
+<td>Páginas</td>
+<td>Documento digital (Markdown)</td>
+</tr>
+<tr>
+<td>Idioma</td>
+<td>Español (México)</td>
+</tr>
+<tr>
+<td>Normas de referencia</td>
+<td>ISO/IEC 26514:2008, ISO 9001:2015</td>
+</tr>
+<tr>
+<td>Próxima revisión</td>
+<td>18 de mayo de 2027</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Fin del documento — SmartStore Manual de Usuario v1.0.0</em></p>
+</body>
+</html>

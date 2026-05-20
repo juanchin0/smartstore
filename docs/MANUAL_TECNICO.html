@@ -1,0 +1,4061 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MANUAL_TECNICO</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+:root {
+--color-primary: #1e3a5f;
+--color-accent: #2563eb;
+--color-secondary: #475569;
+--color-light: #f1f5f9;
+--color-border: #cbd5e1;
+--color-warn-bg: #fef3c7;
+--color-warn-bdr: #f59e0b;
+--color-note-bg: #eff6ff;
+--color-note-bdr: #2563eb;
+--color-tip-bg: #f0fdf4;
+--color-tip-bdr: #22c55e;
+--color-danger-bg: #fef2f2;
+--color-danger-bdr: #ef4444;
+--color-code-bg: #f8fafc;
+--font-main: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+--font-mono: "Cascadia Code", "Consolas", "Courier New", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 10.5pt; }
+body {
+font-family: var(--font-main);
+font-size: 1rem;
+line-height: 1.7;
+color: #1e293b;
+background: #fff;
+max-width: 900px;
+margin: 0 auto;
+padding: 0;
+}
+
+@page {
+size: A4;
+margin: 22mm 20mm 22mm 25mm;
+}
+@page :first {
+margin-top: 0;
+}
+
+
+
+h1 {
+font-size: 2rem;
+font-weight: 800;
+color: var(--color-primary);
+border-bottom: 3px solid var(--color-accent);
+padding-bottom: 0.35em;
+margin: 2.5em 0 0.7em;
+page-break-after: avoid;
+letter-spacing: -0.01em;
+}
+h1:first-of-type {
+font-size: 2.4rem;
+text-align: center;
+border-bottom: 4px solid var(--color-primary);
+padding-bottom: 0.5em;
+margin-top: 2em;
+letter-spacing: -0.02em;
+}
+h2 {
+font-size: 1.45rem;
+font-weight: 700;
+color: var(--color-primary);
+border-left: 4px solid var(--color-accent);
+padding-left: 0.6em;
+margin: 2em 0 0.6em;
+page-break-after: avoid;
+}
+h3 {
+font-size: 1.15rem;
+font-weight: 600;
+color: #1e3a5f;
+margin: 1.6em 0 0.5em;
+page-break-after: avoid;
+}
+h4 {
+font-size: 1.0rem;
+font-weight: 600;
+color: var(--color-secondary);
+margin: 1.2em 0 0.4em;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+font-size: 0.85rem;
+page-break-after: avoid;
+}
+
+p {
+margin: 0 0 0.9em;
+text-align: justify;
+hyphens: auto;
+orphans: 3;
+widows: 3;
+}
+
+a { color: var(--color-accent); text-decoration: none; }
+
+hr {
+border: none;
+border-top: 1px solid var(--color-border);
+margin: 1.8em 0;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.2em 0 1.5em;
+font-size: 0.88rem;
+page-break-inside: auto;
+}
+thead {
+background: var(--color-primary);
+color: #fff;
+}
+thead th {
+padding: 0.5em 0.75em;
+text-align: left;
+font-weight: 600;
+letter-spacing: 0.02em;
+white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--color-border); }
+tbody tr:nth-child(even) { background: var(--color-light); }
+tbody tr:last-child { border-bottom: 2px solid var(--color-primary); }
+td {
+padding: 0.45em 0.75em;
+vertical-align: top;
+}
+td:first-child { font-weight: 500; }
+
+ul, ol {
+margin: 0.5em 0 1em 1.6em;
+padding: 0;
+}
+li { margin: 0.2em 0; }
+li > ul, li > ol { margin-top: 0.2em; margin-bottom: 0.2em; }
+
+code {
+font-family: var(--font-mono);
+font-size: 0.82em;
+background: var(--color-code-bg);
+border: 1px solid var(--color-border);
+border-radius: 3px;
+padding: 0.1em 0.35em;
+color: #0f172a;
+white-space: nowrap;
+}
+pre {
+background: #0f172a;
+color: #e2e8f0;
+border-radius: 6px;
+padding: 1em 1.2em;
+overflow-x: auto;
+font-family: var(--font-mono);
+font-size: 0.80em;
+line-height: 1.55;
+margin: 1em 0 1.4em;
+page-break-inside: avoid;
+border-left: 3px solid var(--color-accent);
+}
+pre code {
+background: transparent;
+border: none;
+padding: 0;
+color: inherit;
+font-size: inherit;
+white-space: pre;
+}
+
+blockquote {
+border-left: 4px solid var(--color-note-bdr);
+background: var(--color-note-bg);
+margin: 1em 0;
+padding: 0.7em 1em;
+border-radius: 0 6px 6px 0;
+page-break-inside: avoid;
+}
+blockquote p { margin: 0; font-size: 0.92rem; }
+
+blockquote:has(strong:first-child) {
+border-left-color: var(--color-warn-bdr);
+background: var(--color-warn-bg);
+}
+
+
+body > table:first-of-type {
+margin-top: 2em;
+font-size: 0.95rem;
+border: 2px solid var(--color-primary);
+border-radius: 6px;
+overflow: hidden;
+}
+body > table:first-of-type thead {
+display: none;
+}
+body > table:first-of-type td:first-child {
+background: var(--color-primary);
+color: #fff;
+width: 38%;
+font-weight: 600;
+padding: 0.55em 0.9em;
+}
+body > table:first-of-type td:last-child {
+font-weight: 400;
+padding: 0.55em 0.9em;
+}
+
+em { color: var(--color-secondary); font-style: italic; }
+strong { font-weight: 700; color: #0f172a; }
+
+h1 { page-break-before: always; }
+h1:first-of-type { page-break-before: avoid; }
+
+h2 + h3 { page-break-before: avoid; }
+
+
+.header-left { float: left; font-size: 8pt; color: #64748b; }
+.header-right { float: right; font-size: 8pt; color: #64748b; }
+.footer-center { text-align: center; font-size: 8pt; color: #94a3b8; }
+</style>
+</head>
+<body>
+<!--
+  SMARTSTORE — MANUAL TÉCNICO
+  Conforme a: IEEE 830 / ISO/IEC/IEEE 29148:2018 / ISO/IEC 27001:2022
+  W3C OWL 2.0 / W3C SPARQL 1.1
+-->
+<hr />
+<h1 id="manual-técnico">MANUAL TÉCNICO</h1>
+<hr />
+<h2 id="portada">PORTADA</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>Manual Técnico — SmartStore</td>
+</tr>
+<tr>
+<td><strong>Subtítulo</strong></td>
+<td>Especificación técnica de arquitectura, implementación y
+despliegue</td>
+</tr>
+<tr>
+<td><strong>Referencia</strong></td>
+<td>SS-MT-001</td>
+</tr>
+<tr>
+<td><strong>Versión</strong></td>
+<td>1.0.0</td>
+</tr>
+<tr>
+<td><strong>Estado</strong></td>
+<td>Publicado</td>
+</tr>
+<tr>
+<td><strong>Fecha de emisión</strong></td>
+<td>18 de mayo de 2026</td>
+</tr>
+<tr>
+<td><strong>Fecha de revisión</strong></td>
+<td>18 de mayo de 2027</td>
+</tr>
+<tr>
+<td><strong>Autor</strong></td>
+<td>Equipo de Desarrollo SmartStore</td>
+</tr>
+<tr>
+<td><strong>Revisado por</strong></td>
+<td>Ingeniería del Conocimiento — Facultad de Ingeniería, UNAM</td>
+</tr>
+<tr>
+<td><strong>Institución</strong></td>
+<td>Universidad Nacional Autónoma de México</td>
+</tr>
+<tr>
+<td><strong>Clasificación</strong></td>
+<td>Técnico / Restringido a desarrolladores</td>
+</tr>
+<tr>
+<td><strong>Idioma</strong></td>
+<td>Español (México)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="historial-de-revisiones">HISTORIAL DE REVISIONES</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 18%" />
+<col style="width: 34%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha</th>
+<th>Responsable</th>
+<th>Cambios</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>01-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Estructura inicial, modelos de datos</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>10-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>API REST, ontología, búsqueda semántica</td>
+</tr>
+<tr>
+<td>0.9</td>
+<td>16-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Deployment, seguridad, testing</td>
+</tr>
+<tr>
+<td>1.0.0</td>
+<td>18-may-2026</td>
+<td>Equipo SmartStore</td>
+<td>Versión publicada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="normas-de-referencia">NORMAS DE REFERENCIA</h2>
+<table>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr>
+<th>Norma</th>
+<th>Título</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IEEE 830-1998</td>
+<td>Software Requirements Specification</td>
+</tr>
+<tr>
+<td>ISO/IEC/IEEE 29148:2018</td>
+<td>Systems and software engineering — Life cycle processes —
+Requirements engineering</td>
+</tr>
+<tr>
+<td>ISO/IEC 27001:2022</td>
+<td>Information security management systems</td>
+</tr>
+<tr>
+<td>ISO/IEC 25010:2011</td>
+<td>Software product quality model</td>
+</tr>
+<tr>
+<td>W3C OWL 2.0 (2012)</td>
+<td>OWL 2 Web Ontology Language — Document Overview</td>
+</tr>
+<tr>
+<td>W3C SPARQL 1.1 (2013)</td>
+<td>SPARQL 1.1 Query Language</td>
+</tr>
+<tr>
+<td>W3C RDF 1.1 (2014)</td>
+<td>Resource Description Framework — Concepts</td>
+</tr>
+<tr>
+<td>RFC 7519 (2015)</td>
+<td>JSON Web Token (JWT)</td>
+</tr>
+<tr>
+<td>RFC 7617 (2015)</td>
+<td>The ‘Basic’ HTTP Authentication Scheme</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tabla-de-contenidos">TABLA DE CONTENIDOS</h2>
+<ul>
+<li><a href="#capítulo-1--introducción-técnica">Cap. 1 — Introducción
+técnica</a></li>
+<li><a href="#capítulo-2--arquitectura-del-sistema">Cap. 2 —
+Arquitectura del sistema</a></li>
+<li><a href="#capítulo-3--stack-tecnológico">Cap. 3 — Stack
+tecnológico</a></li>
+<li><a href="#capítulo-4--base-de-datos">Cap. 4 — Base de datos</a></li>
+<li><a href="#capítulo-5--api-rest">Cap. 5 — API REST</a></li>
+<li><a href="#capítulo-6--frontend--arquitectura-react">Cap. 6 —
+Frontend — Arquitectura React</a></li>
+<li><a href="#capítulo-7--backend--arquitectura-django">Cap. 7 — Backend
+— Arquitectura Django</a></li>
+<li><a href="#capítulo-8--ontología-owlsparql">Cap. 8 — Ontología
+OWL/SPARQL</a></li>
+<li><a href="#capítulo-9--búsqueda-semántica">Cap. 9 — Búsqueda
+semántica</a></li>
+<li><a href="#capítulo-10--seguridad">Cap. 10 — Seguridad</a></li>
+<li><a href="#capítulo-11--rendimiento-y-optimización">Cap. 11 —
+Rendimiento y optimización</a></li>
+<li><a href="#capítulo-12--deployment">Cap. 12 — Deployment</a></li>
+<li><a href="#capítulo-13--testing">Cap. 13 — Testing</a></li>
+<li><a href="#capítulo-14--troubleshooting-técnico">Cap. 14 —
+Troubleshooting técnico</a></li>
+<li><a href="#capítulo-15--glosario-técnico">Cap. 15 — Glosario
+técnico</a></li>
+<li><a href="#apéndice-a--erd-completo">Apéndice A — ERD
+completo</a></li>
+<li><a href="#apéndice-b--diagrama-de-arquitectura">Apéndice B —
+Diagrama de arquitectura</a></li>
+<li><a href="#apéndice-c--queries-sparql-de-referencia">Apéndice C —
+Queries SPARQL de referencia</a></li>
+<li><a href="#apéndice-d--variables-de-entorno">Apéndice D — Variables
+de entorno</a></li>
+<li><a href="#apéndice-e--scripts-útiles">Apéndice E — Scripts
+útiles</a></li>
+<li><a href="#apéndice-f--referencias">Apéndice F — Referencias</a></li>
+</ul>
+<hr />
+<h2 id="capítulo-1-introducción-técnica">CAPÍTULO 1 — INTRODUCCIÓN
+TÉCNICA</h2>
+<h3 id="propósito-del-documento">1.1 Propósito del documento</h3>
+<p>Este Manual Técnico especifica la arquitectura de software, los
+modelos de datos, los contratos de API, los mecanismos de búsqueda
+semántica y los procedimientos de despliegue del sistema SmartStore.
+Sirve como referencia autorizada para desarrolladores, arquitectos de
+software y administradores de sistemas involucrados en el ciclo de vida
+del proyecto.</p>
+<p>El documento cumple con los requisitos de documentación técnica
+establecidos por ISO/IEC/IEEE 29148:2018 e incorpora principios de
+seguridad definidos en ISO/IEC 27001:2022.</p>
+<h3 id="público-objetivo">1.2 Público objetivo</h3>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Secciones de interés prioritario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Desarrollador Backend</strong></td>
+<td>Cap. 4, 5, 7, 8, 9, 10</td>
+</tr>
+<tr>
+<td><strong>Desarrollador Frontend</strong></td>
+<td>Cap. 5, 6</td>
+</tr>
+<tr>
+<td><strong>Arquitecto de software</strong></td>
+<td>Cap. 2, 3, 8, 11</td>
+</tr>
+<tr>
+<td><strong>DevOps / SRE</strong></td>
+<td>Cap. 12, 13, 14</td>
+</tr>
+<tr>
+<td><strong>Analista de seguridad</strong></td>
+<td>Cap. 10, Apéndice D</td>
+</tr>
+<tr>
+<td><strong>Investigador en IA semántica</strong></td>
+<td>Cap. 8, 9, Apéndice C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="convenciones-técnicas">1.3 Convenciones técnicas</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr>
+<th>Convención</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>monoespaciado</code></td>
+<td>Código, ruta de archivo, comando de terminal, nombre de
+variable</td>
+</tr>
+<tr>
+<td><strong>Negrita</strong></td>
+<td>Término técnico definido en el glosario (primera aparición)</td>
+</tr>
+<tr>
+<td><code>GET /api/ruta/</code></td>
+<td>Endpoint HTTP con método explícito</td>
+</tr>
+<tr>
+<td><code>→</code></td>
+<td>Flujo de datos o redirección</td>
+</tr>
+<tr>
+<td><code>[REQUERIDO]</code></td>
+<td>Campo o parámetro obligatorio</td>
+</tr>
+<tr>
+<td><code>[OPCIONAL]</code></td>
+<td>Campo o parámetro no obligatorio</td>
+</tr>
+<tr>
+<td><code>⚠️</code></td>
+<td>Advertencia de seguridad o comportamiento crítico</td>
+</tr>
+</tbody>
+</table>
+<h3 id="acrónimos-y-abreviaturas">1.4 Acrónimos y abreviaturas</h3>
+<table>
+<thead>
+<tr>
+<th>Sigla</th>
+<th>Expansión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td><strong>ASGI</strong></td>
+<td>Asynchronous Server Gateway Interface</td>
+</tr>
+<tr>
+<td><strong>CORS</strong></td>
+<td>Cross-Origin Resource Sharing</td>
+</tr>
+<tr>
+<td><strong>CSRF</strong></td>
+<td>Cross-Site Request Forgery</td>
+</tr>
+<tr>
+<td><strong>DRF</strong></td>
+<td>Django REST Framework</td>
+</tr>
+<tr>
+<td><strong>ERD</strong></td>
+<td>Entity-Relationship Diagram</td>
+</tr>
+<tr>
+<td><strong>FK</strong></td>
+<td>Foreign Key (clave foránea)</td>
+</tr>
+<tr>
+<td><strong>HTML</strong></td>
+<td>HyperText Markup Language</td>
+</tr>
+<tr>
+<td><strong>HTTP</strong></td>
+<td>HyperText Transfer Protocol</td>
+</tr>
+<tr>
+<td><strong>IRI</strong></td>
+<td>Internationalized Resource Identifier</td>
+</tr>
+<tr>
+<td><strong>JSON</strong></td>
+<td>JavaScript Object Notation</td>
+</tr>
+<tr>
+<td><strong>JWT</strong></td>
+<td>JSON Web Token (RFC 7519)</td>
+</tr>
+<tr>
+<td><strong>ORM</strong></td>
+<td>Object-Relational Mapper</td>
+</tr>
+<tr>
+<td><strong>OWL</strong></td>
+<td>Web Ontology Language (W3C)</td>
+</tr>
+<tr>
+<td><strong>PK</strong></td>
+<td>Primary Key (clave primaria)</td>
+</tr>
+<tr>
+<td><strong>RDF</strong></td>
+<td>Resource Description Framework (W3C)</td>
+</tr>
+<tr>
+<td><strong>RDFS</strong></td>
+<td>RDF Schema</td>
+</tr>
+<tr>
+<td><strong>REST</strong></td>
+<td>Representational State Transfer</td>
+</tr>
+<tr>
+<td><strong>SPARQL</strong></td>
+<td>SPARQL Protocol and RDF Query Language (W3C)</td>
+</tr>
+<tr>
+<td><strong>SPA</strong></td>
+<td>Single Page Application</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td><strong>TLS</strong></td>
+<td>Transport Layer Security</td>
+</tr>
+<tr>
+<td><strong>URI</strong></td>
+<td>Uniform Resource Identifier</td>
+</tr>
+<tr>
+<td><strong>WSGI</strong></td>
+<td>Web Server Gateway Interface</td>
+</tr>
+<tr>
+<td><strong>XSS</strong></td>
+<td>Cross-Site Scripting</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-2-arquitectura-del-sistema">CAPÍTULO 2 — ARQUITECTURA
+DEL SISTEMA</h2>
+<h3 id="visión-general-arquitectura-de-3-capas">2.1 Visión general —
+Arquitectura de 3 capas</h3>
+<p>SmartStore implementa una arquitectura cliente-servidor de tres capas
+con separación estricta de responsabilidades:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    CAPA 1 — PRESENTACIÓN                            │
+│                                                                     │
+│   React 18 SPA (Vite)                                               │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
+│   │  Pages   │  │Components│  │ Contexts │  │   TanStack Query │  │
+│   │ (Router) │  │   (UI)   │  │(Auth/Cart│  │   (cache + sync) │  │
+│   └──────────┘  └──────────┘  └──────────┘  └──────────────────┘  │
+│                         ↕ HTTP/JSON (Axios)                         │
+│                    puerto 5173 → proxy → 8000                       │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+                         REST API (JWT)
+                                │
+┌─────────────────────────────────────────────────────────────────────┐
+│                    CAPA 2 — LÓGICA DE NEGOCIO                       │
+│                                                                     │
+│   Django 5.1 + DRF 3.15                                             │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
+│   │  stores  │  │ products │  │  orders  │  │     users        │  │
+│   │ (ViewSet)│  │ (ViewSet)│  │ (ListAPI)│  │  (APIView/JWT)   │  │
+│   └──────────┘  └──────────┘  └──────────┘  └──────────────────┘  │
+│                         ┌──────────────────┐                       │
+│                         │    ontology      │                       │
+│                         │ OntologyService  │                       │
+│                         │  (rdflib/SPARQL) │                       │
+│                         └──────────────────┘                       │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+                         Django ORM
+                                │
+┌─────────────────────────────────────────────────────────────────────┐
+│                    CAPA 3 — PERSISTENCIA                            │
+│                                                                     │
+│  ┌──────────────────────────┐   ┌──────────────────────────────┐   │
+│  │  SQLite (desarrollo)     │   │  smartstore.owl              │   │
+│  │  PostgreSQL (producción) │   │  (OWL 2.0 / RDF/XML)        │   │
+│  │                          │   │  Cargado en memoria como     │   │
+│  │  5 apps × modelos        │   │  rdflib.Graph (singleton)    │   │
+│  └──────────────────────────┘   └──────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="componentes-del-frontend">2.2 Componentes del frontend</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Router</strong></td>
+<td>React Router v6</td>
+<td>Navegación SPA, rutas protegidas</td>
+</tr>
+<tr>
+<td><strong>Pages</strong></td>
+<td>React 18 (JSX)</td>
+<td>Vistas completas por ruta</td>
+</tr>
+<tr>
+<td><strong>UI Components</strong></td>
+<td>React + Tailwind v4</td>
+<td>Elementos reutilizables</td>
+</tr>
+<tr>
+<td><strong>Context API</strong></td>
+<td>React Context</td>
+<td>Estado global (auth, carrito, toasts)</td>
+</tr>
+<tr>
+<td><strong>Data fetching</strong></td>
+<td>TanStack Query v5</td>
+<td>Cache, sincronización, loading states</td>
+</tr>
+<tr>
+<td><strong>HTTP Client</strong></td>
+<td>Axios 1.7</td>
+<td>Peticiones HTTP con interceptors JWT</td>
+</tr>
+<tr>
+<td><strong>Icons</strong></td>
+<td>Lucide React 0.468</td>
+<td>Iconografía vectorial SVG</td>
+</tr>
+<tr>
+<td><strong>Styling</strong></td>
+<td>Tailwind CSS v4</td>
+<td>Utility-first CSS con CSS variables</td>
+</tr>
+<tr>
+<td><strong>Build tool</strong></td>
+<td>Vite 6.0</td>
+<td>Bundling, HMR, dev server con proxy</td>
+</tr>
+</tbody>
+</table>
+<h3 id="componentes-del-backend">2.3 Componentes del backend</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Web framework</strong></td>
+<td>Django 5.1</td>
+<td>Routing, ORM, admin, middleware</td>
+</tr>
+<tr>
+<td><strong>REST layer</strong></td>
+<td>DRF 3.15</td>
+<td>Serialización, ViewSets, permisos</td>
+</tr>
+<tr>
+<td><strong>Auth</strong></td>
+<td>SimpleJWT 5.3</td>
+<td>Emisión y validación de JWT</td>
+</tr>
+<tr>
+<td><strong>CORS</strong></td>
+<td>django-cors-headers 4.6</td>
+<td>Cabeceras CORS para el SPA</td>
+</tr>
+<tr>
+<td><strong>Filters</strong></td>
+<td>django-filter 24.3</td>
+<td>Filtrado declarativo de querysets</td>
+</tr>
+<tr>
+<td><strong>Ontology engine</strong></td>
+<td>rdflib 7.1</td>
+<td>Parsing OWL, grafo RDF, consultas SPARQL</td>
+</tr>
+<tr>
+<td><strong>SPARQL remote</strong></td>
+<td>SPARQLWrapper 2.0</td>
+<td>Consultas a endpoints SPARQL externos</td>
+</tr>
+<tr>
+<td><strong>Image handling</strong></td>
+<td>Pillow 11.0</td>
+<td>Procesamiento de avatares</td>
+</tr>
+<tr>
+<td><strong>Config</strong></td>
+<td>python-decouple 3.8</td>
+<td>Variables de entorno desde <code>.env</code></td>
+</tr>
+<tr>
+<td><strong>DB driver</strong></td>
+<td>psycopg2-binary 2.9</td>
+<td>Adaptador PostgreSQL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flujo-de-datos-petición-rest-típica">2.4 Flujo de datos —
+Petición REST típica</h3>
+<pre><code>Browser                   Vite Proxy             Django + DRF
+  │                           │                       │
+  │── GET /api/stores/ ──────►│                       │
+  │                           │── GET /api/stores/ ──►│
+  │                           │                       │── ORM query
+  │                           │                       │   ↓
+  │                           │                       │   DB
+  │                           │                       │   ↓
+  │                           │◄── 200 JSON ──────────│
+  │◄── 200 JSON ──────────────│                       │
+  │                           │                       │</code></pre>
+<h3 id="flujo-de-datos-búsqueda-semántica">2.5 Flujo de datos — Búsqueda
+semántica</h3>
+<pre><code>Browser                        Django                  rdflib          DB
+  │                               │                      │              │
+  │── POST /api/ontology/         │                      │              │
+  │   semantic-search/ ─────────►│                      │              │
+  │   { query: &quot;zapatillas        │                      │              │
+  │     running&quot; }                │── tokenize() ────────┤              │
+  │                               │── SPARQL query ─────►│             │
+  │                               │   (label + synonyms) │              │
+  │                               │◄─ class scores ──────│             │
+  │                               │── expand subclasses ─►│            │
+  │                               │◄─ subclass URIs ──────│            │
+  │                               │── ORM Q() filter ────────────────►│
+  │                               │◄─ product IDs ───────────────────── │
+  │                               │── serialize products ─┤             │
+  │◄─ 200 { products, class,      │                       │             │
+  │         confidence } ─────────│                       │             │</code></pre>
+<h3 id="comunicación-entre-capas">2.6 Comunicación entre capas</h3>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Protocolo</th>
+<th>Formato</th>
+<th>Auth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser → Vite proxy</td>
+<td>HTTP/1.1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Vite proxy → Django</td>
+<td>HTTP/1.1</td>
+<td>JSON</td>
+<td>Bearer JWT</td>
+</tr>
+<tr>
+<td>Django → PostgreSQL</td>
+<td>TCP (psycopg2)</td>
+<td>SQL binary</td>
+<td>DB credentials</td>
+</tr>
+<tr>
+<td>Django → OWL file</td>
+<td>File I/O</td>
+<td>RDF/XML</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Django → rdflib</td>
+<td>In-process</td>
+<td>Python objects</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-3-stack-tecnológico">CAPÍTULO 3 — STACK
+TECNOLÓGICO</h2>
+<h3 id="frontend">3.1 Frontend</h3>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 21%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Versión</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework UI</td>
+<td>React</td>
+<td>18.3.1</td>
+<td>Renderizado declarativo, Virtual DOM</td>
+</tr>
+<tr>
+<td>DOM renderer</td>
+<td>React DOM</td>
+<td>18.3.1</td>
+<td>Montaje en el navegador</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>React Router DOM</td>
+<td>6.28.0</td>
+<td>SPA client-side routing, rutas anidadas</td>
+</tr>
+<tr>
+<td>HTTP client</td>
+<td>Axios</td>
+<td>1.7.9</td>
+<td>Peticiones HTTP, interceptors JWT</td>
+</tr>
+<tr>
+<td>Server state</td>
+<td>TanStack Query</td>
+<td>5.62.0</td>
+<td>Cache, deduplicación, background sync</td>
+</tr>
+<tr>
+<td>Icons</td>
+<td>Lucide React</td>
+<td>0.468.0</td>
+<td>SVG icons tree-shakeable</td>
+</tr>
+<tr>
+<td>CSS utility</td>
+<td>clsx</td>
+<td>2.1.1</td>
+<td>Composición condicional de clases</td>
+</tr>
+<tr>
+<td>CSS merge</td>
+<td>tailwind-merge</td>
+<td>2.5.5</td>
+<td>Merge de clases Tailwind sin conflictos</td>
+</tr>
+<tr>
+<td>Estilos</td>
+<td>Tailwind CSS</td>
+<td>4.1.0</td>
+<td>Utility-first, CSS variables via <span class="citation" data-cites="theme">@theme</span></td>
+</tr>
+<tr>
+<td>Build tool</td>
+<td>Vite</td>
+<td>6.0.5</td>
+<td>ESM-native bundler, HMR, proxy</td>
+</tr>
+<tr>
+<td>React plugin</td>
+<td><span class="citation" data-cites="vitejs/plugin-react">@vitejs/plugin-react</span></td>
+<td>4.3.4</td>
+<td>JSX transform, Fast Refresh</td>
+</tr>
+<tr>
+<td>Tailwind plugin</td>
+<td><span class="citation" data-cites="tailwindcss/vite">@tailwindcss/vite</span></td>
+<td>4.1.0</td>
+<td>Integración Tailwind v4 con Vite</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend">3.2 Backend</h3>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 21%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Versión</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web framework</td>
+<td>Django</td>
+<td>5.1.4</td>
+<td>MVC, ORM, admin, middleware</td>
+</tr>
+<tr>
+<td>REST framework</td>
+<td>Django REST Framework</td>
+<td>3.15.2</td>
+<td>Serializers, ViewSets, parsers</td>
+</tr>
+<tr>
+<td>JWT auth</td>
+<td>djangorestframework-simplejwt</td>
+<td>5.3.1</td>
+<td>Emisión, validación, blacklist de tokens</td>
+</tr>
+<tr>
+<td>CORS</td>
+<td>django-cors-headers</td>
+<td>4.6.0</td>
+<td>Cabeceras CORS para el SPA</td>
+</tr>
+<tr>
+<td>Filtering</td>
+<td>django-filter</td>
+<td>24.3</td>
+<td>FilterSets declarativos</td>
+</tr>
+<tr>
+<td>DB driver</td>
+<td>psycopg2-binary</td>
+<td>2.9.10</td>
+<td>Adaptador PostgreSQL (C extension)</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>python-decouple</td>
+<td>3.8</td>
+<td>Variables de entorno desde <code>.env</code></td>
+</tr>
+<tr>
+<td>Images</td>
+<td>Pillow</td>
+<td>11.0.0</td>
+<td>Procesamiento de imágenes (avatares)</td>
+</tr>
+<tr>
+<td>Ontology</td>
+<td>rdflib</td>
+<td>7.1.1</td>
+<td>RDF/OWL parsing, SPARQL 1.1 in-memory</td>
+</tr>
+<tr>
+<td>SPARQL remote</td>
+<td>SPARQLWrapper</td>
+<td>2.0.0</td>
+<td>Cliente para endpoints SPARQL externos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="base-de-datos">3.3 Base de datos</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 47%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr>
+<th>Entorno</th>
+<th>Motor</th>
+<th>Versión recomendada</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desarrollo</td>
+<td>SQLite</td>
+<td>3.x (built-in Python)</td>
+<td>Activado con <code>USE_SQLITE=True</code></td>
+</tr>
+<tr>
+<td>Producción</td>
+<td>PostgreSQL</td>
+<td>15+</td>
+<td>Default; requiere psycopg2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ontología-web-semántica">3.4 Ontología / Web Semántica</h3>
+<table>
+<thead>
+<tr>
+<th>Estándar</th>
+<th>Versión</th>
+<th>Uso en SmartStore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OWL 2</td>
+<td>W3C 2012</td>
+<td>Formato del archivo <code>smartstore.owl</code></td>
+</tr>
+<tr>
+<td>RDF 1.1</td>
+<td>W3C 2014</td>
+<td>Serialización RDF/XML del grafo</td>
+</tr>
+<tr>
+<td>RDFS</td>
+<td>W3C 2014</td>
+<td><code>rdfs:label</code>, <code>rdfs:subClassOf</code>,
+<code>rdfs:comment</code></td>
+</tr>
+<tr>
+<td>SPARQL 1.1</td>
+<td>W3C 2013</td>
+<td>Consultas al grafo en memoria (rdflib)</td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td>—</td>
+<td><code>http://www.smartstore.org/ontology#</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="infraestructura-producción-recomendada">3.5 Infraestructura
+(producción recomendada)</h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WSGI server</td>
+<td>Gunicorn</td>
+<td>Servidor de aplicación Django</td>
+</tr>
+<tr>
+<td>Reverse proxy</td>
+<td>Nginx</td>
+<td>Proxy, TLS, servir archivos estáticos</td>
+</tr>
+<tr>
+<td>Process manager</td>
+<td>systemd</td>
+<td>Supervisión y reinicio de Gunicorn</td>
+</tr>
+<tr>
+<td>Frontend host</td>
+<td>S3 + CloudFront</td>
+<td>Archivos estáticos del SPA</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>PostgreSQL 15</td>
+<td>Base de datos relacional</td>
+</tr>
+<tr>
+<td>SSL/TLS</td>
+<td>Let’s Encrypt</td>
+<td>Certificados HTTPS gratuitos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-4-base-de-datos">CAPÍTULO 4 — BASE DE DATOS</h2>
+<h3 id="diagrama-entidad-relación-erd">4.1 Diagrama Entidad-Relación
+(ERD)</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│  auth_user (Django built-in)                                        │
+│  ─────────────────────────────────────                              │
+│  PK  id               BigAutoField                                  │
+│      username         VARCHAR(150)  UNIQUE                          │
+│      email            VARCHAR(254)  UNIQUE                          │
+│      password         VARCHAR(128)  (hash bcrypt)                   │
+│      first_name       VARCHAR(150)                                  │
+│      last_name        VARCHAR(150)                                  │
+│      is_active        BOOLEAN       DEFAULT TRUE                    │
+│      date_joined      TIMESTAMPTZ                                   │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │ 1
+                         │ OneToOne
+                         │ 1
+┌────────────────────────▼────────────────────────────────────────────┐
+│  users_userprofile                                                  │
+│  ─────────────────────────────────────                              │
+│  PK  id               BigAutoField                                  │
+│  FK  user_id          → auth_user.id   CASCADE                      │
+│      phone            VARCHAR(20)      BLANK                        │
+│      city             VARCHAR(100)     BLANK                        │
+│      address          TEXT             BLANK                        │
+│      avatar           VARCHAR(100)     NULL (ImageField)            │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  stores_store                                                       │
+│  ─────────────────────────────────────                              │
+│  PK  id               BigAutoField                                  │
+│      name             VARCHAR(200)     NOT NULL                     │
+│      slug             VARCHAR(220)     UNIQUE  NOT NULL             │
+│      description      TEXT             BLANK                        │
+│      logo             VARCHAR(600)     BLANK  (URLField)            │
+│      banner           VARCHAR(600)     BLANK  (URLField)            │
+│      categories       JSON             DEFAULT []                   │
+│      website          VARCHAR(200)     BLANK  (URLField)            │
+│      is_active        BOOLEAN          DEFAULT TRUE  INDEX          │
+│      created_at       TIMESTAMPTZ      auto_now_add                 │
+│      updated_at       TIMESTAMPTZ      auto_now                     │
+│  ─────────────────────────────────────                              │
+│  Índices: store_name_idx(name)                                      │
+│           store_active_name_idx(is_active, name)                    │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │ 1
+                         │ FK CASCADE
+                         │ N
+┌────────────────────────▼────────────────────────────────────────────┐
+│  products_product                                                   │
+│  ─────────────────────────────────────                              │
+│  PK  id               BigAutoField                                  │
+│  FK  store_id         → stores_store.id  CASCADE                    │
+│      name             VARCHAR(300)       NOT NULL                   │
+│      slug             VARCHAR(320)       BLANK                      │
+│      description      TEXT              BLANK                       │
+│      price            DECIMAL(12,2)     ≥ 0                         │
+│      compare_price    DECIMAL(12,2)     NULL BLANK ≥ 0              │
+│      image            VARCHAR(1000)     NULL BLANK (URLField)       │
+│      rating           DECIMAL(3,2)      DEFAULT 0.0 [0..5]          │
+│      rating_count     PositiveInt       DEFAULT 0                   │
+│      semantic_tags    JSON              DEFAULT []                  │
+│      ontology_class   VARCHAR(300)      BLANK  INDEX                │
+│      is_active        BOOLEAN           DEFAULT TRUE  INDEX         │
+│      created_at       TIMESTAMPTZ       auto_now_add                │
+│      updated_at       TIMESTAMPTZ       auto_now                    │
+│  ─────────────────────────────────────                              │
+│  UNIQUE (store_id, slug)                                            │
+│  Índices: product_store_active_idx(store, is_active)                │
+│           product_price_idx(price)                                  │
+│           product_rating_idx(rating)                                │
+│           product_store_price_idx(store, price)                     │
+│           product_ontology_active_idx(ontology_class, is_active)    │
+└──────┬─────────────────────────────────────────────────────────────┘
+       │ 1  (SET_NULL on delete)
+       │ FK nullable
+       │ N
+┌──────▼──────────────────────────────────────────────────────────────┐
+│  orders_orderitem                                                   │
+│  ─────────────────────────────────────                              │
+│  PK  id                BigAutoField                                 │
+│  FK  order_id          → orders_order.id  CASCADE                   │
+│  FK  product_id        → products_product.id  SET_NULL NULL         │
+│      name              VARCHAR(300)   (snapshot del nombre)         │
+│      quantity          PositiveInt                                  │
+│      price_at_purchase DECIMAL(12,2)  (snapshot del precio)         │
+│      subtotal          DECIMAL(12,2)                                │
+└─────────────────────────────────────────────────────────────────────┘
+       ▲
+       │ N
+       │ FK CASCADE
+       │ 1
+┌──────┴──────────────────────────────────────────────────────────────┐
+│  orders_order                                                       │
+│  ─────────────────────────────────────                              │
+│  PK  id           BigAutoField                                      │
+│  FK  user_id      → auth_user.id  CASCADE                           │
+│      order_number VARCHAR(20)   UNIQUE  auto (UUID hex 8 chars)     │
+│      subtotal     DECIMAL(12,2)                                     │
+│      tax          DECIMAL(12,2)                                     │
+│      total        DECIMAL(12,2)                                     │
+│      status       VARCHAR(20)   DEFAULT &#39;pending&#39;                   │
+│                   choices: pending|confirmed|shipped|               │
+│                            delivered|completed|cancelled            │
+│      created_at   TIMESTAMPTZ   auto_now_add                        │
+│      updated_at   TIMESTAMPTZ   auto_now                            │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="decisiones-de-diseño-del-modelo-de-datos">4.2 Decisiones de
+diseño del modelo de datos</h3>
+<p><strong><code>OrderItem.product</code> es nullable
+(<code>SET_NULL</code>):</strong> Si un producto se elimina de la base
+de datos, el historial de compras conserva el registro del ítem con
+<code>name</code> y <code>price_at_purchase</code> intactos. El campo
+<code>product_id</code> quedará <code>NULL</code> pero la información
+comercial persiste.</p>
+<p><strong><code>Product.semantic_tags</code> como JSONField:</strong>
+Almacena una lista de strings como
+<code>[&quot;5G&quot;, &quot;Bluetooth 5.0&quot;, &quot;IP68&quot;]</code>. Esto evita una tabla
+intermedia N:M para atributos que varían por categoría. El filtrado se
+realiza con <code>json_each()</code> en SQLite y operador
+<code>__contains</code> en PostgreSQL.</p>
+<p><strong><code>Store.categories</code> como JSONField:</strong> Lista
+plana de strings (<code>[&quot;Electrónica&quot;, &quot;Audio&quot;]</code>). No se usa una
+tabla de categorías separada por YAGNI; la normalización se deja para
+versiones futuras.</p>
+<p><strong><code>Order.order_number</code> auto-generado:</strong> Se
+genera en <code>save()</code> con <code>uuid4().hex[:8].upper()</code>.
+Se retentará hasta 10 veces ante colisión de <code>UNIQUE</code>
+constraint.</p>
+<h3 id="máquina-de-estados-order.status">4.3 Máquina de estados —
+Order.status</h3>
+<pre><code>             ┌──────────────┐
+             │   pending    │ (estado inicial)
+             └──────┬───────┘
+                    │
+          ┌─────────┴──────────┐
+          │                    │
+          ▼                    ▼
+   ┌─────────────┐      ┌───────────────┐
+   │  completed  │      │   cancelled   │ (terminales)
+   └─────────────┘      └───────────────┘
+
+   (flujo alternativo con confirmación manual)
+   pending → confirmed → shipped → delivered  (terminales)
+                       ↘ cancelled</code></pre>
+<p>Implementado en
+<code>OrderStatusUpdateSerializer.validate_status()</code> mediante el
+diccionario <code>ALLOWED_STATUS_TRANSITIONS</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ALLOWED_STATUS_TRANSITIONS <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;pending&#39;</span>:   {<span class="st">&#39;completed&#39;</span>, <span class="st">&#39;cancelled&#39;</span>},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;confirmed&#39;</span>: {<span class="st">&#39;shipped&#39;</span>, <span class="st">&#39;cancelled&#39;</span>},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;shipped&#39;</span>:   {<span class="st">&#39;delivered&#39;</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;delivered&#39;</span>: <span class="bu">set</span>(),   <span class="co"># terminal</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;completed&#39;</span>: <span class="bu">set</span>(),   <span class="co"># terminal</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;cancelled&#39;</span>: <span class="bu">set</span>(),   <span class="co"># terminal</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="migraciones-django">4.4 Migraciones Django</h3>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 37%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>App</th>
+<th>Migración</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>users</code></td>
+<td><code>0001_initial</code></td>
+<td>Crea <code>users_userprofile</code></td>
+</tr>
+<tr>
+<td><code>stores</code></td>
+<td><code>0001_initial</code></td>
+<td>Crea <code>stores_store</code> con ImageField</td>
+</tr>
+<tr>
+<td><code>stores</code></td>
+<td><code>0002_store_logo_banner_urlfield</code></td>
+<td>Convierte logo/banner a URLField</td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>0001_initial</code></td>
+<td>Crea <code>products_product</code> con ImageField</td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td><code>0002_product_image_urlfield</code></td>
+<td>Convierte image a URLField</td>
+</tr>
+<tr>
+<td><code>orders</code></td>
+<td><code>0001_initial</code></td>
+<td>Crea <code>orders_order</code> y <code>orders_orderitem</code></td>
+</tr>
+<tr>
+<td><code>orders</code></td>
+<td><code>0002_add_completed_status</code></td>
+<td>Añade estado <code>completed</code> a choices</td>
+</tr>
+</tbody>
+</table>
+<p>Ejecutar todas las migraciones:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code></pre></div>
+<p>Verificar el estado de las migraciones:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py showmigrations</span></code></pre></div>
+<hr />
+<h2 id="capítulo-5-api-rest">CAPÍTULO 5 — API REST</h2>
+<h3 id="convenciones-de-la-api">5.1 Convenciones de la API</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Convención</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base URL</strong></td>
+<td><code>http://localhost:8000</code> (desarrollo)</td>
+</tr>
+<tr>
+<td><strong>Formato</strong></td>
+<td>JSON exclusivamente
+(<code>Content-Type: application/json</code>)</td>
+</tr>
+<tr>
+<td><strong>Autenticación</strong></td>
+<td>Bearer JWT en cabecera <code>Authorization</code></td>
+</tr>
+<tr>
+<td><strong>Paginación</strong></td>
+<td><code>PageNumberPagination</code>, <code>PAGE_SIZE = 20</code>
+(desactivada en orders)</td>
+</tr>
+<tr>
+<td><strong>Versionamiento</strong></td>
+<td>No implementado (v1 implícita en prefijo <code>/api/</code>)</td>
+</tr>
+<tr>
+<td><strong>Errores</strong></td>
+<td><code>{&quot;detail&quot;: &quot;mensaje&quot;}</code> o
+<code>{&quot;campo&quot;: [&quot;error&quot;]}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="autenticación-jwt">5.2 Autenticación JWT</h3>
+<h4 id="flujo-completo">Flujo completo</h4>
+<pre><code>1. POST /api/auth/login/
+   Body: { email, password }
+   Response: { access, refresh, user }
+
+2. Almacenamiento cliente:
+   localStorage.setItem(&#39;ss_access&#39;, access)
+   localStorage.setItem(&#39;ss_refresh&#39;, refresh)
+
+3. Peticiones autenticadas:
+   Authorization: Bearer &lt;access_token&gt;
+
+4. Renovación (access expirado — 60 min):
+   POST /api/auth/token/refresh/
+   Body: { refresh }
+   Response: { access, refresh }  ← nuevo par (ROTATE_REFRESH_TOKENS=True)
+
+5. Logout (blacklist del refresh token):
+   POST /api/auth/logout/
+   Body: { refresh }
+   → RefreshToken(refresh).blacklist()</code></pre>
+<h4 id="configuración-jwt-settings.py">Configuración JWT
+(<code>settings.py</code>)</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SIMPLE_JWT <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ACCESS_TOKEN_LIFETIME&#39;</span>:  timedelta(minutes<span class="op">=</span><span class="dv">60</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;REFRESH_TOKEN_LIFETIME&#39;</span>: timedelta(days<span class="op">=</span><span class="dv">7</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ROTATE_REFRESH_TOKENS&#39;</span>:  <span class="va">True</span>,   <span class="co"># nuevo refresh en cada refresh</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span class="va">True</span>, <span class="co"># invalida el refresh anterior</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;AUTH_HEADER_TYPES&#39;</span>: (<span class="st">&#39;Bearer&#39;</span>,),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="tabla-completa-de-endpoints">5.3 Tabla completa de
+endpoints</h3>
+<h4 id="autenticación-apiauth">5.3.1 Autenticación
+(<code>/api/auth/</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Auth</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/register/</code></td>
+<td>No</td>
+<td>Crear cuenta nueva</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/login/</code></td>
+<td>No</td>
+<td>Obtener access + refresh</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/logout/</code></td>
+<td>No*</td>
+<td>Blacklistear refresh token</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/auth/me/</code></td>
+<td>Sí</td>
+<td>Datos del usuario autenticado</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/auth/profile/</code></td>
+<td>Sí</td>
+<td>Actualizar perfil completo</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/token/refresh/</code></td>
+<td>No</td>
+<td>Renovar access token</td>
+</tr>
+</tbody>
+</table>
+<p>*El logout acepta tokens anónimos y trata el error
+silenciosamente.</p>
+<p><strong>POST <code>/api/auth/register/</code> — Request:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;full_name&quot;</span><span class="fu">:</span>  <span class="st">&quot;Ana García&quot;</span><span class="fu">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span>      <span class="st">&quot;ana@email.com&quot;</span><span class="fu">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;password&quot;</span><span class="fu">:</span>   <span class="st">&quot;password123&quot;</span><span class="fu">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;password2&quot;</span><span class="fu">:</span>  <span class="st">&quot;password123&quot;</span><span class="fu">,</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;phone&quot;</span><span class="fu">:</span>      <span class="st">&quot;+52 55 1234 5678&quot;</span><span class="fu">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;city&quot;</span><span class="fu">:</span>       <span class="st">&quot;Ciudad de México&quot;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>POST <code>/api/auth/register/</code> — Response
+201:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;access&quot;</span><span class="fu">:</span>  <span class="st">&quot;&lt;jwt_access_token&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;refresh&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;jwt_refresh_token&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;user&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;ana@email.com&quot;</span><span class="fu">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;full_name&quot;</span><span class="fu">:</span> <span class="st">&quot;Ana García&quot;</span><span class="fu">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;profile&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;phone&quot;</span><span class="fu">:</span> <span class="st">&quot;+52 55 1234 5678&quot;</span><span class="fu">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;Ciudad de México&quot;</span><span class="fu">,</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span><span class="fu">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;avatar&quot;</span><span class="fu">:</span> <span class="kw">null</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>POST <code>/api/auth/login/</code> — Request:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;ana@email.com&quot;</span><span class="fu">,</span> <span class="dt">&quot;password&quot;</span><span class="fu">:</span> <span class="st">&quot;password123&quot;</span> <span class="fu">}</span></span></code></pre></div>
+<p><strong>Response 200:</strong> Mismo formato que register.<br />
+<strong>Response 401:</strong>
+<code>{&quot;detail&quot;: &quot;No active account found with the given credentials&quot;}</code></p>
+<h4 id="tiendas-apistores">5.3.2 Tiendas
+(<code>/api/stores/</code>)</h4>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Auth</th>
+<th>Parámetros query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/</code></td>
+<td>No</td>
+<td><code>search</code>, <code>ordering</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/{slug}/</code></td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/stores/{slug}/products/</code></td>
+<td>No</td>
+<td>Ver tabla 5.3.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GET <code>/api/stores/</code> — Response 200
+(fragmento):</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Nike Store&quot;</span><span class="fu">,</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;slug&quot;</span><span class="fu">:</span> <span class="st">&quot;nike-store&quot;</span><span class="fu">,</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;logo&quot;</span><span class="fu">:</span> <span class="st">&quot;https://images.unsplash.com/...&quot;</span><span class="fu">,</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;banner&quot;</span><span class="fu">:</span> <span class="st">&quot;https://images.unsplash.com/...&quot;</span><span class="fu">,</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;Calzado&quot;</span><span class="ot">,</span> <span class="st">&quot;Ropa Deportiva&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;product_count&quot;</span><span class="fu">:</span> <span class="dv">20</span><span class="fu">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;is_active&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<h4 id="productos-apiproducts-y-apistoresslugproducts">5.3.3 Productos
+(<code>/api/products/</code> y
+<code>/api/stores/{slug}/products/</code>)</h4>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 20%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>price_min</code></td>
+<td>number</td>
+<td>Precio mínimo (gte)</td>
+</tr>
+<tr>
+<td><code>price_max</code></td>
+<td>number</td>
+<td>Precio máximo (lte)</td>
+</tr>
+<tr>
+<td><code>rating_min</code></td>
+<td>number</td>
+<td>Calificación mínima (gte)</td>
+</tr>
+<tr>
+<td><code>has_discount</code></td>
+<td>boolean</td>
+<td>Solo con descuento activo</td>
+</tr>
+<tr>
+<td><code>ontology_class</code></td>
+<td>string</td>
+<td>Filtro por clase OWL (icontains)</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Búsqueda en nombre y descripción</td>
+</tr>
+<tr>
+<td><code>ordering</code></td>
+<td>string</td>
+<td><code>price</code>, <code>-price</code>, <code>rating</code>,
+<code>-rating</code>, <code>-created_at</code></td>
+</tr>
+<tr>
+<td><code>&lt;attr&gt;</code></td>
+<td>string</td>
+<td>Filtro dinámico de semantic_tags (ej:
+<code>?hasSurface=Trail</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GET <code>/api/products/{id}/</code> — Response
+200:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">42</span><span class="fu">,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Nike Air Max 270&quot;</span><span class="fu">,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;slug&quot;</span><span class="fu">:</span> <span class="st">&quot;nike-air-max-270&quot;</span><span class="fu">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;price&quot;</span><span class="fu">:</span> <span class="st">&quot;2499.00&quot;</span><span class="fu">,</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;compare_price&quot;</span><span class="fu">:</span> <span class="st">&quot;2999.00&quot;</span><span class="fu">,</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;discount_percent&quot;</span><span class="fu">:</span> <span class="dv">17</span><span class="fu">,</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;image&quot;</span><span class="fu">:</span> <span class="st">&quot;https://images.unsplash.com/...&quot;</span><span class="fu">,</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rating&quot;</span><span class="fu">:</span> <span class="st">&quot;4.80&quot;</span><span class="fu">,</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rating_count&quot;</span><span class="fu">:</span> <span class="dv">1234</span><span class="fu">,</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;semantic_tags&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;Running&quot;</span><span class="ot">,</span> <span class="st">&quot;Amortiguación máxima&quot;</span><span class="ot">,</span> <span class="st">&quot;Sintético&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ontology_class&quot;</span><span class="fu">:</span> <span class="st">&quot;http://www.smartstore.org/ontology#RunningShoe&quot;</span><span class="fu">,</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;store&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Nike Store&quot;</span><span class="fu">,</span> <span class="dt">&quot;slug&quot;</span><span class="fu">:</span> <span class="st">&quot;nike-store&quot;</span> <span class="fu">}</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="órdenes-apiauthorders">5.3.4 Órdenes
+(<code>/api/auth/orders/</code>)</h4>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Auth</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/auth/orders/</code></td>
+<td>Sí</td>
+<td>Historial del usuario (sin paginación)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/auth/orders/</code></td>
+<td>Sí</td>
+<td>Crear nueva orden</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/api/auth/orders/{id}/</code></td>
+<td>Sí</td>
+<td>Actualizar status</td>
+</tr>
+</tbody>
+</table>
+<p><strong>POST <code>/api/auth/orders/</code> — Request:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;subtotal&quot;</span><span class="fu">:</span> <span class="fl">4998.00</span><span class="fu">,</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;tax&quot;</span><span class="fu">:</span>       <span class="fl">499.80</span><span class="fu">,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;total&quot;</span><span class="fu">:</span>    <span class="fl">5497.80</span><span class="fu">,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;product_id&quot;</span><span class="fu">:</span> <span class="dv">42</span><span class="fu">,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Nike Air Max 270&quot;</span><span class="fu">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;quantity&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;price_at_purchase&quot;</span><span class="fu">:</span> <span class="fl">2499.00</span><span class="fu">,</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;subtotal&quot;</span><span class="fu">:</span> <span class="fl">4998.00</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Response 201:</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;order_number&quot;</span><span class="fu">:</span> <span class="st">&quot;A1B2C3D4&quot;</span><span class="fu">,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;subtotal&quot;</span><span class="fu">:</span> <span class="st">&quot;4998.00&quot;</span><span class="fu">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;tax&quot;</span><span class="fu">:</span> <span class="st">&quot;499.80&quot;</span><span class="fu">,</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;total&quot;</span><span class="fu">:</span> <span class="st">&quot;5497.80&quot;</span><span class="fu">,</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="st">&quot;pending&quot;</span><span class="fu">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;created_at&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-05-18T18:40:00Z&quot;</span><span class="fu">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="er">...</span><span class="ot">]</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>PATCH <code>/api/auth/orders/{id}/</code> —
+Request:</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="st">&quot;completed&quot;</span> <span class="fu">}</span></span></code></pre></div>
+<p><strong>Response 400 (transición inválida):</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;Cannot transition from &#39;completed&#39; to &#39;pending&#39;.&quot;</span><span class="ot">]</span> <span class="fu">}</span></span></code></pre></div>
+<h4 id="ontología-apiontology">5.3.5 Ontología
+(<code>/api/ontology/</code>)</h4>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Auth</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/ontology/suggestions/?q=texto</code></td>
+<td>No</td>
+<td>Autocompletado (stores + products)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/ontology/classes/</code></td>
+<td>No</td>
+<td>Todas las clases OWL</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/ontology/filters/?class=Smartphone</code></td>
+<td>No</td>
+<td>Filtros dinámicos por clase</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/ontology/semantic-search/</code></td>
+<td>No</td>
+<td>Búsqueda semántica</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/ontology/infer/</code></td>
+<td>No</td>
+<td>Inferir tags de un producto</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/ontology/reload/</code></td>
+<td>No*</td>
+<td>Recargar grafo (DEBUG=True solo)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>POST <code>/api/ontology/semantic-search/</code> —
+Request:</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">&quot;query&quot;</span><span class="fu">:</span> <span class="st">&quot;zapatillas running ligeras&quot;</span><span class="fu">,</span> <span class="dt">&quot;store_id&quot;</span><span class="fu">:</span> <span class="dv">1</span> <span class="fu">}</span></span></code></pre></div>
+<p><strong>Response 200:</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;query&quot;</span><span class="fu">:</span> <span class="st">&quot;zapatillas running ligeras&quot;</span><span class="fu">,</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;inferred_class&quot;</span><span class="fu">:</span> <span class="st">&quot;RunningShoe&quot;</span><span class="fu">,</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;inferred_class_uri&quot;</span><span class="fu">:</span> <span class="st">&quot;http://www.smartstore.org/ontology#RunningShoe&quot;</span><span class="fu">,</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;confidence&quot;</span><span class="fu">:</span> <span class="fl">0.92</span><span class="fu">,</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;matched_tokens&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;zapatillas&quot;</span><span class="ot">,</span> <span class="st">&quot;running&quot;</span><span class="ot">,</span> <span class="st">&quot;ligeras&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;expanded_classes&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;RunningShoe&quot;</span><span class="ot">,</span> <span class="st">&quot;SportswearProduct&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;count&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;products&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="er">...</span> <span class="ot">]</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>GET <code>/api/ontology/filters/?class=Smartphone</code> —
+Response 200:</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;class&quot;</span><span class="fu">:</span> <span class="st">&quot;Smartphone&quot;</span><span class="fu">,</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;filters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;hasBrand&quot;</span><span class="fu">:</span>    <span class="fu">{</span> <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Marca&quot;</span><span class="fu">,</span>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;select&quot;</span><span class="fu">,</span>  <span class="dt">&quot;values&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;Samsung&quot;</span><span class="ot">,</span><span class="st">&quot;Apple&quot;</span><span class="ot">,</span><span class="st">&quot;Xiaomi&quot;</span><span class="ot">]</span> <span class="fu">},</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;hasRAM&quot;</span><span class="fu">:</span>      <span class="fu">{</span> <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;RAM&quot;</span><span class="fu">,</span>        <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;select&quot;</span><span class="fu">,</span>  <span class="dt">&quot;values&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;4GB&quot;</span><span class="ot">,</span><span class="st">&quot;8GB&quot;</span><span class="ot">,</span><span class="st">&quot;12GB&quot;</span><span class="ot">,</span><span class="st">&quot;16GB&quot;</span><span class="ot">]</span> <span class="fu">},</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;hasStorage&quot;</span><span class="fu">:</span>  <span class="fu">{</span> <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Almacenamiento&quot;</span><span class="fu">,</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;select&quot;</span><span class="fu">,</span> <span class="dt">&quot;values&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;128GB&quot;</span><span class="ot">,</span><span class="st">&quot;256GB&quot;</span><span class="ot">]</span> <span class="fu">},</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;hasScreenSize&quot;</span><span class="fu">:{</span> <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Pantalla&quot;</span><span class="fu">,</span>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;range&quot;</span><span class="fu">,</span>   <span class="dt">&quot;values&quot;</span><span class="fu">:</span> <span class="kw">null</span> <span class="fu">}</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;filter_count&quot;</span><span class="fu">:</span> <span class="dv">4</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="códigos-de-respuesta-http-utilizados">5.4 Códigos de respuesta
+HTTP utilizados</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 32%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+<th>Cuándo se retorna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200 OK</code></td>
+<td>Éxito</td>
+<td>GET, PATCH exitosos</td>
+</tr>
+<tr>
+<td><code>201 Created</code></td>
+<td>Recurso creado</td>
+<td>POST register, POST order</td>
+</tr>
+<tr>
+<td><code>204 No Content</code></td>
+<td>Éxito sin cuerpo</td>
+<td>Logout exitoso</td>
+</tr>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>Validación fallida</td>
+<td>Campos inválidos, transición de status</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>Token ausente o inválido</td>
+<td>Endpoint protegido sin token válido</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>Sin permiso</td>
+<td>reload_ontology en DEBUG=False</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>Recurso no encontrado</td>
+<td>Slug/ID inexistente</td>
+</tr>
+<tr>
+<td><code>500 Internal Server Error</code></td>
+<td>Error del servidor</td>
+<td>Excepción no controlada</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cors">5.5 CORS</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>CORS_ALLOWED_ORIGINS <span class="op">=</span> [</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;http://localhost:5173&#39;</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;http://127.0.0.1:5173&#39;</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<p>En producción se debe añadir el dominio del frontend desplegado. El
+middleware <code>CorsMiddleware</code> debe estar <strong>antes</strong>
+de <code>CommonMiddleware</code> en <code>MIDDLEWARE</code>.</p>
+<hr />
+<h2 id="capítulo-6-frontend-arquitectura-react">CAPÍTULO 6 — FRONTEND —
+ARQUITECTURA REACT</h2>
+<h3 id="estructura-de-directorios">6.1 Estructura de directorios</h3>
+<pre><code>frontend/
+├── index.html               ← Entry point HTML
+├── package.json
+├── vite.config.js           ← Proxy /api → localhost:8000
+└── src/
+    ├── main.jsx             ← Montaje React, providers globales
+    ├── App.jsx              ← Router + rutas
+    ├── api/
+    │   ├── axiosConfig.js   ← Instancia Axios + interceptors JWT
+    │   ├── auth.js          ← authApi (login, register, profile, orders)
+    │   ├── stores.js        ← getStores(), getStore(), getStoreProducts()
+    │   ├── products.js      ← getProducts(), getProduct()
+    │   └── ontology.js      ← getOntologyFilters(), semanticSearch()
+    ├── context/
+    │   ├── AuthContext.jsx  ← user, login, logout, register, updateProfile
+    │   ├── CartContext.jsx  ← items, count, subtotal, addToCart, removeFromCart
+    │   ├── ToastContext.jsx ← toast(msg, {type}) — notificaciones emergentes
+    │   └── ThemeContext.jsx ← Detección y aplicación de dark mode
+    ├── components/
+    │   ├── layout/
+    │   │   ├── Header.jsx   ← Nav, búsqueda semántica, carrito, menú usuario
+    │   │   └── Footer.jsx   ← Pie de página
+    │   └── ui/
+    │       ├── ProductCard.jsx      ← Tarjeta de producto con fallback de imagen
+    │       ├── StoreCard.jsx        ← Tarjeta de tienda con banner + logo
+    │       ├── FilterPanel.jsx      ← Panel de filtros dinámicos
+    │       ├── Breadcrumb.jsx       ← Migas de pan
+    │       └── LoadingGrid.jsx      ← Skeletons de carga
+    ├── pages/
+    │   ├── StoresCatalog.jsx    ← / — Catálogo de tiendas
+    │   ├── StorePage.jsx        ← /tienda/:slug
+    │   ├── ProductDetailPage.jsx ← /producto/:slug
+    │   ├── CartPage.jsx         ← /carrito
+    │   ├── CheckoutPage.jsx     ← /checkout
+    │   ├── LoginPage.jsx        ← /login
+    │   ├── RegisterPage.jsx     ← /registro
+    │   └── ProfilePage.jsx      ← /perfil
+    └── lib/
+        └── utils.js             ← formatPrice(), cn() (clsx + tailwind-merge)</code></pre>
+<h3 id="configuración-del-proxy-vite">6.2 Configuración del proxy
+(Vite)</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">// vite.config.js</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>server<span class="op">:</span> {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">proxy</span><span class="op">:</span> {</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;/api&#39;</span><span class="op">:</span> {</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">target</span><span class="op">:</span> <span class="st">&#39;http://localhost:8000&#39;</span><span class="op">,</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">changeOrigin</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Esto permite que el SPA llame a <code>/api/stores/</code> y Vite lo
+redirige a <code>http://localhost:8000/api/stores/</code>, evitando
+problemas de CORS en desarrollo.</p>
+<h3 id="cliente-http-axios">6.3 Cliente HTTP — Axios</h3>
+<p><strong><code>src/api/axiosConfig.js</code></strong> crea una
+instancia Axios con:</p>
+<ul>
+<li><code>baseURL</code>: <code>VITE_API_URL</code> o
+<code>http://localhost:8000</code></li>
+<li><code>timeout</code>: 10 000 ms</li>
+<li><strong>Request interceptor</strong>: inyecta
+<code>Authorization: Bearer &lt;token&gt;</code> desde
+<code>localStorage(&#39;ss_access&#39;)</code></li>
+<li><strong>Response interceptor</strong>: normaliza errores en un único
+mensaje string</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>api<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">request</span><span class="op">.</span><span class="fu">use</span>((config) <span class="kw">=&gt;</span> {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> token <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&#39;ss_access&#39;</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (token) config<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="at">Authorization</span> <span class="op">=</span> <span class="vs">`Bearer </span><span class="sc">${</span>token<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> config</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h3 id="context-api">6.4 Context API</h3>
+<h4 id="authcontext">AuthContext</h4>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 17%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Valor expuesto</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td><code>object \| null</code></td>
+<td>Datos del usuario; <code>null</code> si no autenticado</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> mientras valida el token inicial</td>
+</tr>
+<tr>
+<td><code>login(email, pw)</code></td>
+<td><code>async fn</code></td>
+<td>Llama a <code>/api/auth/login/</code>, persiste tokens</td>
+</tr>
+<tr>
+<td><code>logout()</code></td>
+<td><code>async fn</code></td>
+<td>Blacklistea refresh, limpia localStorage</td>
+</tr>
+<tr>
+<td><code>register(formData)</code></td>
+<td><code>async fn</code></td>
+<td>Registra y autentica en una sola llamada</td>
+</tr>
+<tr>
+<td><code>updateProfile(data)</code></td>
+<td><code>async fn</code></td>
+<td><code>PUT /api/auth/profile/</code>, actualiza
+<code>user</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Inicialización:</strong> Al montar, lee
+<code>ss_access</code> de localStorage. Si existe, llama a
+<code>/api/auth/me/</code> para reconstituir <code>user</code> sin
+requerir re-login. Si la llamada falla, limpia los tokens.</p>
+<h4 id="cartcontext">CartContext</h4>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 17%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Valor expuesto</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>items</code></td>
+<td><code>array</code></td>
+<td>Lista de
+<code>{product_id, name, price, image, quantity, store_name}</code></td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td><code>number</code></td>
+<td>Total de unidades en el carrito</td>
+</tr>
+<tr>
+<td><code>subtotal</code></td>
+<td><code>number</code></td>
+<td>Suma de <code>price × quantity</code></td>
+</tr>
+<tr>
+<td><code>addToCart(product, qty)</code></td>
+<td><code>fn</code></td>
+<td>Añade o acumula cantidad</td>
+</tr>
+<tr>
+<td><code>removeFromCart(id)</code></td>
+<td><code>fn</code></td>
+<td>Elimina artículo completamente</td>
+</tr>
+<tr>
+<td><code>updateQuantity(id, qty)</code></td>
+<td><code>fn</code></td>
+<td>Actualiza cantidad; elimina si qty ≤ 0</td>
+</tr>
+<tr>
+<td><code>clearCart()</code></td>
+<td><code>fn</code></td>
+<td>Vacía el carrito</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Persistencia:</strong> El estado se sincroniza con
+<code>localStorage(&#39;ss_cart&#39;)</code> mediante <code>useEffect</code>. Se
+rehidrata al montar.</p>
+<h4 id="toastcontext">ToastContext</h4>
+<div class="sourceCode" id="cb27"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toast</span>(<span class="st">&#39;Mensaje de éxito&#39;</span><span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;success&#39;</span> })  <span class="co">// type: success|error|info|warning</span></span></code></pre></div>
+<h3 id="rutas-react-router-v6">6.5 Rutas (React Router v6)</h3>
+<pre><code>/                  → &lt;StoresCatalog /&gt;         público
+/login             → &lt;LoginPage /&gt;             público (redirect si autenticado)
+/registro          → &lt;RegisterPage /&gt;          público (redirect si autenticado)
+/tienda/:slug      → &lt;StorePage /&gt;             público
+/producto/:slug    → &lt;ProductDetailPage /&gt;     público
+/carrito           → &lt;CartPage /&gt;              público
+/checkout          → &lt;CheckoutPage /&gt;          público (guarda vacío redirect)
+/perfil            → &lt;ProfilePage /&gt;           protegido (redirect a /login)</code></pre>
+<h3 id="patrones-de-componentes">6.6 Patrones de componentes</h3>
+<p><strong>Componente con fallback de imagen:</strong></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [imgError<span class="op">,</span> setImgError] <span class="op">=</span> <span class="fu">useState</span>(<span class="kw">false</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> showImage <span class="op">=</span> product<span class="op">.</span><span class="at">image</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>imgError</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>{showImage</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">? </span><span class="kw">&lt;img</span> <span class="ot">src</span><span class="op">=</span><span class="va">{</span>product<span class="op">.</span><span class="at">image</span><span class="va">}</span> <span class="ot">onError</span><span class="op">=</span><span class="va">{</span>() <span class="kw">=&gt;</span> <span class="fu">setImgError</span>(<span class="kw">true</span>)<span class="va">}</span> <span class="kw">/&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">: </span><span class="kw">&lt;div</span> <span class="ot">className</span><span class="op">=</span><span class="st">&quot;fallback&quot;</span><span class="kw">&gt;</span><span class="fu">&lt;ShoppingBag</span> <span class="fu">/&gt;</span><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Skeleton loading:</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// ProductCardSkeleton usa clases Tailwind &#39;shimmer&#39;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">// definidas en el CSS global con animación de gradiente</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="ot">className</span><span class="op">=</span><span class="st">&quot;h-4 w-full shimmer rounded&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+<p><strong>Composición de clases:</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { cn } <span class="im">from</span> <span class="st">&#39;../lib/utils&#39;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">// cn() = clsx() + twMerge() — resuelve conflictos Tailwind</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>button className<span class="op">=</span>{<span class="fu">cn</span>(<span class="st">&#39;base-class&#39;</span><span class="op">,</span> condition <span class="op">&amp;&amp;</span> <span class="st">&#39;conditional-class&#39;</span>)} <span class="op">/&gt;</span></span></code></pre></div>
+<h3 id="tanstack-query-estrategia-de-cache">6.7 TanStack Query —
+Estrategia de cache</h3>
+<table>
+<thead>
+<tr>
+<th>Query Key</th>
+<th>Stale Time</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[&#39;stores&#39;]</code></td>
+<td>default (0)</td>
+<td>Lista de tiendas</td>
+</tr>
+<tr>
+<td><code>[&#39;store&#39;, slug]</code></td>
+<td>default</td>
+<td>Detalle de tienda</td>
+</tr>
+<tr>
+<td><code>[&#39;store-products&#39;, slug, params]</code></td>
+<td>default</td>
+<td>Productos filtrados</td>
+</tr>
+<tr>
+<td><code>[&#39;ontology-filters&#39;, class]</code></td>
+<td>Infinity</td>
+<td>Filtros OWL (estáticos)</td>
+</tr>
+</tbody>
+</table>
+<p>Las queries se refetching automáticamente al refocus de ventana
+(comportamiento por defecto de TanStack Query v5).</p>
+<hr />
+<h2 id="capítulo-7-backend-arquitectura-django">CAPÍTULO 7 — BACKEND —
+ARQUITECTURA DJANGO</h2>
+<h3 id="estructura-de-apps">7.1 Estructura de apps</h3>
+<pre><code>backend/
+├── manage.py
+├── requirements.txt
+├── .env.example
+├── db.sqlite3               ← Solo en desarrollo (USE_SQLITE=True)
+├── ontology/
+│   └── smartstore.owl       ← Ontología OWL 2.0 en RDF/XML
+├── config/
+│   ├── settings.py          ← Configuración central
+│   ├── urls.py              ← URL root: admin, api/auth, api/stores, etc.
+│   ├── wsgi.py              ← WSGI application (Gunicorn)
+│   └── asgi.py              ← ASGI application (Daphne/Uvicorn)
+└── apps/
+    ├── users/               ← Autenticación, registro, perfil
+    ├── stores/              ← Modelo Store, ViewSet, fixtures
+    ├── products/            ← Modelo Product, ViewSet, filtros
+    ├── orders/              ← Modelo Order/OrderItem, serializers con FSM
+    └── ontology/            ← OntologyService, views semánticas</code></pre>
+<h3 id="middleware-stack">7.2 Middleware stack</h3>
+<p>El orden en <code>MIDDLEWARE</code> es relevante; cada capa envuelve
+a la siguiente:</p>
+<pre><code>1. SecurityMiddleware          ← HTTPS redirect, HSTS headers
+2. CorsMiddleware              ← Cabeceras CORS (debe ir antes de SessionMiddleware)
+3. SessionMiddleware           ← Gestión de sesiones
+4. CommonMiddleware            ← URL normalization, ETags
+5. CsrfViewMiddleware          ← Protección CSRF (DRF usa JWT, no CSRF)
+6. AuthenticationMiddleware    ← Autenticación de sesión Django
+7. MessageMiddleware           ← Django messages framework
+8. XFrameOptionsMiddleware     ← X-Frame-Options: DENY</code></pre>
+<h3 id="configuración-drf">7.3 Configuración DRF</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>REST_FRAMEWORK <span class="op">=</span> {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span>: [</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;rest_framework_simplejwt.authentication.JWTAuthentication&#39;</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;rest_framework.authentication.SessionAuthentication&#39;</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;DEFAULT_PERMISSION_CLASSES&#39;</span>: [</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;rest_framework.permissions.IsAuthenticatedOrReadOnly&#39;</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;DEFAULT_FILTER_BACKENDS&#39;</span>: [</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;django_filters.rest_framework.DjangoFilterBackend&#39;</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;rest_framework.filters.SearchFilter&#39;</span>,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;rest_framework.filters.OrderingFilter&#39;</span>,</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;DEFAULT_PAGINATION_CLASS&#39;</span>: <span class="st">&#39;rest_framework.pagination.PageNumberPagination&#39;</span>,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;PAGE_SIZE&#39;</span>: <span class="dv">20</span>,</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="permisos-por-endpoint">7.4 Permisos por endpoint</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 48%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Permission class</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stores (lista/detalle)</td>
+<td><code>IsAuthenticatedOrReadOnly</code></td>
+<td>Catálogo público</td>
+</tr>
+<tr>
+<td>Products (lista/detalle)</td>
+<td><code>IsAuthenticatedOrReadOnly</code></td>
+<td>Catálogo público</td>
+</tr>
+<tr>
+<td>Ontology (suggestions, search)</td>
+<td><code>AllowAny</code></td>
+<td>Búsqueda pública</td>
+</tr>
+<tr>
+<td>Ontology (reload)</td>
+<td>Autenticado + <code>DEBUG=True</code></td>
+<td>Solo desarrollo</td>
+</tr>
+<tr>
+<td>Auth (register, login, refresh)</td>
+<td><code>AllowAny</code></td>
+<td>Flujo de autenticación</td>
+</tr>
+<tr>
+<td>Auth (me, profile)</td>
+<td><code>IsAuthenticated</code></td>
+<td>Datos personales</td>
+</tr>
+<tr>
+<td>Orders</td>
+<td><code>IsAuthenticated</code></td>
+<td>Datos financieros del usuario</td>
+</tr>
+</tbody>
+</table>
+<h3 id="viewsets-y-serializers-por-app">7.5 ViewSets y serializers por
+app</h3>
+<h4 id="app-stores">App <code>stores</code></h4>
+<pre><code>StoreViewSet (ListModelMixin + RetrieveModelMixin + GenericViewSet)
+  ├── list()     → StoreListSerializer
+  ├── retrieve() → StoreDetailSerializer
+  └── products() → @action GET /api/stores/{slug}/products/
+                   ProductListSerializer + ProductFilter + apply_semantic_tag_filters</code></pre>
+<h4 id="app-products">App <code>products</code></h4>
+<pre><code>ProductViewSet (ListModelMixin + RetrieveModelMixin + GenericViewSet)
+  ├── list()     → ProductListSerializer + filtrado en filter_queryset()
+  └── retrieve() → ProductDetailSerializer</code></pre>
+<p><code>filter_queryset()</code> encadena: 1.
+<code>DjangoFilterBackend</code> con <code>ProductFilter</code> 2.
+<code>SearchFilter</code> sobre <code>name</code>,
+<code>description</code> 3. <code>OrderingFilter</code> 4.
+<code>apply_semantic_tag_filters()</code> — filtros dinámicos de
+<code>semantic_tags</code></p>
+<h4 id="app-orders">App <code>orders</code></h4>
+<pre><code>OrderListCreateView (ListCreateAPIView)
+  ├── GET  → OrderSerializer (prefetch_related items)
+  └── POST → OrderSerializer.create() — crea Order + OrderItems en transacción
+
+OrderStatusUpdateView (APIView)
+  └── PATCH → OrderStatusUpdateSerializer (valida FSM de status)</code></pre>
+<h4 id="app-users">App <code>users</code></h4>
+<pre><code>RegisterView (APIView, AllowAny)
+  └── POST → RegisterSerializer + emite JWT
+
+LoginView (TokenObtainPairView)
+  └── POST → EmailTokenObtainPairSerializer
+
+LogoutView (APIView, AllowAny)
+  └── POST → RefreshToken(token).blacklist()
+
+MeView (APIView, IsAuthenticated)
+  └── GET → UserSerializer
+
+ProfileView (APIView, IsAuthenticated)
+  └── PUT → ProfileUpdateSerializer → UserSerializer</code></pre>
+<h3 id="management-commands">7.6 Management commands</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 33%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Ubicación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>populate_fixtures</code></td>
+<td><code>apps/stores/management/commands/</code></td>
+<td>Crea 20 tiendas y 300+ productos con imágenes Unsplash</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Uso:</strong></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures          <span class="co"># inserta/actualiza</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures <span class="at">--flush</span>  <span class="co"># elimina todo y recrea</span></span></code></pre></div>
+<p>El comando usa
+<code>Store.objects.update_or_create(slug=slug, ...)</code> y
+<code>Product.objects.update_or_create(store=store, slug=slug, ...)</code>
+para ser idempotente.</p>
+<hr />
+<h2 id="capítulo-8-ontología-owlsparql">CAPÍTULO 8 — ONTOLOGÍA
+OWL/SPARQL</h2>
+<h3 id="introducción-a-owl-2.0">8.1 Introducción a OWL 2.0</h3>
+<p>OWL (Web Ontology Language) es un lenguaje de representación de
+conocimiento basado en RDF desarrollado por el W3C. SmartStore utiliza
+el perfil <strong>OWL 2 DL</strong> serializado en formato
+<strong>RDF/XML</strong>.</p>
+<p>La ontología define una jerarquía de clases de productos con
+propiedades, sinónimos y reglas de inferencia que potencian el motor de
+búsqueda semántica.</p>
+<h3 id="namespace-y-prefijos">8.2 Namespace y prefijos</h3>
+<table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Prefijo</th>
+<th>URI</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ss:</code></td>
+<td><code>http://www.smartstore.org/ontology#</code></td>
+<td>Clases y propiedades SmartStore</td>
+</tr>
+<tr>
+<td><code>owl:</code></td>
+<td><code>http://www.w3.org/2002/07/owl#</code></td>
+<td>Metavocabulario OWL</td>
+</tr>
+<tr>
+<td><code>rdfs:</code></td>
+<td><code>http://www.w3.org/2000/01/rdf-schema#</code></td>
+<td>Labels, comments, subClassOf</td>
+</tr>
+<tr>
+<td><code>rdf:</code></td>
+<td><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></td>
+<td>type, property</td>
+</tr>
+<tr>
+<td><code>xsd:</code></td>
+<td><code>http://www.w3.org/2001/XMLSchema#</code></td>
+<td>Tipos de datos (string, float)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jerarquía-de-clases-extracto">8.3 Jerarquía de clases
+(extracto)</h3>
+<pre><code>owl:Thing
+└── ss:Product
+    ├── ss:ElectronicProduct
+    │   ├── ss:Smartphone
+    │   │   ├── ss:AndroidSmartphone
+    │   │   └── ss:iOSSmartphone
+    │   ├── ss:Laptop
+    │   ├── ss:Tablet
+    │   └── ss:AudioProduct
+    │       ├── ss:Headphone
+    │       └── ss:Speaker
+    ├── ss:SportswearProduct
+    │   ├── ss:RunningShoe
+    │   ├── ss:TrainingShoe
+    │   └── ss:Apparel
+    ├── ss:FurnitureProduct
+    │   ├── ss:Sofa
+    │   └── ss:Desk
+    ├── ss:BeautyProduct
+    │   ├── ss:Skincare
+    │   └── ss:Fragrance
+    └── ss:FoodProduct
+        ├── ss:Beverage
+        └── ss:Snack</code></pre>
+<h3 id="propiedades-personalizadas-smartstore">8.4 Propiedades
+personalizadas SmartStore</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Tipo</th>
+<th>Dominio</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ss:synonym</code></td>
+<td><code>owl:AnnotationProperty</code></td>
+<td><code>owl:Class</code></td>
+<td>Términos alternativos para búsqueda</td>
+</tr>
+<tr>
+<td><code>ss:semanticWeight</code></td>
+<td><code>owl:DatatypeProperty</code></td>
+<td><code>owl:Class</code></td>
+<td>Peso de scoring (float, default 1.0)</td>
+</tr>
+<tr>
+<td><code>ss:isFilterable</code></td>
+<td><code>owl:DatatypeProperty</code></td>
+<td><code>owl:ObjectProperty</code></td>
+<td><code>&quot;true&quot;</code> si la propiedad debe exponerse en el panel</td>
+</tr>
+<tr>
+<td><code>ss:filterType</code></td>
+<td><code>owl:DatatypeProperty</code></td>
+<td><code>owl:ObjectProperty</code></td>
+<td><code>&quot;select&quot;</code>, <code>&quot;range&quot;</code>,
+<code>&quot;boolean&quot;</code></td>
+</tr>
+<tr>
+<td><code>ss:filterValues</code></td>
+<td><code>owl:DatatypeProperty</code></td>
+<td><code>owl:ObjectProperty</code></td>
+<td>JSON array de valores permitidos</td>
+</tr>
+<tr>
+<td><code>ss:compatibleWith</code></td>
+<td><code>owl:ObjectProperty</code></td>
+<td><code>owl:Class</code></td>
+<td>Clases compatibles para tags de compatibilidad</td>
+</tr>
+<tr>
+<td><code>ss:compatibilityConfidence</code></td>
+<td><code>owl:DatatypeProperty</code></td>
+<td><code>owl:Class</code></td>
+<td>Confianza de compatibilidad (float)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="clase-inferencerule">Clase InferenceRule</h4>
+<pre><code>ss:InferenceRule
+  ss:condition      → string (expr evaluable: &quot;rating &gt;= 4.5&quot;, &quot;has_discount&quot;)
+  ss:tag            → string (etiqueta generada: &quot;Producto Premium&quot;)
+  ss:confidence     → float  (confianza del tag: 0.0 – 1.0)
+  ss:targetClass    → URI    (clase objetivo; si ausente, aplica a todos)</code></pre>
+<h3 id="ejemplo-de-fragmento-owl-rdfxml">8.5 Ejemplo de fragmento OWL
+(RDF/XML)</h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">owl:Class</span> <span class="ot">rdf:about=</span><span class="st">&quot;http://www.smartstore.org/ontology#Smartphone&quot;</span>&gt;</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdfs:subClassOf</span> <span class="ot">rdf:resource=</span><span class="st">&quot;http://www.smartstore.org/ontology#ElectronicProduct&quot;</span>/&gt;</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdfs:label</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;Smartphone&lt;/<span class="kw">rdfs:label</span>&gt;</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdfs:comment</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;Teléfonos inteligentes con sistema operativo móvil&lt;/<span class="kw">rdfs:comment</span>&gt;</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:synonym</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;teléfono inteligente&lt;/<span class="kw">ss:synonym</span>&gt;</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:synonym</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;móvil&lt;/<span class="kw">ss:synonym</span>&gt;</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:synonym</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;celular&lt;/<span class="kw">ss:synonym</span>&gt;</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:semanticWeight</span> <span class="ot">rdf:datatype=</span><span class="st">&quot;xsd:float&quot;</span>&gt;1.5&lt;/<span class="kw">ss:semanticWeight</span>&gt;</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">owl:Class</span>&gt;</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">owl:ObjectProperty</span> <span class="ot">rdf:about=</span><span class="st">&quot;http://www.smartstore.org/ontology#hasBrand&quot;</span>&gt;</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdfs:domain</span> <span class="ot">rdf:resource=</span><span class="st">&quot;http://www.smartstore.org/ontology#ElectronicProduct&quot;</span>/&gt;</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rdfs:label</span> <span class="ot">xml:lang=</span><span class="st">&quot;es&quot;</span>&gt;Marca&lt;/<span class="kw">rdfs:label</span>&gt;</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:isFilterable</span>&gt;true&lt;/<span class="kw">ss:isFilterable</span>&gt;</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:filterType</span>&gt;select&lt;/<span class="kw">ss:filterType</span>&gt;</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:filterValues</span>&gt;[&quot;Samsung&quot;,&quot;Apple&quot;,&quot;Xiaomi&quot;,&quot;OnePlus&quot;,&quot;Google&quot;]&lt;/<span class="kw">ss:filterValues</span>&gt;</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">owl:ObjectProperty</span>&gt;</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">ss:InferenceRule</span> <span class="ot">rdf:about=</span><span class="st">&quot;http://www.smartstore.org/ontology#Rule_HighRated&quot;</span>&gt;</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:condition</span>&gt;rating &gt;= 4.5&lt;/<span class="kw">ss:condition</span>&gt;</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:tag</span>&gt;Muy valorado&lt;/<span class="kw">ss:tag</span>&gt;</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ss:confidence</span> <span class="ot">rdf:datatype=</span><span class="st">&quot;xsd:float&quot;</span>&gt;0.95&lt;/<span class="kw">ss:confidence</span>&gt;</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">ss:InferenceRule</span>&gt;</span></code></pre></div>
+<h3 id="patrón-singleton-del-grafo">8.6 Patrón singleton del grafo</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apps/ontology/services.py</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>_graph: Graph <span class="op">|</span> <span class="va">None</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _get_graph() <span class="op">-&gt;</span> Graph:</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> _graph</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> _graph <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> Graph()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        g.parse(<span class="bu">str</span>(settings.ONTOLOGY_PATH), <span class="bu">format</span><span class="op">=</span><span class="st">&#39;xml&#39;</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        _graph <span class="op">=</span> g</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _graph</span></code></pre></div>
+<p>El grafo se carga una única vez en memoria al primer uso. Se puede
+recargar en desarrollo mediante <code>POST /api/ontology/reload/</code>
+o llamando a <code>reload_graph()</code>.</p>
+<p><strong>⚠️ Advertencia de concurrencia:</strong> En producción con
+múltiples workers Gunicorn, cada proceso cargará su propia copia del
+grafo. Esto es aceptable pero implica uso de memoria multiplicado por el
+número de workers. Con 4 workers y un grafo de 50MB, se usarán ~200MB
+solo para la ontología.</p>
+<h3 id="cómo-extender-la-ontología">8.7 Cómo extender la ontología</h3>
+<ol type="1">
+<li>Editar <code>backend/ontology/smartstore.owl</code> con un editor
+OWL (ej. Protégé).</li>
+<li>Añadir la nueva clase como subclase de la clase padre
+apropiada.</li>
+<li>Definir <code>rdfs:label</code> en español y los
+<code>ss:synonym</code> correspondientes.</li>
+<li>Añadir propiedades filtrables con
+<code>ss:isFilterable = &quot;true&quot;</code>.</li>
+<li>En desarrollo, llamar a <code>POST /api/ontology/reload/</code> para
+recargar sin reiniciar.</li>
+<li>En producción, reiniciar los workers de Gunicorn:
+<code>sudo systemctl restart gunicorn</code>.</li>
+</ol>
+<hr />
+<h2 id="capítulo-9-búsqueda-semántica">CAPÍTULO 9 — BÚSQUEDA
+SEMÁNTICA</h2>
+<h3 id="flujo-completo-diagrama">9.1 Flujo completo (diagrama)</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│  INPUT: query_text = &quot;zapatillas running ligeras&quot;               │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  FASE 0 — TOKENIZACIÓN                                          │
+│  _tokenize(text)                                                │
+│  • lowercase                                                    │
+│  • regex: elimina puntuación                                    │
+│  • elimina stopwords ES (50 palabras)                           │
+│  • elimina tokens &lt; 3 caracteres                                │
+│  → [&quot;zapatillas&quot;, &quot;running&quot;, &quot;ligeras&quot;]                         │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  FASE 1 — SCORING SPARQL                                        │
+│  Para cada token → SPARQL sobre rdflib.Graph                    │
+│  SELECT ?class ?weight WHERE {                                  │
+│    ?class a owl:Class .                                         │
+│    { ?class rdfs:label ?lbl FILTER(CONTAINS(LCASE, token)) }   │
+│    UNION                                                        │
+│    { ?class ss:synonym ?syn FILTER(CONTAINS(LCASE, syn)) }     │
+│    OPTIONAL { ?class ss:semanticWeight ?weight }               │
+│  }                                                              │
+│                                                                 │
+│  class_scores = {                                               │
+│    &quot;ss:RunningShoe&quot;:      3.0  (zapatillas + running + ligeras) │
+│    &quot;ss:SportswearProduct&quot;: 1.5 (running)                        │
+│  }                                                              │
+│                                                                 │
+│  best_class = &quot;ss:RunningShoe&quot; (max score)                      │
+│  confidence = min(3.0 / 3, 1.0) = 1.0                          │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  FASE 1b — EXPANSIÓN A SUBCLASES                                │
+│  _get_subclasses(best_class) via SPARQL                         │
+│  all_classes = [RunningShoe, TrailRunningShoe, RoadRunningShoe] │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  FASE 2 — CONSULTA DB (Django ORM)                              │
+│  Q(ontology_class__in=all_classes)                              │
+│  | Q(name__icontains=&quot;zapatillas&quot;)                              │
+│  | Q(name__icontains=&quot;running&quot;)                                 │
+│  | Q(name__icontains=&quot;ligeras&quot;)                                 │
+│  → Lista de product_ids (máx 50)                               │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  FASE 3 — EXTRACCIÓN DE RESTRICCIONES DE PRECIO                 │
+│  _parse_price_constraints(query_text)                           │
+│  Patrones regex para: &quot;menos de X&quot;, &quot;entre X y Y&quot;, &quot;barato&quot;    │
+│  → price_max / price_min (si aplica)                            │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  OUTPUT                                                         │
+│  {                                                              │
+│    products: [42, 17, 88, ...],   ← IDs                        │
+│    inferred_class: &quot;RunningShoe&quot;,                               │
+│    confidence: 1.0,                                             │
+│    matched_tokens: [&quot;zapatillas&quot;,&quot;running&quot;,&quot;ligeras&quot;],           │
+│    expanded_classes: [&quot;RunningShoe&quot;,&quot;TrailRunningShoe&quot;]         │
+│  }                                                              │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="fallback-de-texto-plano">9.2 Fallback de texto plano</h3>
+<p>Si <code>class_scores</code> está vacío (ningún token coincide con la
+ontología), se ejecuta <code>_fallback_text_search()</code>:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> Q()</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    q <span class="op">|=</span> Q(name__icontains<span class="op">=</span>token) <span class="op">|</span> Q(description__icontains<span class="op">=</span>token)</span></code></pre></div>
+<p>Retorna <code>confidence: 0.0</code> e
+<code>inferred_class: null</code>.</p>
+<h3 id="condiciones-de-inferencerule">9.3 Condiciones de
+InferenceRule</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Ejemplo</th>
+<th>Evaluación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>has_discount</code></td>
+<td><code>has_discount</code></td>
+<td><code>compare_price &gt; price</code></td>
+</tr>
+<tr>
+<td><code>has_tag:&lt;valor&gt;</code></td>
+<td><code>has_tag:5G</code></td>
+<td><code>&quot;5G&quot; in semantic_tags</code></td>
+</tr>
+<tr>
+<td><code>campo op valor</code></td>
+<td><code>rating &gt;= 4.5</code></td>
+<td>Comparación numérica del campo del modelo</td>
+</tr>
+<tr>
+<td><code>campo op string</code></td>
+<td><code>ontology_class == .../Smartphone</code></td>
+<td>Comparación de string</td>
+</tr>
+</tbody>
+</table>
+<h3 id="limitaciones-actuales">9.4 Limitaciones actuales</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr>
+<th>Limitación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Idioma único</strong></td>
+<td>Los labels y sinónimos son solo en español</td>
+</tr>
+<tr>
+<td><strong>Sin lematización</strong></td>
+<td>“correr” no coincide con “corriendo”</td>
+</tr>
+<tr>
+<td><strong>Sin embeddings</strong></td>
+<td>No usa vectores semánticos; depende de coincidencias léxicas</td>
+</tr>
+<tr>
+<td><strong>Grafo en memoria</strong></td>
+<td>No escala a ontologías de más de ~100K triples sin caché
+externa</td>
+</tr>
+<tr>
+<td><strong>50 resultados máx</strong></td>
+<td><code>product_ids[:50]</code> hardcoded en
+<code>semantic_search()</code></td>
+</tr>
+<tr>
+<td><strong>Sin ranking interno</strong></td>
+<td>Los productos del fallback se ordenan por el ORM, no por
+relevancia</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capítulo-10-seguridad">CAPÍTULO 10 — SEGURIDAD</h2>
+<h3 id="autenticación-jwt-1">10.1 Autenticación JWT</h3>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Configuración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algoritmo</td>
+<td>HS256 (HMAC-SHA256, simétrico)</td>
+</tr>
+<tr>
+<td>Access token TTL</td>
+<td>60 minutos</td>
+</tr>
+<tr>
+<td>Refresh token TTL</td>
+<td>7 días</td>
+</tr>
+<tr>
+<td>Rotación</td>
+<td><code>ROTATE_REFRESH_TOKENS = True</code> — nuevo refresh en cada
+renovación</td>
+</tr>
+<tr>
+<td>Blacklist</td>
+<td><code>BLACKLIST_AFTER_ROTATION = True</code> — invalida refresh
+anterior</td>
+</tr>
+<tr>
+<td>Almacenamiento cliente</td>
+<td><code>localStorage</code> (keys: <code>ss_access</code>,
+<code>ss_refresh</code>)</td>
+</tr>
+<tr>
+<td>Cabecera</td>
+<td><code>Authorization: Bearer &lt;token&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ <code>localStorage</code> vs
+<code>httpOnly cookies</code>:</strong> El uso de
+<code>localStorage</code> expone los tokens a JavaScript. En producción
+con alta sensibilidad de seguridad, se recomienda migrar a
+<code>httpOnly</code> cookies con <code>SameSite=Strict</code> para
+mitigar XSS.</p>
+<h3 id="protección-contra-vulnerabilidades-owasp-top-10">10.2 Protección
+contra vulnerabilidades OWASP Top 10</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr>
+<th>Vulnerabilidad</th>
+<th>Mitigación implementada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A01 Broken Access Control</strong></td>
+<td><code>IsAuthenticated</code> en endpoints de órdenes y perfil;
+usuario solo ve sus propias órdenes</td>
+</tr>
+<tr>
+<td><strong>A02 Cryptographic Failures</strong></td>
+<td>Contraseñas con PBKDF2-SHA256 (Django default); JWT con HS256</td>
+</tr>
+<tr>
+<td><strong>A03 Injection</strong></td>
+<td>Django ORM con prepared statements; no hay SQL raw</td>
+</tr>
+<tr>
+<td><strong>A04 Insecure Design</strong></td>
+<td>FSM de status de órdenes previene transiciones ilegales</td>
+</tr>
+<tr>
+<td><strong>A05 Security Misconfiguration</strong></td>
+<td><code>SECRET_KEY</code> en <code>.env</code>,
+<code>DEBUG=False</code> en producción, <code>ALLOWED_HOSTS</code>
+configurado</td>
+</tr>
+<tr>
+<td><strong>A07 Identity Failures</strong></td>
+<td>Validadores de contraseña Django (longitud mínima, similitud,
+común)</td>
+</tr>
+<tr>
+<td><strong>A09 Logging Failures</strong></td>
+<td>Django logging configurado; errores en <code>semantic_search</code>
+logeados</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cors-1">10.3 CORS</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>CORS_ALLOWED_ORIGINS <span class="op">=</span> [<span class="st">&#39;http://localhost:5173&#39;</span>, <span class="st">&#39;http://127.0.0.1:5173&#39;</span>]</span></code></pre></div>
+<p>Solo el origen del SPA está permitido. En producción se debe
+restringir al dominio de producción del frontend.</p>
+<h3 id="csrf">10.4 CSRF</h3>
+<p>DRF con JWT no utiliza sesiones para la API REST, por lo que las
+peticiones a <code>/api/</code> no requieren token CSRF. El
+<code>CsrfViewMiddleware</code> protege la interfaz de admin de Django
+(<code>/admin/</code>).</p>
+<h3 id="variables-de-entorno-sensibles">10.5 Variables de entorno
+sensibles</h3>
+<p>Las variables en <code>.env</code> (gestionadas con
+<code>python-decouple</code>) que <strong>nunca</strong> deben
+committearse al repositorio:</p>
+<pre><code>SECRET_KEY          ← clave Django; cambiarla invalida todas las sesiones
+DB_PASSWORD         ← contraseña de PostgreSQL
+DB_USER / DB_NAME   ← credenciales de base de datos</code></pre>
+<h3 id="validación-de-entrada">10.6 Validación de entrada</h3>
+<ul>
+<li><strong>Serializers DRF:</strong> Validación de tipos, longitudes y
+formatos en cada campo.</li>
+<li><strong>Contraseñas:</strong> Validadores de Django en
+<code>AUTH_PASSWORD_VALIDATORS</code>.</li>
+<li><strong>Email:</strong> Regex en <code>RegisterSerializer</code> y
+<code>EmailTokenObtainPairSerializer</code>.</li>
+<li><strong>Precio:</strong> <code>MinValueValidator(0)</code> en campos
+<code>price</code> y <code>compare_price</code>.</li>
+<li><strong>Rating:</strong> <code>MinValueValidator(0)</code> +
+<code>MaxValueValidator(5)</code>.</li>
+<li><strong>SPARQL injection:</strong> Los tokens de búsqueda se
+sanitizan con <code>replace(&#39;&quot;&#39;, &#39;\\&quot;&#39;)</code> antes de interpolarse en
+queries SPARQL.</li>
+</ul>
+<hr />
+<h2 id="capítulo-11-rendimiento-y-optimización">CAPÍTULO 11 —
+RENDIMIENTO Y OPTIMIZACIÓN</h2>
+<h3 id="optimizaciones-de-base-de-datos">11.1 Optimizaciones de base de
+datos</h3>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 33%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Optimización</th>
+<th>Ubicación</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>select_related(&#39;store&#39;)</code></td>
+<td><code>ProductViewSet.queryset</code></td>
+<td>Evita N+1 en productos</td>
+</tr>
+<tr>
+<td><code>prefetch_related(&#39;items&#39;)</code></td>
+<td><code>OrderListCreateView.get_queryset()</code></td>
+<td>Evita N+1 en historial</td>
+</tr>
+<tr>
+<td>Índices compuestos</td>
+<td><code>Product.Meta.indexes</code></td>
+<td>Filtros de precio, rating y ontology</td>
+</tr>
+<tr>
+<td>Índice <code>is_active</code></td>
+<td><code>Store</code>, <code>Product</code></td>
+<td>Filtro más frecuente del catálogo</td>
+</tr>
+<tr>
+<td><code>pagination_class = None</code></td>
+<td><code>OrderListCreateView</code></td>
+<td>Evita COUNT(*) en historial pequeño</td>
+</tr>
+</tbody>
+</table>
+<h3 id="índices-por-tabla">11.2 Índices por tabla</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 56%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tabla</th>
+<th>Campos indexados</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stores_store</code></td>
+<td><code>name</code></td>
+<td>B-Tree</td>
+</tr>
+<tr>
+<td><code>stores_store</code></td>
+<td><code>(is_active, name)</code></td>
+<td>B-Tree compuesto</td>
+</tr>
+<tr>
+<td><code>products_product</code></td>
+<td><code>(store_id, is_active)</code></td>
+<td>B-Tree compuesto</td>
+</tr>
+<tr>
+<td><code>products_product</code></td>
+<td><code>price</code></td>
+<td>B-Tree</td>
+</tr>
+<tr>
+<td><code>products_product</code></td>
+<td><code>rating</code></td>
+<td>B-Tree</td>
+</tr>
+<tr>
+<td><code>products_product</code></td>
+<td><code>(store_id, price)</code></td>
+<td>B-Tree compuesto</td>
+</tr>
+<tr>
+<td><code>products_product</code></td>
+<td><code>(ontology_class, is_active)</code></td>
+<td>B-Tree compuesto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="caché-del-grafo-ontológico">11.3 Caché del grafo ontológico</h3>
+<p>El grafo rdflib se carga como singleton de módulo
+(<code>_graph: Graph | None = None</code>). Esto significa:</p>
+<ul>
+<li><strong>Primera petición:</strong> ~0.5–2 segundos de carga del
+OWL.</li>
+<li><strong>Peticiones subsiguientes:</strong> Microsegundos (búsqueda
+en memoria).</li>
+<li><strong>En producción:</strong> Cada worker Gunicorn tiene su propia
+copia. Con <code>--workers 4</code> se cargarán 4 copias.</li>
+</ul>
+<p><strong>Recomendación para escala:</strong> Usar un proceso de
+pre-carga o reducir workers y aumentar threads si la RAM es
+limitada.</p>
+<h3 id="optimizaciones-del-frontend">11.4 Optimizaciones del
+frontend</h3>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr>
+<th>Técnica</th>
+<th>Implementación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tree shaking</strong></td>
+<td>Vite + ES modules; solo se incluyen los íconos Lucide
+importados</td>
+</tr>
+<tr>
+<td><strong>Code splitting</strong></td>
+<td>React Router v6 usa lazy loading automático por ruta</td>
+</tr>
+<tr>
+<td><strong>Server state cache</strong></td>
+<td>TanStack Query cachea respuestas y evita refetches innecesarios</td>
+</tr>
+<tr>
+<td><strong>Skeleton loading</strong></td>
+<td><code>LoadingGrid.jsx</code> muestra skeletons mientras carga para
+UX fluida</td>
+</tr>
+<tr>
+<td><strong>Image fallback</strong></td>
+<td><code>onError</code> + estado local evita peticiones rotas
+colgadas</td>
+</tr>
+<tr>
+<td><strong>Debounce en búsqueda</strong></td>
+<td>El Header aplica debounce (~300ms) antes de llamar a
+<code>/suggestions/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="imágenes-cdn-unsplash">11.5 Imágenes (CDN Unsplash)</h3>
+<p>Todas las imágenes de productos y tiendas usan URLs de
+<strong>Unsplash CDN</strong> con parámetros de optimización:</p>
+<pre><code>?auto=format&amp;fit=crop&amp;w=600&amp;q=80   ← productos
+?auto=format&amp;fit=crop&amp;w=200&amp;h=200  ← logos
+?auto=format&amp;fit=crop&amp;w=1200&amp;h=400 ← banners</code></pre>
+<p><code>auto=format</code> sirve WebP en navegadores compatibles;
+<code>q=80</code> reduce peso ~40% vs calidad máxima.</p>
+<hr />
+<h2 id="capítulo-12-deployment">CAPÍTULO 12 — DEPLOYMENT</h2>
+<h3 id="requisitos-de-servidor">12.1 Requisitos de servidor</h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Mínimo</th>
+<th>Recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>1 vCPU</td>
+<td>2 vCPU</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>2 GB</td>
+<td>4 GB</td>
+</tr>
+<tr>
+<td>Disco</td>
+<td>20 GB</td>
+<td>50 GB SSD</td>
+</tr>
+<tr>
+<td>SO</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Ubuntu 24.04 LTS</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11</td>
+<td>3.12</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>18</td>
+<td>20 LTS</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>14</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="instalación-del-backend-en-producción">12.2 Instalación del
+backend en producción</h3>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Crear usuario del sistema</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> useradd <span class="at">-m</span> <span class="at">-s</span> /bin/bash smartstore</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su <span class="at">-</span> smartstore</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Clonar repositorio</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>repo-url<span class="op">&gt;</span> /home/smartstore/app</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/smartstore/app/backend</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Entorno virtual</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python3.12</span> <span class="at">-m</span> venv venv</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install gunicorn   <span class="co"># servidor WSGI</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Variables de entorno</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> .env   <span class="co"># configurar SECRET_KEY, DB_*, etc.</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Migraciones y datos</span></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py collectstatic <span class="at">--noinput</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Iniciar Gunicorn (prueba)</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a><span class="ex">gunicorn</span> config.wsgi:application <span class="at">--bind</span> 0.0.0.0:8000 <span class="at">--workers</span> 4</span></code></pre></div>
+<h3 id="gunicorn-como-servicio-systemd">12.3 Gunicorn como servicio
+systemd</h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># /etc/systemd/system/smartstore.service</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="kw">[Unit]</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="dt">Description</span><span class="ot">=</span><span class="st">SmartStore Gunicorn</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="dt">After</span><span class="ot">=</span><span class="st">network.target</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="kw">[Service]</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="dt">User</span><span class="ot">=</span><span class="st">smartstore</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="dt">WorkingDirectory</span><span class="ot">=</span><span class="st">/home/smartstore/app/backend</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="dt">ExecStart</span><span class="ot">=</span><span class="st">/home/smartstore/app/backend/venv/bin/gunicorn \</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="dt">    config.wsgi:application \</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="dt">    --workers 4 \</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="dt">    --bind unix:/run/smartstore.sock \</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="dt">    --timeout 60 \</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="dt">    --access-logfile /var/log/smartstore/access.log \</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="dt">    --error-logfile /var/log/smartstore/error.log</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="dt">Restart</span><span class="ot">=</span><span class="st">on-failure</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="kw">[Install]</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="dt">WantedBy</span><span class="ot">=</span><span class="st">multi-user.target</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable smartstore</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start smartstore</span></code></pre></div>
+<h3 id="nginx-como-reverse-proxy">12.4 Nginx como reverse proxy</h3>
+<pre class="nginx"><code># /etc/nginx/sites-available/smartstore
+server {
+    listen 443 ssl;
+    server_name api.smartstore.example.com;
+
+    ssl_certificate     /etc/letsencrypt/live/api.smartstore.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.smartstore.example.com/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+
+    location / {
+        proxy_pass http://unix:/run/smartstore.sock;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /static/ {
+        alias /home/smartstore/app/backend/staticfiles/;
+        expires 1y;
+        add_header Cache-Control &quot;public, immutable&quot;;
+    }
+
+    location /media/ {
+        alias /home/smartstore/app/backend/media/;
+    }
+}</code></pre>
+<h3 id="build-y-despliegue-del-frontend">12.5 Build y despliegue del
+frontend</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> frontend</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables de entorno de producción</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;VITE_API_URL=https://api.smartstore.example.com&quot;</span> <span class="op">&gt;</span> .env.production</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Genera dist/ con archivos estáticos</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Subir a S3 (o servidor de archivos estáticos)</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> s3 sync dist/ s3://smartstore-frontend/ <span class="at">--delete</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> cloudfront create-invalidation <span class="at">--distribution-id</span> <span class="op">&lt;</span>ID<span class="op">&gt;</span> --paths <span class="st">&quot;/*&quot;</span></span></code></pre></div>
+<h3 id="variables-de-entorno-de-producción">12.6 Variables de entorno de
+producción</h3>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backend/.env (producción)</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="va">SECRET_KEY</span><span class="op">=&lt;</span>clave-aleatoria-256-bits<span class="op">&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="va">DEBUG</span><span class="op">=</span>False</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="va">ALLOWED_HOSTS</span><span class="op">=</span>api.smartstore.example.com</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="va">USE_SQLITE</span><span class="op">=</span>False</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="va">DB_NAME</span><span class="op">=</span>smartstore_db</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="va">DB_USER</span><span class="op">=</span>smartstore_user</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PASSWORD</span><span class="op">=&lt;</span>contraseña-segura<span class="op">&gt;</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="va">DB_HOST</span><span class="op">=</span>localhost</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PORT</span><span class="op">=</span>5432</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="va">CORS_ALLOWED_ORIGINS</span><span class="op">=</span>https://www.smartstore.example.com</span></code></pre></div>
+<h3 id="settings-de-producción-adicionales">12.7 Settings de producción
+adicionales</h3>
+<p>En <code>settings.py</code> agregar para producción:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forzar HTTPS</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>SECURE_SSL_REDIRECT <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>SECURE_HSTS_SECONDS <span class="op">=</span> <span class="dv">31536000</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>SECURE_HSTS_INCLUDE_SUBDOMAINS <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>SECURE_HSTS_PRELOAD <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cookies seguras</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>SESSION_COOKIE_SECURE <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>CSRF_COOKIE_SECURE <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Logging</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>LOGGING <span class="op">=</span> {</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;version&#39;</span>: <span class="dv">1</span>,</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;handlers&#39;</span>: {</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;file&#39;</span>: {</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;class&#39;</span>: <span class="st">&#39;logging.FileHandler&#39;</span>,</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;filename&#39;</span>: <span class="st">&#39;/var/log/smartstore/django.log&#39;</span>,</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;root&#39;</span>: {</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;handlers&#39;</span>: [<span class="st">&#39;file&#39;</span>],</span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;level&#39;</span>: <span class="st">&#39;WARNING&#39;</span>,</span>
+<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="capítulo-13-testing">CAPÍTULO 13 — TESTING</h2>
+<h3 id="estrategia-de-testing">13.1 Estrategia de testing</h3>
+<p>SmartStore sigue la pirámide de testing: mayor cantidad de tests
+unitarios, menor cantidad de tests E2E.</p>
+<pre><code>        /\
+       /E2E\        ← Playwright/Cypress (no implementados)
+      /──────\
+     / Integración\ ← DRF APITestCase (implementado parcialmente)
+    /──────────────\
+   /   Unitarios   \ ← pytest + unittest (implementados)
+  /──────────────────\</code></pre>
+<h3 id="tests-de-backend">13.2 Tests de backend</h3>
+<p><strong>Ejecutar tests:</strong></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> backend</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py test apps.orders.tests apps.users.tests</span></code></pre></div>
+<p><strong>Estructura de tests existentes:</strong></p>
+<pre><code>apps/
+├── orders/
+│   └── tests.py   ← OrderModel, OrderStatusFSM, OrderSerializer
+└── users/
+    └── tests.py   ← RegisterView, LoginView, ProfileView</code></pre>
+<p><strong>Ejemplo — Test de transición de estado:</strong></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrderFSMTest(TestCase):</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_pending_to_completed(<span class="va">self</span>):</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>        order <span class="op">=</span> Order.objects.create(user<span class="op">=</span><span class="va">self</span>.user, status<span class="op">=</span><span class="st">&#39;pending&#39;</span>, ...)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> {<span class="st">&#39;status&#39;</span>: <span class="st">&#39;completed&#39;</span>}</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>        serializer <span class="op">=</span> OrderStatusUpdateSerializer(order, data<span class="op">=</span>data, partial<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertTrue(serializer.is_valid())</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>        serializer.save()</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>        order.refresh_from_db()</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(order.status, <span class="st">&#39;completed&#39;</span>)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_completed_cannot_transition(<span class="va">self</span>):</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>        order <span class="op">=</span> Order.objects.create(user<span class="op">=</span><span class="va">self</span>.user, status<span class="op">=</span><span class="st">&#39;completed&#39;</span>, ...)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>        serializer <span class="op">=</span> OrderStatusUpdateSerializer(order, data<span class="op">=</span>{<span class="st">&#39;status&#39;</span>: <span class="st">&#39;pending&#39;</span>}, partial<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertFalse(serializer.is_valid())</span></code></pre></div>
+<h3 id="tests-de-api-integration">13.3 Tests de API (Integration)</h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework.test <span class="im">import</span> APITestCase</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework <span class="im">import</span> status</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StoreAPITest(APITestCase):</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_list_stores(<span class="va">self</span>):</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="va">self</span>.client.get(<span class="st">&#39;/api/stores/&#39;</span>)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(response.status_code, status.HTTP_200_OK)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertIsInstance(response.data, <span class="bu">list</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_store_products_require_valid_slug(<span class="va">self</span>):</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="va">self</span>.client.get(<span class="st">&#39;/api/stores/no-existe/products/&#39;</span>)</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)</span></code></pre></div>
+<h3 id="cobertura-de-tests">13.4 Cobertura de tests</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install coverage</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="ex">coverage</span> run <span class="at">--source</span><span class="op">=</span><span class="st">&#39;.&#39;</span> manage.py test</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="ex">coverage</span> report</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="ex">coverage</span> html   <span class="co"># genera htmlcov/index.html</span></span></code></pre></div>
+<h3 id="tests-del-motor-ontológico">13.5 Tests del motor ontológico</h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OntologyServiceTest(TestCase):</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setUp(<span class="va">self</span>):</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.service <span class="op">=</span> OntologyService()</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_tokenize_removes_stopwords(<span class="va">self</span>):</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>        tokens <span class="op">=</span> <span class="va">self</span>.service._tokenize(<span class="st">&quot;zapatillas de running&quot;</span>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertNotIn(<span class="st">&quot;de&quot;</span>, tokens)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertIn(<span class="st">&quot;zapatillas&quot;</span>, tokens)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_semantic_search_returns_dict(<span class="va">self</span>):</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.service.semantic_search(<span class="st">&quot;smartphone&quot;</span>)</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertIn(<span class="st">&quot;products&quot;</span>, result)</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertIn(<span class="st">&quot;confidence&quot;</span>, result)</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertIsInstance(result[<span class="st">&quot;confidence&quot;</span>], <span class="bu">float</span>)</span></code></pre></div>
+<hr />
+<h2 id="capítulo-14-troubleshooting-técnico">CAPÍTULO 14 —
+TROUBLESHOOTING TÉCNICO</h2>
+<h3 id="tabla-de-errores-comunes">14.1 Tabla de errores comunes</h3>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 29%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr>
+<th>Error</th>
+<th>Causa</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ImproperlyConfigured: SECRET_KEY</code></td>
+<td>Variable no configurada</td>
+<td>Definir <code>SECRET_KEY</code> en <code>.env</code></td>
+</tr>
+<tr>
+<td><code>OperationalError: no such table</code></td>
+<td>Migraciones no ejecutadas</td>
+<td><code>python manage.py migrate</code></td>
+</tr>
+<tr>
+<td><code>ConnectionRefusedError: [Errno 111]</code></td>
+<td>PostgreSQL no activo</td>
+<td><code>sudo systemctl start postgresql</code></td>
+</tr>
+<tr>
+<td><code>FileNotFoundError: smartstore.owl</code></td>
+<td>ONTOLOGY_PATH incorrecto</td>
+<td>Verificar <code>backend/ontology/smartstore.owl</code> existe</td>
+</tr>
+<tr>
+<td><code>CORS: blocked by policy</code></td>
+<td>Origen no en <code>CORS_ALLOWED_ORIGINS</code></td>
+<td>Añadir el origen al setting</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code> en API</td>
+<td>Token expirado o ausente</td>
+<td>Llamar a <code>/api/auth/token/refresh/</code></td>
+</tr>
+<tr>
+<td><code>400 Cannot transition from...</code></td>
+<td>Transición de status inválida</td>
+<td>Respetar el FSM de órdenes</td>
+</tr>
+<tr>
+<td><code>json_each</code> no encontrado</td>
+<td>SQLite &lt; 3.38</td>
+<td>Actualizar SQLite o usar PostgreSQL</td>
+</tr>
+<tr>
+<td><code>ModuleNotFoundError: rdflib</code></td>
+<td>Entorno no activado</td>
+<td><code>source venv/bin/activate</code></td>
+</tr>
+<tr>
+<td>Imágenes con URL <code>localhost/media/https://</code></td>
+<td>Campo <code>ImageField</code> serializa URLs externas</td>
+<td>Usar <code>URLField</code> (ya corregido en migración 0002)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="debugging-del-motor-semántico">14.2 Debugging del motor
+semántico</h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shell interactivo Django</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py shell</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probar tokenización</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> apps.ontology.services import OntologyService</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="ex">svc</span> = OntologyService<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">svc._tokenize</span><span class="er">(</span><span class="st">&quot;zapatillas de running ligeras&quot;</span><span class="kw">))</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Probar búsqueda</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="ex">result</span> = svc.semantic_search<span class="er">(</span><span class="st">&quot;smartphone barato&quot;</span><span class="kw">)</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="va">result</span><span class="op">[</span><span class="st">&#39;inferred_class&#39;</span><span class="op">]</span><span class="ex">,</span> result<span class="pp">[</span><span class="st">&#39;confidence&#39;</span><span class="pp">]</span><span class="kw">)</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver triples del grafo</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="ex">g</span> = svc.graph</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">f</span><span class="st">&quot;Total triples: {len(g)}&quot;</span><span class="kw">)</span></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar clases</span></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cls <span class="kw">in</span> g.subjects<span class="er">(</span><span class="ex">RDF.type,</span> OWL.Class<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">print</span><span class="er">(</span><span class="ex">cls</span><span class="kw">)</span></span></code></pre></div>
+<h3 id="logs-importantes">14.3 Logs importantes</h3>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 57%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr>
+<th>Log</th>
+<th>Ubicación (desarrollo)</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Django</td>
+<td>Consola (<code>runserver</code>)</td>
+<td>Peticiones HTTP, errores, warnings</td>
+</tr>
+<tr>
+<td>Ontología</td>
+<td>Logger <code>apps.ontology.services</code></td>
+<td>Carga del grafo, número de triples</td>
+</tr>
+<tr>
+<td>Gunicorn</td>
+<td><code>/var/log/smartstore/access.log</code></td>
+<td>Peticiones HTTP con tiempos</td>
+</tr>
+<tr>
+<td>Gunicorn errors</td>
+<td><code>/var/log/smartstore/error.log</code></td>
+<td>Excepciones no controladas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-debugging">14.4 Performance debugging</h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar N+1 queries con django-debug-toolbar (desarrollo)</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>pip install django<span class="op">-</span>debug<span class="op">-</span>toolbar</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># O con logging de SQL</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>logging.getLogger(<span class="st">&#39;django.db.backends&#39;</span>).setLevel(logging.DEBUG)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar índices en SQLite</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py dbshell</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.schema</span> products_product</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="ex">EXPLAIN</span> QUERY PLAN SELECT <span class="pp">*</span> FROM products_product WHERE is_active=1 AND price <span class="op">&lt;</span> 1000<span class="kw">;</span></span></code></pre></div>
+<hr />
+<h2 id="capítulo-15-glosario-técnico">CAPÍTULO 15 — GLOSARIO
+TÉCNICO</h2>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ALLOWED_HOSTS</strong></td>
+<td>Lista de dominios permitidos en Django; previene ataques de Host
+header</td>
+</tr>
+<tr>
+<td><strong>APIView</strong></td>
+<td>Clase base de DRF para vistas que no usan ViewSets; control total
+del dispatch</td>
+</tr>
+<tr>
+<td><strong>auto_now / auto_now_add</strong></td>
+<td>Parámetros de DateTimeField; <code>auto_now_add</code> registra
+creación, <code>auto_now</code> actualización</td>
+</tr>
+<tr>
+<td><strong>Axios interceptor</strong></td>
+<td>Función que transforma peticiones o respuestas globalmente antes de
+que lleguen al código de la app</td>
+</tr>
+<tr>
+<td><strong>Bearer token</strong></td>
+<td>Esquema de autenticación HTTP donde el token se incluye literalmente
+en la cabecera Authorization</td>
+</tr>
+<tr>
+<td><strong>Blacklist</strong></td>
+<td>Lista de tokens JWT invalidados antes de su expiración natural;
+implementada con
+<code>rest_framework_simplejwt.token_blacklist</code></td>
+</tr>
+<tr>
+<td><strong>CorsMiddleware</strong></td>
+<td>Middleware que añade cabeceras HTTP CORS a las respuestas,
+controlando qué orígenes pueden acceder a la API</td>
+</tr>
+<tr>
+<td><strong>db_index</strong></td>
+<td>Parámetro de campo Django que crea un índice B-Tree en la columna
+correspondiente</td>
+</tr>
+<tr>
+<td><strong>DEFAULT_AUTO_FIELD</strong></td>
+<td>Tipo de campo PK automático por defecto; <code>BigAutoField</code>
+usa <code>BIGINT</code> (64 bits)</td>
+</tr>
+<tr>
+<td><strong>DjangoFilterBackend</strong></td>
+<td>Backend de filtrado que integra <code>django-filter</code> con DRF
+mediante <code>FilterSet</code> declarativos</td>
+</tr>
+<tr>
+<td><strong>FSM</strong></td>
+<td>Finite State Machine; máquina de estados finitos que modela
+transiciones válidas de estado</td>
+</tr>
+<tr>
+<td><strong>GenericViewSet</strong></td>
+<td>ViewSet DRF sin mixins; se combinan <code>ListModelMixin</code>,
+<code>RetrieveModelMixin</code>, etc. según necesidad</td>
+</tr>
+<tr>
+<td><strong>grafo RDF</strong></td>
+<td>Conjunto de triples <code>(sujeto, predicado, objeto)</code> que
+representan conocimiento estructurado</td>
+</tr>
+<tr>
+<td><strong>HMR</strong></td>
+<td>Hot Module Replacement; Vite actualiza módulos individuales sin
+recargar la página completa</td>
+</tr>
+<tr>
+<td><strong>IRI</strong></td>
+<td>Internationalized Resource Identifier; generalización de URI que
+permite caracteres Unicode</td>
+</tr>
+<tr>
+<td><strong>isFilterable</strong></td>
+<td>Propiedad custom OWL (<code>ss:isFilterable</code>) que marca una
+propiedad para exposición en el panel de filtros</td>
+</tr>
+<tr>
+<td><strong>json_each()</strong></td>
+<td>Función SQLite que itera los elementos de un array JSON; usada para
+filtrar <code>semantic_tags</code></td>
+</tr>
+<tr>
+<td><strong>JSONField</strong></td>
+<td>Campo Django que almacena JSON nativo (PostgreSQL
+<code>jsonb</code>, SQLite <code>text</code>)</td>
+</tr>
+<tr>
+<td><strong>localStorage</strong></td>
+<td>API del navegador para persistencia de datos por origen; SmartStore
+guarda tokens JWT y carrito</td>
+</tr>
+<tr>
+<td><strong>lualatex / xelatex</strong></td>
+<td>Motores LaTeX con soporte Unicode; alternativas a pdflatex para
+documentos multilingües</td>
+</tr>
+<tr>
+<td><strong>MinValueValidator</strong></td>
+<td>Validador DRF/Django que restringe el valor mínimo de un campo
+numérico</td>
+</tr>
+<tr>
+<td><strong>Namespace (OWL)</strong></td>
+<td>Prefijo de IRI que agrupa clases y propiedades de una ontología; en
+SmartStore es <code>http://www.smartstore.org/ontology#</code></td>
+</tr>
+<tr>
+<td><strong>ORM</strong></td>
+<td>Object-Relational Mapper; abstracción que traduce objetos Python a
+SQL; Django ORM usa QuerySets</td>
+</tr>
+<tr>
+<td><strong>owl:Class</strong></td>
+<td>Metaclase OWL que define una categoría de individuos; base de la
+jerarquía de productos</td>
+</tr>
+<tr>
+<td><strong>owl:DatatypeProperty</strong></td>
+<td>Propiedad OWL que relaciona un individuo con un valor de tipo de
+dato (string, float, etc.)</td>
+</tr>
+<tr>
+<td><strong>owl:ObjectProperty</strong></td>
+<td>Propiedad OWL que relaciona dos individuos dentro de la
+ontología</td>
+</tr>
+<tr>
+<td><strong>PageNumberPagination</strong></td>
+<td>Clase DRF que divide resultados en páginas accesibles via
+<code>?page=N</code></td>
+</tr>
+<tr>
+<td><strong>PBKDF2-SHA256</strong></td>
+<td>Algoritmo de derivación de clave; Django lo usa para hashear
+contraseñas (100,000+ iteraciones)</td>
+</tr>
+<tr>
+<td><strong>prefetch_related</strong></td>
+<td>Método de QuerySet que pre-carga relaciones inversas con una segunda
+query; evita N+1</td>
+</tr>
+<tr>
+<td><strong>proxy (Vite)</strong></td>
+<td>Redirección de peticiones <code>/api/*</code> al servidor backend;
+evita CORS en desarrollo</td>
+</tr>
+<tr>
+<td><strong>RDFS</strong></td>
+<td>RDF Schema; vocabulario de metadatos para definir jerarquías de
+clases y propiedades</td>
+</tr>
+<tr>
+<td><strong>rdflib</strong></td>
+<td>Biblioteca Python para trabajar con grafos RDF; soporta parsing
+OWL/XML y consultas SPARQL</td>
+</tr>
+<tr>
+<td><strong>rdfs:subClassOf</strong></td>
+<td>Propiedad RDFS que define herencia entre clases;
+<code>Smartphone rdfs:subClassOf ElectronicProduct</code></td>
+</tr>
+<tr>
+<td><strong>RefreshToken</strong></td>
+<td>Token de larga duración (7 días) usado para obtener nuevos access
+tokens sin re-autenticación</td>
+</tr>
+<tr>
+<td><strong>related_name</strong></td>
+<td>Parámetro de FK/OneToOne que define el nombre del accessor inverso
+en Python</td>
+</tr>
+<tr>
+<td><strong>SELECT_RELATED</strong></td>
+<td>Método QuerySet que resuelve FKs con SQL JOIN; reduce queries para
+relaciones directas</td>
+</tr>
+<tr>
+<td><strong>serializer.is_valid()</strong></td>
+<td>Método DRF que ejecuta validación de datos; retorna
+<code>False</code> si hay errores</td>
+</tr>
+<tr>
+<td><strong>SET_NULL</strong></td>
+<td>Comportamiento de FK al eliminar el objeto referenciado; pone el
+campo en <code>NULL</code></td>
+</tr>
+<tr>
+<td><strong>singleton</strong></td>
+<td>Patrón de diseño que asegura una única instancia de un objeto; el
+grafo OWL usa este patrón</td>
+</tr>
+<tr>
+<td><strong>slug</strong></td>
+<td>Identificador legible para URLs; generado con
+<code>django.utils.text.slugify()</code></td>
+</tr>
+<tr>
+<td><strong>SPARQLWrapper</strong></td>
+<td>Biblioteca Python para ejecutar consultas SPARQL sobre endpoints
+HTTP remotos</td>
+</tr>
+<tr>
+<td><strong>ss:synonym</strong></td>
+<td>Propiedad de anotación custom que registra términos alternativos
+para una clase OWL</td>
+</tr>
+<tr>
+<td><strong>TanStack Query</strong></td>
+<td>Biblioteca de gestión de estado del servidor para React; maneja
+fetching, caché y sincronización</td>
+</tr>
+<tr>
+<td><strong>Token blacklist</strong></td>
+<td>Extensión de SimpleJWT que almacena tokens invalidados en la tabla
+<code>token_blacklist_blacklistedtoken</code></td>
+</tr>
+<tr>
+<td><strong>triple RDF</strong></td>
+<td>Unidad atómica de conocimiento:
+<code>(sujeto, predicado, objeto)</code>; ej:
+<code>(Smartphone, subClassOf, ElectronicProduct)</code></td>
+</tr>
+<tr>
+<td><strong>URLField</strong></td>
+<td>Campo Django para almacenar URLs; no prepende <code>MEDIA_URL</code>
+al serializar (a diferencia de ImageField)</td>
+</tr>
+<tr>
+<td><strong>uuid4</strong></td>
+<td>UUID versión 4 generado aleatoriamente; SmartStore usa
+<code>uuid4().hex[:8]</code> para números de orden</td>
+</tr>
+<tr>
+<td><strong>ViewSet</strong></td>
+<td>Clase DRF que agrupa acciones relacionadas (list, retrieve, create…)
+sobre un mismo recurso</td>
+</tr>
+<tr>
+<td><strong>WSGI</strong></td>
+<td>Interfaz estándar Python entre servidor web y aplicación; Gunicorn
+implementa WSGI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="apéndice-a-erd-completo">APÉNDICE A — ERD COMPLETO</h2>
+<p>El diagrama ERD completo se encuentra en la sección 4.1 (Capítulo 4).
+A continuación se complementa con las tablas internas de Django y
+SimpleJWT relevantes para producción:</p>
+<pre><code>django_migrations          ← Registro de migraciones aplicadas
+django_content_type        ← Tipos de contenido para permisos
+auth_permission            ← Permisos del sistema
+auth_group                 ← Grupos de usuarios
+token_blacklist_outstandingtoken  ← Tokens JWT emitidos
+token_blacklist_blacklistedtoken  ← Tokens JWT invalidados (logout)</code></pre>
+<hr />
+<h2 id="apéndice-b-diagrama-de-arquitectura">APÉNDICE B — DIAGRAMA DE
+ARQUITECTURA</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│  CLIENTE (Browser)                                                  │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  React 18 SPA                                               │   │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐  │   │
+│  │  │ AuthCtx  │ │ CartCtx  │ │ Router   │ │ TanStack Q.  │  │   │
+│  │  └──────────┘ └──────────┘ └──────────┘ └──────────────┘  │   │
+│  │                    Axios (Bearer JWT)                       │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+└─────────────────────────┬───────────────────────────────────────────┘
+                          │ HTTPS (TLS 1.3)
+                          │
+┌─────────────────────────▼───────────────────────────────────────────┐
+│  NGINX (Reverse Proxy)                                              │
+│  • TLS termination                                                  │
+│  • Static files (/static/, /media/)                                 │
+│  • proxy_pass → unix socket                                         │
+└─────────────────────────┬───────────────────────────────────────────┘
+                          │ Unix socket
+                          │
+┌─────────────────────────▼───────────────────────────────────────────┐
+│  GUNICORN (WSGI Server — 4 workers)                                 │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  Django 5.1                                                  │   │
+│  │  ┌────────┐ ┌──────────┐ ┌─────────┐ ┌────────┐ ┌───────┐ │   │
+│  │  │ stores │ │ products │ │ ontology│ │ users  │ │orders │ │   │
+│  │  └────────┘ └──────────┘ └────┬────┘ └────────┘ └───────┘ │   │
+│  │                               │                             │   │
+│  │                    ┌──────────▼──────────┐                  │   │
+│  │                    │  OntologyService    │                  │   │
+│  │                    │  (rdflib singleton) │                  │   │
+│  └────────────────────┴──────────┬──────────┴──────────────────┘   │
+└──────────────────────────────────┼──────────────────────────────────┘
+                                   │
+              ┌────────────────────┴──────────────────────┐
+              │                                            │
+┌─────────────▼─────────────┐             ┌───────────────▼───────────┐
+│  PostgreSQL 16            │             │  smartstore.owl            │
+│  ─────────────────────── │             │  (RDF/XML — disco)         │
+│  stores_store             │             │  Cargado en RAM al inicio  │
+│  products_product         │             │  ~50 MB por worker         │
+│  orders_order             │             └───────────────────────────┘
+│  orders_orderitem         │
+│  users_userprofile        │
+│  auth_user                │
+│  token_blacklist_*        │
+└───────────────────────────┘</code></pre>
+<hr />
+<h2 id="apéndice-c-queries-sparql-de-referencia">APÉNDICE C — QUERIES
+SPARQL DE REFERENCIA</h2>
+<h3 id="c.1-obtener-todas-las-subclases-de-product">C.1 Obtener todas
+las subclases de Product</h3>
+<pre class="sparql"><code>PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX ss:   &lt;http://www.smartstore.org/ontology#&gt;
+
+SELECT DISTINCT ?class ?label ?parent WHERE {
+    ?class a owl:Class .
+    ?class rdfs:subClassOf+ ss:Product .
+    OPTIONAL { ?class rdfs:label ?label FILTER(LANG(?label) = &quot;es&quot;) }
+    OPTIONAL { ?class rdfs:subClassOf ?parent FILTER(?parent != owl:Thing) }
+}
+ORDER BY ?label</code></pre>
+<h3 id="c.2-buscar-clase-por-label-o-sinónimo">C.2 Buscar clase por
+label o sinónimo</h3>
+<pre class="sparql"><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX owl:  &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX ss:   &lt;http://www.smartstore.org/ontology#&gt;
+
+SELECT ?class ?weight WHERE {
+    ?class a owl:Class .
+    {
+        ?class rdfs:label ?lbl
+        FILTER(CONTAINS(LCASE(STR(?lbl)), LCASE(&quot;smartphone&quot;)))
+    } UNION {
+        ?class ss:synonym ?syn
+        FILTER(CONTAINS(LCASE(STR(?syn)), LCASE(&quot;smartphone&quot;)))
+    }
+    OPTIONAL { ?class ss:semanticWeight ?weight }
+}</code></pre>
+<h3 id="c.3-filtros-filtrables-de-una-clase-y-sus-ancestros">C.3 Filtros
+filtrables de una clase y sus ancestros</h3>
+<pre class="sparql"><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX ss:   &lt;http://www.smartstore.org/ontology#&gt;
+
+SELECT DISTINCT ?prop ?label ?filterType ?filterValues WHERE {
+    ?prop rdfs:domain &lt;http://www.smartstore.org/ontology#Smartphone&gt; ;
+          ss:isFilterable &quot;true&quot; .
+    OPTIONAL { ?prop rdfs:label ?label FILTER(LANG(?label) = &quot;es&quot;) }
+    OPTIONAL { ?prop ss:filterType ?filterType }
+    OPTIONAL { ?prop ss:filterValues ?filterValues }
+}</code></pre>
+<h3 id="c.4-obtener-todas-las-inferencerules">C.4 Obtener todas las
+InferenceRules</h3>
+<pre class="sparql"><code>PREFIX ss: &lt;http://www.smartstore.org/ontology#&gt;
+
+SELECT ?condition ?tag ?confidence ?targetClass WHERE {
+    ?rule a ss:InferenceRule ;
+          ss:condition ?condition ;
+          ss:tag ?tag .
+    OPTIONAL { ?rule ss:confidence ?confidence }
+    OPTIONAL { ?rule ss:targetClass ?targetClass }
+}
+ORDER BY DESC(?confidence)</code></pre>
+<h3 id="c.5-relaciones-de-compatibilidad">C.5 Relaciones de
+compatibilidad</h3>
+<pre class="sparql"><code>PREFIX ss:   &lt;http://www.smartstore.org/ontology#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT ?targetLabel ?confidence WHERE {
+    &lt;http://www.smartstore.org/ontology#Headphone&gt; ss:compatibleWith ?target .
+    ?target rdfs:label ?targetLabel FILTER(LANG(?targetLabel) = &quot;es&quot;) .
+    OPTIONAL { &lt;http://www.smartstore.org/ontology#Headphone&gt;
+               ss:compatibilityConfidence ?confidence }
+}</code></pre>
+<hr />
+<h2 id="apéndice-d-variables-de-entorno">APÉNDICE D — VARIABLES DE
+ENTORNO</h2>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backend/.env.example</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Django Core ───────────────────────────────────────────────────────</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="va">SECRET_KEY</span><span class="op">=</span>django-insecure-CHANGE-ME-IN-PRODUCTION-USE-RANDOM-256-BIT-KEY</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="va">DEBUG</span><span class="op">=</span>True</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="va">ALLOWED_HOSTS</span><span class="op">=</span>localhost,127.0.0.1</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Base de datos ─────────────────────────────────────────────────────</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="va">USE_SQLITE</span><span class="op">=</span>True          <span class="co"># True=SQLite (desarrollo), False=PostgreSQL (producción)</span></span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="va">DB_NAME</span><span class="op">=</span>smartstore_db</span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="va">DB_USER</span><span class="op">=</span>postgres</span>
+<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PASSWORD</span><span class="op">=</span></span>
+<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a><span class="va">DB_HOST</span><span class="op">=</span>localhost</span>
+<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PORT</span><span class="op">=</span>5432</span>
+<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ── CORS ──────────────────────────────────────────────────────────────</span></span>
+<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a><span class="va">CORS_ALLOWED_ORIGINS</span><span class="op">=</span>http://localhost:5173,http://127.0.0.1:5173</span>
+<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Notas de producción ───────────────────────────────────────────────</span></span>
+<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a><span class="co"># SECRET_KEY: generar con:</span></span>
+<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   python -c &quot;from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())&quot;</span></span>
+<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a><span class="co"># DEBUG=False en producción (NUNCA True en servidor público)</span></span>
+<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ALLOWED_HOSTS debe incluir el dominio real del servidor</span></span>
+<span id="cb73-24"><a href="#cb73-24" aria-hidden="true" tabindex="-1"></a><span class="co"># CORS_ALLOWED_ORIGINS solo el dominio del frontend desplegado</span></span></code></pre></div>
+<hr />
+<h2 id="apéndice-e-scripts-útiles">APÉNDICE E — SCRIPTS ÚTILES</h2>
+<h3 id="e.1-generar-secret_key-segura">E.1 Generar SECRET_KEY
+segura</h3>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">&quot;from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())&quot;</span></span></code></pre></div>
+<h3 id="e.2-repoblar-base-de-datos-desde-cero">E.2 Repoblar base de
+datos desde cero</h3>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py populate_fixtures <span class="at">--flush</span></span></code></pre></div>
+<h3 id="e.3-exportar-base-de-datos-sqlite-a-postgresql">E.3 Exportar
+base de datos SQLite a PostgreSQL</h3>
+<div class="sourceCode" id="cb76"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Volcar datos</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py dumpdata <span class="at">--natural-foreign</span> <span class="at">--natural-primary</span> <span class="dt">\</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--exclude</span><span class="op">=</span>contenttypes <span class="at">--exclude</span><span class="op">=</span>auth.permission <span class="dt">\</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;</span> dump.json</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Cambiar configuración a PostgreSQL en .env</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co"># USE_SQLITE=False + DB_* configurados</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Crear tablas y cargar</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py loaddata dump.json</span></code></pre></div>
+<h3 id="e.4-recargar-ontología-sin-reiniciar">E.4 Recargar ontología sin
+reiniciar</h3>
+<div class="sourceCode" id="cb77"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:8000/api/ontology/reload/ <span class="dt">\</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Solo funciona con DEBUG=True</span></span></code></pre></div>
+<h3 id="e.5-verificar-salud-del-sistema">E.5 Verificar salud del
+sistema</h3>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Backend</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> http://localhost:8000/api/stores/ <span class="kw">|</span> <span class="ex">python</span> <span class="at">-m</span> json.tool <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ontología</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">&quot;http://localhost:8000/api/ontology/classes/&quot;</span> <span class="kw">|</span> <span class="ex">python</span> <span class="at">-m</span> json.tool <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="co"># JWT</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="va">TOKEN</span><span class="op">=</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST http://localhost:8000/api/auth/login/ <span class="dt">\</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">&#39;{&quot;email&quot;:&quot;test@example.com&quot;,&quot;password&quot;:&quot;testpass&quot;}&#39;</span> <span class="kw">|</span> <span class="ex">python</span> <span class="at">-c</span> <span class="st">&quot;import sys,json; print(json.load(sys.stdin)[&#39;access&#39;])&quot;</span><span class="va">)</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-H</span> <span class="st">&quot;Authorization: Bearer </span><span class="va">$TOKEN</span><span class="st">&quot;</span> http://localhost:8000/api/auth/me/</span></code></pre></div>
+<h3 id="e.6-build-de-producción-del-frontend">E.6 Build de producción
+del frontend</h3>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> frontend</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar tamaño del bundle</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">du</span> <span class="at">-sh</span> dist/</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> dist/assets/</span></code></pre></div>
+<hr />
+<h2 id="apéndice-f-referencias">APÉNDICE F — REFERENCIAS</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>IEEE Std 830-1998. <em>IEEE Recommended Practice for Software
+Requirements Specifications.</em> IEEE, 1998.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ISO/IEC/IEEE 29148:2018. <em>Systems and software engineering — Life
+cycle processes — Requirements engineering.</em> ISO/IEC/IEEE,
+2018.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ISO/IEC 27001:2022. <em>Information security, cybersecurity and
+privacy protection.</em> ISO/IEC, 2022.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ISO/IEC 25010:2011. <em>Systems and software engineering — Quality
+of software product.</em> ISO/IEC, 2011.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>W3C. <em>OWL 2 Web Ontology Language Document Overview (Second
+Edition).</em> W3C Recommendation, 11 December 2012.
+https://www.w3.org/TR/owl2-overview/</td>
+</tr>
+<tr>
+<td>6</td>
+<td>W3C. <em>SPARQL 1.1 Query Language.</em> W3C Recommendation, 21
+March 2013. https://www.w3.org/TR/sparql11-query/</td>
+</tr>
+<tr>
+<td>7</td>
+<td>W3C. <em>RDF 1.1 Concepts and Abstract Syntax.</em> W3C
+Recommendation, 25 February 2014.
+https://www.w3.org/TR/rdf11-concepts/</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Jones, M., Bradley, J., Sakimura, N. <em>JSON Web Token (JWT).</em>
+RFC 7519. IETF, May 2015. https://www.rfc-editor.org/rfc/rfc7519</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Django Software Foundation. <em>Django 5.1 Documentation.</em>
+https://docs.djangoproject.com/en/5.1/</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Django REST Framework. <em>DRF 3.15 Documentation.</em>
+https://www.django-rest-framework.org/</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Facebook Inc. <em>React 18 Documentation.</em>
+https://react.dev/</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Evan You. <em>Vite Documentation.</em> https://vitejs.dev/</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Löfgren, I. <em>rdflib 7.1 Documentation.</em>
+https://rdflib.readthedocs.io/</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Hettinga, I. et al. <em>TanStack Query v5 Documentation.</em>
+https://tanstack.com/query/v5</td>
+</tr>
+<tr>
+<td>15</td>
+<td>OWASP. <em>OWASP Top Ten 2021.</em>
+https://owasp.org/www-project-top-ten/</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="control-del-documento">CONTROL DEL DOCUMENTO</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Documento</td>
+<td>SS-MT-001</td>
+</tr>
+<tr>
+<td>Revisión</td>
+<td>1.0.0</td>
+</tr>
+<tr>
+<td>Páginas</td>
+<td>Documento digital (Markdown)</td>
+</tr>
+<tr>
+<td>Idioma</td>
+<td>Español (México)</td>
+</tr>
+<tr>
+<td>Normas de referencia</td>
+<td>IEEE 830, ISO/IEC/IEEE 29148:2018, ISO/IEC 27001:2022, W3C
+OWL/SPARQL</td>
+</tr>
+<tr>
+<td>Próxima revisión</td>
+<td>18 de mayo de 2027</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Fin del documento — SmartStore Manual Técnico v1.0.0 ·
+SS-MT-001</em></p>
+</body>
+</html>
