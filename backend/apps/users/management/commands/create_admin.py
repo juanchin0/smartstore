@@ -13,6 +13,6 @@ class Command(BaseCommand):
                 email='admin@smartstore.com',
                 password='admin123'
             )
-            self.stdout.write(self.style.SUCCESS('✅ Admin superuser creado'))
+            self.stdout.write(self.style.SUCCESS('OK Admin superuser creado'))
         else:
-            self.stdout.write(self.style.WARNING('⚠️ Admin ya existe'))
+            self.stdout.write(self.style.WARNING('SKIP Admin ya existe'))
