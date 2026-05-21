@@ -8,9 +8,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         users_data = [
-            {'email': 'gomezmartinez052@gmail.com', 'username': 'juan_gomez', 'password': 'Test123!', 'first_name': 'Juan', 'last_name': 'Gomez'},
-            {'email': 'jgomezmartinez1997@gmail.com', 'username': 'guillermo_gomez', 'password': 'Test123!', 'first_name': 'Guillermo', 'last_name': 'Gomez'},
-            {'email': 'testcheckout@test.com', 'username': 'test_user', 'password': 'Test123!', 'first_name': 'Test', 'last_name': 'User'},
+            {'email': 'user1@test.com', 'username': 'juan_gomez', 'password': 'Test123!', 'first_name': 'Juan', 'last_name': 'Gomez'},
+            {'email': 'user2@test.com', 'username': 'guillermo_gomez', 'password': 'Test123!', 'first_name': 'Guillermo', 'last_name': 'Gomez'},
+            {'email': 'user3@test.com', 'username': 'test_user', 'password': 'Test123!', 'first_name': 'Test', 'last_name': 'User'},
         ]
 
         for user_data in users_data:
